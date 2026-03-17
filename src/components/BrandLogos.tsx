@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 const BrandLogos = () => {
     // Real brand logos referenced from Wikimedia/public sources
     const brands = [
-        { name: "TYM Tractors", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/TYM_MasterLogo_Red.svg/512px-TYM_MasterLogo_Red.svg.png" },
-        { name: "Case IH", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Case_IH_logo.svg/512px-Case_IH_logo.svg.png" },
-        { name: "Wacker Neuson", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Wacker_Neuson_logo.svg/512px-Wacker_Neuson_logo.svg.png" },
-        { name: "Yanmar", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Yanmar_logo.svg/512px-Yanmar_logo.svg.png" },
-        { name: "Mahindra", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Mahindra_and_Mahindra_Logo.svg/512px-Mahindra_and_Mahindra_Logo.svg.png" }
+        { name: "TYM Tractors", url: "/brands/tym.png" },
+        { name: "Case IH", url: "/brands/case_ih.png" },
+        { name: "Wacker Neuson", url: "/brands/wacker_neuson.png" },
+        { name: "Yanmar", url: "/brands/yanmar.png" },
+        { name: "Mahindra", url: "/brands/mahindra.png" }
     ];
 
     return (
