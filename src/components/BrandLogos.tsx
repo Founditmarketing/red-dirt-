@@ -6,8 +6,7 @@ const BrandLogos = () => {
         { name: "TYM Tractors", url: "/brands/tym.png" },
         { name: "Case IH", url: "/brands/case_ih.png" },
         { name: "Wacker Neuson", url: "/brands/wacker_neuson.png" },
-        { name: "Yanmar", url: "/brands/yanmar.png" },
-        { name: "Mahindra", url: "/brands/mahindra.png" }
+        { name: "Yanmar", url: "/brands/yanmar.png" }
     ];
 
     return (
