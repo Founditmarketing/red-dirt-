@@ -3,10 +3,12 @@ import Layout from './Layout';
 import Home from './pages/Home';
 import EquipmentDetail from './pages/EquipmentDetail';
 import PartsService from './pages/PartsService';
+import ScrollToAnchor from './components/ScrollToAnchor';
 
 function App() {
   return (
     <Router>
+      <ScrollToAnchor />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

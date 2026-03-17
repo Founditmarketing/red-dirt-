@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const DealershipStory = () => {
     return (
@@ -59,7 +58,7 @@ const DealershipStory = () => {
                                 When you run a farm or a construction crew, downtime isn't an inconvenience—it's lost money. That's why we don't just sell machinery; we partner with you to keep your operations moving.
                             </p>
                             <p>
-                                At Red Dirt Tractors, we carry only the elite heavy iron brands like TYM, Case IH, and Wacker Neuson. But our real product is our award-winning service department and our massive on-hand parts inventory.
+                                At Red Dirt Tractors, we carry only the elite heavy iron brands like TYM, Mahindra, Ferris, and Wacker Neuson. But our real product is our award-winning service department and our massive on-hand parts inventory.
                             </p>
                         </div>
 
@@ -79,10 +78,10 @@ const DealershipStory = () => {
                             ))}
                         </ul>
 
-                        <Link to="/about" className="group inline-flex items-center gap-3 text-brand-red font-bold uppercase tracking-widest hover:text-charcoal transition-colors">
-                            <span>Meet Our Team</span>
+                        <a href="#contact" className="group inline-flex items-center gap-3 text-brand-red font-bold uppercase tracking-widest hover:text-charcoal transition-colors">
+                            <span>Contact Our Team</span>
                             <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
-                        </Link>
+                        </a>
                     </div>
 
                 </div>
