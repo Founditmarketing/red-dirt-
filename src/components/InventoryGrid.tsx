@@ -2,29 +2,29 @@ import { motion } from 'framer-motion';
 import { ChevronRight, Settings, Maximize2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// Using the exact models from the provided sheet
+// Using the exact models from the provided sheet with direct Google Drive image links
 const inventoryData = [
-  { id: 1, model: "T5075 PS/C", imageKey: "1" },
-  { id: 2, model: "T130", imageKey: "2" },
-  { id: 3, model: "T474 S/C", imageKey: "3" },
-  { id: 4, model: "T474 HST", imageKey: "4" },
-  { id: 5, model: "T474 BH", imageKey: "5" },
-  { id: 6, model: "T115", imageKey: "6" },
-  { id: 7, model: "T474 S", imageKey: "7" },
-  { id: 8, model: "T574", imageKey: "8" },
-  { id: 9, model: "T458 PU/BH", imageKey: "9" },
-  { id: 10, model: "T3035 HST", imageKey: "10" },
-  { id: 11, model: "T25 HST/BH", imageKey: "11" },
-  { id: 12, model: "T574 S", imageKey: "12" },
-  { id: 13, model: "T25 HST", imageKey: "13" },
-  { id: 14, model: "T474 HST/C", imageKey: "14" },
-  { id: 15, model: "T574 HST/C", imageKey: "15" },
-  { id: 16, model: "T3035 S", imageKey: "16" },
-  { id: 17, model: "T494 HST", imageKey: "17" },
-  { id: 18, model: "T494 HST/C", imageKey: "18" },
-  { id: 19, model: "T494 S/C", imageKey: "19" },
-  { id: 20, model: "T3025 HST/C", imageKey: "20" },
-  { id: 21, model: "T4058 PS", imageKey: "21" }
+  { id: 1, model: "T5075 PS/C", imageKey: "18zpo-qXDZIm6emvuyLJDq767WT1U3zRz" },
+  { id: 2, model: "T130", imageKey: "1YfvHvbWBA9e9CYAxXEJlp_P1hZu6YLfM" },
+  { id: 3, model: "T474 S/C", imageKey: "1mRtsC9B5VUsdDvLuLIUlFIaUaF550Su2" },
+  { id: 4, model: "T474 HST", imageKey: "1APKsv-maVCSE0QCA0TaRAO5Z_zWG57Af" },
+  { id: 5, model: "T474 BH", imageKey: "17DNVOjlBe1FLK4BbyGHT3krdQ88p3zqi" },
+  { id: 6, model: "T115", imageKey: "1WkYiYNyIqhmyB4CzRiY9_rrLlYN6KRp0" },
+  { id: 7, model: "T474 S", imageKey: "1nQKo8_PR48qAeHtroVo1_YOAdGp-kTah" },
+  { id: 8, model: "T574", imageKey: "1HBT1TgNIw2KN3p4MI1i2JHzjOOceJmNB" },
+  { id: 9, model: "T458 PU/BH", imageKey: "1wMW2tIrhGp20PYM3kZlHz6p4Fno7UoTf" },
+  { id: 10, model: "T3035 HST", imageKey: "15AwjSUIjbr6w6Uom3zZObxjZbIqrvT3F" },
+  { id: 11, model: "T25 HST/BH", imageKey: "1plV7OMbz8RY9tkSoe9zPsr57cjGqtgOp" },
+  { id: 12, model: "T574 S", imageKey: "18gWTWFDwyIw-frS_36RUBRP7ZrC7oORk" },
+  { id: 13, model: "T25 HST", imageKey: "1dUcEQWJhVr37mFRYMzVaqxixrPDW1X4J" },
+  { id: 14, model: "T474 HST/C", imageKey: "1A4BCBUbPg0qXs_hnaflErUuQHm_mJLs7" },
+  { id: 15, model: "T574 HST/C", imageKey: "1Cv6BDr9XyeaiJ5KchfmO9w9ASsaTBvHq" },
+  { id: 16, model: "T3035 S", imageKey: "1iX03OlKsgE9cKwCgR1NUkKAVdIff8zEv" },
+  { id: 17, model: "T494 HST", imageKey: "1XhDm7ooFeSNHDLxsIQ40akadFf-aiRIo" },
+  { id: 18, model: "T494 HST/C", imageKey: "1Me2Un1EvV1IyQY8SWST3u6QV-PM3WgwR" },
+  { id: 19, model: "T494 S/C", imageKey: "14k8GxuJ-YG5GOKNiXXAvT0RFnHwyB4g6" },
+  { id: 20, model: "T3025 HST/C", imageKey: "1UW4YI_oIt-fuiEMvj4SVpsoBNpJUz2W-" },
+  { id: 21, model: "T4058 PS", imageKey: "1jkcMWk-9i_w_q7ir9OYClUNu1vD4ZtHK" }
 ];
 
 const InventoryGrid = () => {
@@ -87,7 +87,7 @@ const InventoryGrid = () => {
                                     </div>
                                     
                                     <img 
-                                        src={`/tractors/${tractor.imageKey}.jpg`} 
+                                        src={`https://drive.google.com/uc?export=view&id=${tractor.imageKey}`} 
                                         alt={`TYM ${tractor.model}`}
                                         onError={(e) => {
                                             // Fallback if image not found during dev
