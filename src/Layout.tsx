@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MapPin, Facebook } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Menu, X, Phone, MapPin, Facebook, Wrench, Clock, ShieldCheck, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LayoutProps {
@@ -32,10 +33,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex gap-8 items-center">
-                        <a href="#" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Inventory</a>
-                        <a href="#" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Parts & Service</a>
-                        <a href="#" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">About</a>
-                        <a href="#" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Contact</a>
+                        <Link to="/" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Inventory</Link>
+                        <Link to="/parts-service" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Parts & Service</Link>
+                        <a href="#about" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">About</a>
+                        <a href="#contact" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Contact</a>
                         <button className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2 rounded font-bold uppercase tracking-wider transition-all transform hover:-translate-y-1 hover:shadow-lg">
                             Text Us
                         </button>
@@ -61,10 +62,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         transition={{ type: 'tween', ease: 'circOut' }}
                         className="fixed inset-0 z-40 bg-charcoal flex flex-col items-center justify-center gap-8 md:hidden"
                     >
-                        <a href="#" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Inventory</a>
-                        <a href="#" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Parts & Service</a>
-                        <a href="#" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</a>
-                        <a href="#" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+                        <Link to="/" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Inventory</Link>
+                        <Link to="/parts-service" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Parts & Service</Link>
+                        <a href="#about" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+                        <a href="#contact" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -74,43 +75,74 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 {children}
             </main>
 
-            {/* Footer */}
-            <footer className="bg-charcoal text-white py-20 border-t border-white/10">
-                <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <div>
-                        <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">Red Dirt Tractors</h3>
-                        <p className="opacity-60 mb-6 leading-relaxed max-w-sm">
-                            Central Louisiana's headquarters for heavy-duty construction equipment, premium tractors, and the attachments to get the job done right.
-                        </p>
-                        <div className="flex gap-4">
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition-colors"><Facebook size={20} /></a>
+            {/* Institutional Footer */}
+            <footer className="bg-charcoal text-white pt-24 pb-12 border-t border-white/10 relative overflow-hidden">
+                {/* Background accent */}
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-red/5 to-transparent pointer-events-none"></div>
+                
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+                        {/* Brand & Mission */}
+                        <div className="lg:col-span-1">
+                            <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">Red Dirt Tractors</h3>
+                            <p className="opacity-60 mb-8 leading-relaxed text-sm">
+                                Central Louisiana's premium headquarters for heavy-duty construction equipment, agricultural tractors, and professional-grade attachments. Built on trust, driven by power.
+                            </p>
+                            <div className="flex gap-4">
+                                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-red transition-all"><Facebook size={18} /></a>
+                            </div>
+                        </div>
+
+                        {/* Quick Links */}
+                        <div>
+                            <h4 className="text-sm font-bold mb-6 uppercase text-brand-red tracking-[0.2em]">Equipment</h4>
+                            <ul className="space-y-4 opacity-70 text-sm font-medium">
+                                <li><Link to="/" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">New Inventory</Link></li>
+                                <li><Link to="/" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Pre-Owned Inventory</Link></li>
+                                <li><Link to="/parts-service" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Attachments & Implements</Link></li>
+                                <li><Link to="/" className="hover:text-white hover:translate-x-1 inline-block transition-transform duration-300">Financing Options</Link></li>
+                            </ul>
+                        </div>
+
+                        {/* Institutional Service */}
+                        <div>
+                            <h4 className="text-sm font-bold mb-6 uppercase text-brand-red tracking-[0.2em]">Parts & Service</h4>
+                            <ul className="space-y-4 opacity-70 text-sm font-medium">
+                                <li className="flex items-center gap-3"><Wrench size={16} className="text-brand-red shrink-0" /> <Link to="/parts-service" className="hover:text-white transition-colors">Schedule Service</Link></li>
+                                <li className="flex items-center gap-3"><ShieldCheck size={16} className="text-brand-red shrink-0" /> <Link to="/parts-service" className="hover:text-white transition-colors">Warranty Info</Link></li>
+                                <li className="flex items-center gap-3"><Clock size={16} className="text-brand-red shrink-0" /> <span>Mon - Fri: 8:00 AM - 5:00 PM</span></li>
+                                <li className="flex items-center gap-3"><Clock size={16} className="text-brand-red shrink-0" /> <span>Saturday: 8:00 AM - 12:00 PM</span></li>
+                            </ul>
+                        </div>
+
+                        {/* Contact & Location */}
+                        <div>
+                            <h4 className="text-sm font-bold mb-6 uppercase text-brand-red tracking-[0.2em]">Visit Us</h4>
+                            <ul className="space-y-6 opacity-80 text-sm">
+                                <li className="flex gap-4 items-start group">
+                                    <MapPin className="shrink-0 mt-1 text-white/40 group-hover:text-brand-red transition-colors" size={20} />
+                                    <span><strong className="block text-white mb-1">Red Dirt Headquarters</strong>7547 Hwy 71<br />Alexandria, LA 71302</span>
+                                </li>
+                                <li className="flex gap-4 items-center group">
+                                    <Phone className="shrink-0 text-white/40 group-hover:text-brand-red transition-colors" size={20} />
+                                    <a href="tel:3184429010" className="hover:text-white transition-colors font-bold text-lg">318-442-9010</a>
+                                </li>
+                                <li className="flex gap-4 items-center group">
+                                    <Mail className="shrink-0 text-white/40 group-hover:text-brand-red transition-colors" size={20} />
+                                    <a href="mailto:sales@reddirt.com" className="hover:text-white transition-colors font-bold">sales@reddirt.com</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div>
-                        <h4 className="text-lg font-bold mb-6 uppercase text-brand-red tracking-widest">Quick Links</h4>
-                        <ul className="space-y-4 opacity-60">
-                            <li><a href="#" className="hover:text-white transition-colors">Inventory</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Parts & Service</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                        </ul>
+
+                    {/* Bottom Bar */}
+                    <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium uppercase tracking-widest opacity-40">
+                        <p>&copy; {new Date().getFullYear()} Red Dirt Tractors & Construction Equipment. All Rights Reserved.</p>
+                        <div className="flex gap-6">
+                            <Link to="/" className="hover:text-white transition-colors">Privacy Policy</Link>
+                            <Link to="/" className="hover:text-white transition-colors">Terms of Service</Link>
+                        </div>
                     </div>
-                    <div>
-                        <h4 className="text-lg font-bold mb-6 uppercase text-brand-red tracking-widest">Contact</h4>
-                        <ul className="space-y-6 opacity-60">
-                            <li className="flex gap-4 items-start">
-                                <MapPin className="shrink-0 mt-1" size={20} />
-                                <span>7547 Hwy 71<br />Alexandria, LA 71302</span>
-                            </li>
-                            <li className="flex gap-4 items-center">
-                                <Phone className="shrink-0" size={20} />
-                                <a href="tel:3184429010" className="hover:text-white transition-colors font-bold">318-442-9010</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="container mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-center opacity-40 text-sm">
-                    &copy; {new Date().getFullYear()} Red Dirt Tractors & Construction Equipment. All Rights Reserved.
                 </div>
             </footer>
 

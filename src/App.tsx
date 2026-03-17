@@ -1,13 +1,20 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './Layout';
-import Hero from './components/Hero';
-import InventoryGrid from './components/InventoryGrid';
+import Home from './pages/Home';
+import EquipmentDetail from './pages/EquipmentDetail';
+import PartsService from './pages/PartsService';
 
 function App() {
   return (
-    <Layout>
-      <Hero />
-      <InventoryGrid />
-    </Layout>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/equipment/:id" element={<EquipmentDetail />} />
+          <Route path="/parts-service" element={<PartsService />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 

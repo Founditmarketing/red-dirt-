@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronRight, Settings, Maximize2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // Using the exact models from the provided sheet
 const inventoryData = [
@@ -59,11 +60,9 @@ const InventoryGrid = () => {
                          transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         {/* Magnetic Safety - Massive Touch Target for easy navigation */}
-                        <a href="#full-inventory" className="group flex items-center gap-3 bg-white border-2 border-charcoal/10 hover:border-brand-red px-8 py-4 px-6 rounded-sm transition-all shadow-sm hover:shadow-xl">
-                            <span className="font-bold uppercase tracking-widest text-sm text-charcoal group-hover:text-brand-red transition-colors">View All {inventoryData.length} Machines</span>
-                            <div className="bg-charcoal/5 group-hover:bg-brand-red/10 p-2 rounded-full transition-colors">
-                                <ChevronRight size={18} className="text-charcoal group-hover:text-brand-red group-hover:translate-x-1 transition-all" />
-                            </div>
+                        <a href="#full-inventory" className="group flex items-center gap-4 bg-brand-red text-white hover:bg-brand-red-dark px-10 py-5 rounded-sm transition-all shadow-xl hover:shadow-2xl">
+                            <span className="font-black uppercase tracking-widest text-base">View All {inventoryData.length} Tractors</span>
+                            <ChevronRight size={24} className="group-hover:translate-x-1 transition-all" />
                         </a>
                     </motion.div>
                 </div>
@@ -77,70 +76,63 @@ const InventoryGrid = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            // The card itself acts as a massive easy touch target
-                            className="group bg-white rounded-sm overflow-hidden border border-charcoal/5 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer flex flex-col h-full"
+                            className="h-full flex flex-col group cursor-pointer"
                         >
-                            {/* Image Container with Cinematic Ken Burns */}
-                            <div className="relative aspect-[4/3] w-full overflow-hidden bg-charcoal">
-                                {/* Fallback/Placeholder styling until real images override */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-charcoal to-charcoal-light flex items-center justify-center opacity-50 z-0">
-                                     <Settings size={40} className="text-white/20" />
-                                </div>
-                                
-                                {/* 
-                                    Assuming the user will place images at /tractors/1.jpg 
-                                    or replacing this with DB images later. The scale-105 to scale-110 
-                                    is the profoundly slow, rich Ken Burns effect.
-                                */}
-                                <img 
-                                    src={`/tractors/${tractor.imageKey}.jpg`} 
-                                    alt={`TYM ${tractor.model}`}
-                                    onError={(e) => {
-                                        // Fallback if image not found during dev
-                                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1592860882773-87ce85fb28a8?q=80&w=1200&auto=format&fit=crop';
-                                    }}
-                                    className="absolute inset-0 w-full h-full object-cover z-10 scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-out opacity-90 group-hover:opacity-100"
-                                />
-
-                                {/* Overlay gradient to ensure text readability */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-20 pointer-events-none" />
-                                
-                                {/* High Contrast Tag */}
-                                <div className="absolute top-4 left-4 z-30">
-                                    <span className="bg-brand-red text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 shadow-lg backdrop-blur-sm">
-                                        In Stock
-                                    </span>
-                                </div>
-
-                                <div className="absolute bottom-4 right-4 z-30 bg-white/10 backdrop-blur-md rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <Maximize2 size={16} className="text-white" />
-                                </div>
-                            </div>
-
-                            {/* Card Content */}
-                            <div className="p-8 flex flex-col flex-grow bg-white relative z-30">
-                                <div className="flex justify-between items-start mb-4 gap-4">
-                                    <div>
-                                        <p className="text-xs font-bold text-charcoal/40 uppercase tracking-widest mb-1">TYM Tractors</p>
-                                        <h3 className="text-2xl font-black text-charcoal uppercase tracking-tight group-hover:text-brand-red transition-colors">{tractor.model}</h3>
+                            <Link to={`/equipment/${tractor.id}`} className="bg-white rounded-sm overflow-hidden border border-charcoal/5 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full outline-none focus-visible:ring-2 focus-visible:ring-brand-red">
+                                {/* Image Container with Cinematic Ken Burns */}
+                                <div className="relative aspect-[4/3] w-full overflow-hidden bg-charcoal">
+                                    {/* Fallback/Placeholder styling until real images override */}
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-charcoal to-charcoal-light flex items-center justify-center opacity-50 z-0">
+                                         <Settings size={40} className="text-white/20" />
                                     </div>
-                                    <div className="text-right shrink-0">
-                                        <p className="text-xs font-bold text-charcoal/40 uppercase tracking-widest mb-1">Starting At</p>
-                                        <p className="text-xl font-bold text-charcoal">Call <span className="text-brand-red">Us</span></p>
+                                    
+                                    <img 
+                                        src={`/tractors/${tractor.imageKey}.jpg`} 
+                                        alt={`TYM ${tractor.model}`}
+                                        onError={(e) => {
+                                            // Fallback if image not found during dev
+                                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1592860882773-87ce85fb28a8?q=80&w=1200&auto=format&fit=crop';
+                                        }}
+                                        className="absolute inset-0 w-full h-full object-cover z-10 scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-out opacity-90 group-hover:opacity-100"
+                                    />
+
+                                    {/* Overlay gradient to ensure text readability */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-20 pointer-events-none" />
+                                    
+                                    {/* High Contrast Tag */}
+                                    <div className="absolute top-4 left-4 z-30">
+                                        <span className="bg-brand-red text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 shadow-lg backdrop-blur-sm">
+                                            In Stock
+                                        </span>
+                                    </div>
+
+                                    <div className="absolute bottom-4 right-4 z-30 bg-white/10 backdrop-blur-md rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <Maximize2 size={16} className="text-white" />
                                     </div>
                                 </div>
 
-                                {/* Divider */}
-                                <div className="w-full h-[1px] bg-charcoal/10 my-4 group-hover:bg-brand-red/20 transition-colors"></div>
+                                {/* Card Content */}
+                                <div className="p-8 flex flex-col flex-grow bg-white relative z-30">
+                                    <div className="flex justify-between items-start mb-6 gap-4">
+                                        <div>
+                                            <p className="text-sm font-bold text-charcoal/50 uppercase tracking-widest mb-1">TYM Tractors</p>
+                                            <h3 className="text-3xl font-black text-charcoal uppercase tracking-tight group-hover:text-brand-red transition-colors">{tractor.model}</h3>
+                                        </div>
+                                        <div className="text-right shrink-0">
+                                            <p className="text-sm font-bold text-charcoal/50 uppercase tracking-widest mb-1">Price</p>
+                                            <p className="text-lg font-black text-brand-red">Call Us</p>
+                                        </div>
+                                    </div>
 
-                                {/* Action Area */}
-                                <div className="mt-auto pt-2 flex items-center justify-between">
-                                    <span className="text-sm font-bold text-charcoal/60 uppercase tracking-wider group-hover:text-charcoal transition-colors">
-                                        View Details
-                                    </span>
-                                    <ChevronRight size={20} className="text-brand-red transform group-hover:translate-x-2 transition-transform duration-300" />
+                                    {/* Action Area */}
+                                    <div className="mt-auto pt-6 border-t border-charcoal/10">
+                                        <div className="bg-charcoal text-white w-full py-4 px-4 flex justify-between items-center group-hover:bg-brand-red transition-colors">
+                                            <span className="font-bold uppercase tracking-widest">View Details</span>
+                                            <ChevronRight size={24} className="transform group-hover:translate-x-2 transition-transform duration-300" />
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>
