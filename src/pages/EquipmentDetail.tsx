@@ -14,9 +14,9 @@ const mockEquipmentData = {
     price: "Call for Pricing",
     description: "The TYM T25 is engineered for versatility and power in a compact frame. Whether you're maintaining a small acreage, moving materials, or handling precise landscaping tasks, the T25 delivers professional-grade performance. Features a robust Yanmar engine and intuitive controls designed for all skill levels.",
     images: [
-        "https://drive.google.com/uc?export=view&id=18gWTWFDwyIw-frS_36RUBRP7ZrC7oORk",
-        "https://drive.google.com/uc?export=view&id=1plV7OMbz8RY9tkSoe9zPsr57cjGqtgOp",
-        "https://drive.google.com/uc?export=view&id=1dUcEQWJhVr37mFRYMzVaqxixrPDW1X4J"
+        "/tractors/12.jpg",
+        "/tractors/11.jpg",
+        "/tractors/13.jpg"
     ],
     specs: {
         engineHP: "24.5 HP",

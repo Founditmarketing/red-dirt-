@@ -87,7 +87,7 @@ const InventoryGrid = () => {
                                     </div>
                                     
                                     <img 
-                                        src={`https://drive.google.com/uc?export=view&id=${tractor.imageKey}`} 
+                                        src={`/tractors/${tractor.id}.jpg`} 
                                         alt={`TYM ${tractor.model}`}
                                         onError={(e) => {
                                             // Fallback if image not found during dev
