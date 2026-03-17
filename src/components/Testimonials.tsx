@@ -24,16 +24,16 @@ const Testimonials = () => {
     ];
 
     return (
-        <section className="py-24 bg-off-white relative">
-            <div className="container mx-auto px-6">
+        <section className="py-16 md:py-24 bg-off-white relative">
+            <div className="container mx-auto px-4 md:px-6">
                 
-                <div className="text-center mb-16">
+                <div className="text-center mb-10 md:mb-16">
                     <div className="flex items-center justify-center gap-3 mb-4">
-                        <span className="w-8 h-[2px] bg-brand-red"></span>
-                        <h3 className="text-brand-red font-bold tracking-[0.2em] uppercase text-sm">Customer Reviews</h3>
-                        <span className="w-8 h-[2px] bg-brand-red"></span>
+                        <span className="w-6 md:w-8 h-[2px] bg-brand-red"></span>
+                        <h3 className="text-brand-red font-bold tracking-[0.1em] md:tracking-[0.2em] uppercase text-xs md:text-sm">Customer Reviews</h3>
+                        <span className="w-6 md:w-8 h-[2px] bg-brand-red"></span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-charcoal">
+                    <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-charcoal">
                         The Word From <span className="text-charcoal/30">The Field</span>
                     </h2>
                 </div>
@@ -46,21 +46,21 @@ const Testimonials = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="bg-white p-8 md:p-10 shadow-lg border-t-4 border-charcoal/10 hover:border-brand-red transition-colors flex flex-col h-full"
+                            className="bg-white p-6 md:p-10 shadow-lg border-t-4 border-charcoal/10 hover:border-brand-red transition-colors flex flex-col h-full"
                         >
-                            <div className="flex gap-1 mb-6 text-brand-red">
+                            <div className="flex gap-1 mb-4 md:mb-6 text-brand-red">
                                 {[...Array(review.rating)].map((_, i) => (
-                                    <Star key={i} size={18} fill="currentColor" />
+                                    <Star key={i} size={16} className="md:w-[18px] md:h-[18px]" fill="currentColor" />
                                 ))}
                             </div>
                             
-                            <p className="text-charcoal/80 font-medium leading-relaxed mb-8 flex-grow">
+                            <p className="text-charcoal/80 font-medium leading-relaxed mb-6 md:mb-8 flex-grow text-sm md:text-base">
                                 "{review.text}"
                             </p>
 
                             <div className="mt-auto">
-                                <h4 className="font-bold text-charcoal uppercase tracking-tighter text-lg">{review.name}</h4>
-                                <p className="text-sm text-brand-red font-bold uppercase tracking-widest">{review.role}</p>
+                                <h4 className="font-bold text-charcoal uppercase tracking-tighter text-base md:text-lg">{review.name}</h4>
+                                <p className="text-xs md:text-sm text-brand-red font-bold uppercase tracking-widest">{review.role}</p>
                             </div>
                         </motion.div>
                     ))}

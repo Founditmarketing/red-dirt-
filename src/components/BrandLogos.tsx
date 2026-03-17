@@ -4,7 +4,7 @@ const BrandLogos = () => {
     // Real brand logos referenced from Wikimedia/public sources
     const brands = [
         { name: "TYM Tractors", url: "/brands/tym.png" },
-        { name: "Case IH", url: "/brands/case_ih.png" },
+        { name: "Mahindra", url: "/brands/mahindra.png" },
         { name: "Wacker Neuson", url: "/brands/wacker_neuson.png" },
         { name: "Yanmar", url: "/brands/yanmar.png" }
     ];
