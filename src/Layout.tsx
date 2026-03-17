@@ -33,13 +33,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex gap-8 items-center">
-                        <Link to="/" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Inventory</Link>
+                        <a href="/#inventory" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Inventory</a>
                         <Link to="/parts-service" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Parts & Service</Link>
-                        <a href="#about" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">About</a>
+                        <a href="/#about" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">About</a>
                         <a href="#contact" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Contact</a>
-                        <button className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2 rounded font-bold uppercase tracking-wider transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                        <a href="#contact" className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2 rounded font-bold uppercase tracking-wider transition-all transform hover:-translate-y-1 hover:shadow-lg">
                             Text Us
-                        </button>
+                        </a>
                     </div>
 
                     {/* Mobile Toggle */}
@@ -62,9 +62,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         transition={{ type: 'tween', ease: 'circOut' }}
                         className="fixed inset-0 z-40 bg-charcoal flex flex-col items-center justify-center gap-8 md:hidden"
                     >
-                        <Link to="/" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Inventory</Link>
+                        <a href="/#inventory" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Inventory</a>
                         <Link to="/parts-service" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Parts & Service</Link>
-                        <a href="#about" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+                        <a href="/#about" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</a>
                         <a href="#contact" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
                     </motion.div>
                 )}
@@ -76,7 +76,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </main>
 
             {/* Institutional Footer */}
-            <footer className="bg-charcoal text-white pt-24 pb-12 border-t border-white/10 relative overflow-hidden">
+            <footer id="contact" className="bg-charcoal text-white pt-24 pb-12 border-t border-white/10 relative overflow-hidden">
                 {/* Background accent */}
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-red/5 to-transparent pointer-events-none"></div>
                 

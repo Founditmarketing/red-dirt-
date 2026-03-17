@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const DealershipStory = () => {
     return (
-        <section className="py-24 md:py-32 bg-white relative">
+        <section id="about" className="py-24 md:py-32 bg-white relative">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center gap-16">
                     

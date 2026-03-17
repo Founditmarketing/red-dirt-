@@ -32,7 +32,7 @@ const InventoryGrid = () => {
     const featuredInventory = inventoryData.slice(0, 6);
 
     return (
-        <section className="bg-off-white py-24 md:py-32 relative">
+        <section id="inventory" className="bg-off-white py-24 md:py-32 relative">
             <div className="container mx-auto px-6">
                 
                 {/* Section Header with Semantic Contrast */}
