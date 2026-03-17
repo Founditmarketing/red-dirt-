@@ -10,17 +10,17 @@ const TrustMetrics = () => {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-white/20">
                     
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-                        <div className="text-5xl md:text-7xl font-black tracking-tighter mb-2">45+</div>
+                        <div className="text-5xl md:text-7xl font-black tracking-tighter mb-2">10</div>
                         <div className="text-sm font-bold uppercase tracking-widest text-white/80">Years in Business</div>
                     </motion.div>
 
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
-                        <div className="text-5xl md:text-7xl font-black tracking-tighter mb-2">10k</div>
+                        <div className="text-5xl md:text-[64px] font-black tracking-tighter mb-2">4,000+</div>
                         <div className="text-sm font-bold uppercase tracking-widest text-white/80">Machines Sold</div>
                     </motion.div>
 
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-                        <div className="text-5xl md:text-7xl font-black tracking-tighter mb-2">12</div>
+                        <div className="text-5xl md:text-7xl font-black tracking-tighter mb-2">4</div>
                         <div className="text-sm font-bold uppercase tracking-widest text-white/80">Certified Techs</div>
                     </motion.div>
 

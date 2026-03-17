@@ -129,7 +129,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 </li>
                                 <li className="flex gap-4 items-center group">
                                     <Mail className="shrink-0 text-white/40 group-hover:text-brand-red transition-colors" size={20} />
-                                    <a href="mailto:sales@reddirt.com" className="hover:text-white transition-colors font-bold">sales@reddirt.com</a>
+                                    <a href="mailto:reddirttractors@gamail.com" className="hover:text-white transition-colors font-bold">reddirttractors@gamail.com</a>
                                 </li>
                             </ul>
                         </div>
