@@ -27,12 +27,12 @@ const BrandLogos = () => {
                     {SCROLLING_BRANDS.map((brand, index) => (
                         <div
                             key={index}
-                            className="w-32 md:w-48 mx-8 md:mx-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0"
+                            className="w-48 md:w-72 mx-8 md:mx-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0"
                         >
                             <img 
                                 src={brand.url} 
                                 alt={`${brand.name} Logo`} 
-                                className="w-full h-auto max-h-16 object-contain"
+                                className="w-full h-auto max-h-24 md:max-h-32 object-contain"
                             />
                         </div>
                     ))}
