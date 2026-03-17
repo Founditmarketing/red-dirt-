@@ -6,11 +6,15 @@ const Hero = () => {
         <section className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-charcoal">
             {/* Background Media */}
             <div className="absolute inset-0 z-0">
-                <img
-                    src="/hero_drone_tractors.svg"
-                    alt="Red Dirt Tractors Lot"
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className="w-full h-full object-cover opacity-80"
-                />
+                >
+                    <source src="/hero.mp4" type="video/mp4" />
+                </video>
                 {/* Cinematic Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/80 to-brand-red/30 mix-blend-multiply" />
                 <div className="absolute inset-0 bg-black/40" />
