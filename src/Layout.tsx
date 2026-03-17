@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Phone, MapPin, Facebook, Wrench, Clock, ShieldCheck, Mail } from 'lucide-react';
+import { Menu, X, Phone, MapPin, Facebook, Wrench, Clock, ShieldCheck, Mail, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LayoutProps {
@@ -37,8 +37,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         <Link to="/parts-service" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Parts & Service</Link>
                         <a href="/#about" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">About</a>
                         <a href="#contact" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Contact</a>
-                        <a href="#contact" className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2 rounded font-bold uppercase tracking-wider transition-all transform hover:-translate-y-1 hover:shadow-lg">
-                            Text Us
+                        <a href="sms://+13184429010" className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2 rounded font-bold uppercase tracking-wider transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                            Text Us!
                         </a>
                     </div>
 
@@ -148,11 +148,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
             {/* Kenect Floating FAB */}
             <a
-                href="tel:3184429010"
+                href="sms://+13184429010"
                 className="fixed bottom-8 right-8 z-50 bg-brand-red text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center gap-3 font-bold uppercase tracking-wider group"
             >
-                <Phone size={24} className="animate-pulse" />
-                <span className="hidden md:inline group-hover:block transition-all duration-300">Text or Call Us</span>
+                <MessageSquare size={24} className="animate-pulse" />
+                <span className="hidden md:inline group-hover:block transition-all duration-300">Text Us!</span>
             </a>
         </div>
     );
