@@ -27,9 +27,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     }`}
             >
                 <div className="container mx-auto px-6 flex justify-between items-center">
-                    <div className="logo text-white font-heading font-black text-2xl tracking-tighter uppercase cursor-pointer">
-                        Red Dirt <span className="text-brand-red">Tractors</span>
-                    </div>
+                    <Link to="/" className="cursor-pointer block opacity-90 hover:opacity-100 transition-opacity">
+                        <img src="/logo.png" alt="Red Dirt Tractors" className="h-12 md:h-16 w-auto object-contain drop-shadow-md bg-white/90 p-2 rounded-sm" />
+                    </Link>
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex gap-8 items-center">
@@ -84,7 +84,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
                         {/* Brand & Mission */}
                         <div className="lg:col-span-1">
-                            <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">Red Dirt Tractors</h3>
+                            <img src="/logo.png" alt="Red Dirt Tractors" className="h-14 mb-6 w-auto object-contain drop-shadow-md bg-white/90 p-2 rounded-sm" />
                             <p className="opacity-60 mb-8 leading-relaxed text-sm">
                                 Central Louisiana's premium headquarters for heavy-duty construction equipment, agricultural tractors, and professional-grade attachments. Built on trust, driven by power.
                             </p>
