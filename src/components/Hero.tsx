@@ -13,7 +13,7 @@ const Hero = () => {
                     playsInline
                     className="w-full h-full object-cover opacity-80"
                 >
-                    <source src="/hero new.MP4" type="video/mp4" />
+                    <source src="/hero_v2.mp4" type="video/mp4" />
                 </video>
                 {/* Cinematic Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/80 to-brand-red/30 mix-blend-multiply" />
