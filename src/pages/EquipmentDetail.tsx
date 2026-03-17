@@ -4,6 +4,7 @@ import { ChevronRight, ArrowLeft, Shield } from 'lucide-react';
 import Gallery from '../components/equipment/Gallery';
 import SpecsTable from '../components/equipment/SpecsTable';
 import QuoteForm from '../components/equipment/QuoteForm';
+import { getTractorById } from '../data/inventory';
 
 // We will fetch the actual data later, mock data for now
 const mockEquipmentData = {
@@ -36,11 +37,26 @@ const mockEquipmentData = {
 
 const EquipmentDetail = () => {
     const { id } = useParams();
-    const [data] = useState(mockEquipmentData);
+    const [data, setData] = useState(mockEquipmentData);
 
     useEffect(() => {
-        // In a real app, we would fetch data based on the ID here
         window.scrollTo(0, 0);
+        if (id) {
+            const tractorInfo = getTractorById(id);
+            if (tractorInfo) {
+                // Merge dynamically loaded core info into the rich UI schema
+                setData({
+                    ...mockEquipmentData,
+                    id: tractorInfo.id.toString(),
+                    model: tractorInfo.model,
+                    images: [
+                        `/tractors/${tractorInfo.id}.jpg`,
+                        "/tractors/12.jpg", // Secondary placeholder shots
+                        "/tractors/11.jpg"
+                    ]
+                });
+            }
+        }
     }, [id]);
 
     return (
