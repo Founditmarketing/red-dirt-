@@ -4,10 +4,62 @@ import Home from './pages/Home';
 import EquipmentDetail from './pages/EquipmentDetail';
 import PartsService from './pages/PartsService';
 import ScrollToAnchor from './components/ScrollToAnchor';
+import { Helmet } from 'react-helmet-async';
 
 function App() {
+  const schemaMarkup = {
+    "@context": "https://schema.org",
+    "@type": "AutoDealer",
+    "name": "Red Dirt Tractors",
+    "image": "https://reddirt-tractors.com/about.jpg",
+    "@id": "https://reddirt-tractors.com/",
+    "url": "https://reddirt-tractors.com/",
+    "telephone": "+13184429010",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Hwy 71 South",
+      "addressLocality": "Alexandria",
+      "addressRegion": "LA",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 31.3113,
+      "longitude": -92.4451
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "17:00"
+    },{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "15:00"
+    }],
+    "brand": [
+      { "@type": "Brand", "name": "TYM Tractors" },
+      { "@type": "Brand", "name": "Mahindra" },
+      { "@type": "Brand", "name": "Ferris Mowers" },
+      { "@type": "Brand", "name": "Wacker Neuson" }
+    ]
+  };
+
   return (
-    <Router>
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(schemaMarkup)}
+        </script>
+      </Helmet>
+      <Router>
       <ScrollToAnchor />
       <Layout>
         <Routes>
@@ -17,6 +69,7 @@ function App() {
         </Routes>
       </Layout>
     </Router>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ChevronRight, ArrowLeft, Shield } from 'lucide-react';
 import Gallery from '../components/equipment/Gallery';
 import SpecsTable from '../components/equipment/SpecsTable';
@@ -61,6 +62,12 @@ const EquipmentDetail = () => {
 
     return (
         <div className="pt-20 md:pt-24 min-h-screen bg-off-white pb-16 md:pb-24">
+            <Helmet>
+                <title>{`${data.make} ${data.model} Tractor | Red Dirt Tractors in Alexandria, LA`}</title>
+                <meta name="description" content={`Explore the ${data.make} ${data.model}. ${data.description.substring(0, 150)}...`} />
+                <meta property="og:title" content={`${data.make} ${data.model} Tractor | Red Dirt Tractors`} />
+                <meta property="og:description" content={`Explore the ${data.make} ${data.model}. ${data.description.substring(0, 150)}...`} />
+            </Helmet>
             
             {/* Breadcrumb Navigation */}
             <div className="bg-charcoal px-4 md:px-6 py-4">
