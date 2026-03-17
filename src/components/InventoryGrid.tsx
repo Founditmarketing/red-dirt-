@@ -1,0 +1,152 @@
+import { motion } from 'framer-motion';
+import { ChevronRight, Settings, Maximize2 } from 'lucide-react';
+
+// Using the exact models from the provided sheet
+const inventoryData = [
+  { id: 1, model: "T5075 PS/C", imageKey: "1" },
+  { id: 2, model: "T130", imageKey: "2" },
+  { id: 3, model: "T474 S/C", imageKey: "3" },
+  { id: 4, model: "T474 HST", imageKey: "4" },
+  { id: 5, model: "T474 BH", imageKey: "5" },
+  { id: 6, model: "T115", imageKey: "6" },
+  { id: 7, model: "T474 S", imageKey: "7" },
+  { id: 8, model: "T574", imageKey: "8" },
+  { id: 9, model: "T458 PU/BH", imageKey: "9" },
+  { id: 10, model: "T3035 HST", imageKey: "10" },
+  { id: 11, model: "T25 HST/BH", imageKey: "11" },
+  { id: 12, model: "T574 S", imageKey: "12" },
+  { id: 13, model: "T25 HST", imageKey: "13" },
+  { id: 14, model: "T474 HST/C", imageKey: "14" },
+  { id: 15, model: "T574 HST/C", imageKey: "15" },
+  { id: 16, model: "T3035 S", imageKey: "16" },
+  { id: 17, model: "T494 HST", imageKey: "17" },
+  { id: 18, model: "T494 HST/C", imageKey: "18" },
+  { id: 19, model: "T494 S/C", imageKey: "19" },
+  { id: 20, model: "T3025 HST/C", imageKey: "20" },
+  { id: 21, model: "T4058 PS", imageKey: "21" }
+];
+
+const InventoryGrid = () => {
+    // We will slice to 6 for the "Featured" section to keep the homepage tight
+    const featuredInventory = inventoryData.slice(0, 6);
+
+    return (
+        <section className="bg-off-white py-24 md:py-32 relative">
+            <div className="container mx-auto px-6">
+                
+                {/* Section Header with Semantic Contrast */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="max-w-2xl"
+                    >
+                        <div className="flex items-center gap-3 mb-4">
+                            <span className="w-8 h-[2px] bg-brand-red"></span>
+                            <h3 className="text-brand-red font-bold tracking-[0.2em] uppercase text-sm">Now on the Lot</h3>
+                        </div>
+                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-charcoal leading-none">
+                            Featured <span className="text-black/20">Equipment</span>
+                        </h2>
+                    </motion.div>
+
+                    <motion.div
+                         initial={{ opacity: 0, x: 20 }}
+                         whileInView={{ opacity: 1, x: 0 }}
+                         viewport={{ once: true }}
+                         transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                        {/* Magnetic Safety - Massive Touch Target for easy navigation */}
+                        <a href="#full-inventory" className="group flex items-center gap-3 bg-white border-2 border-charcoal/10 hover:border-brand-red px-8 py-4 px-6 rounded-sm transition-all shadow-sm hover:shadow-xl">
+                            <span className="font-bold uppercase tracking-widest text-sm text-charcoal group-hover:text-brand-red transition-colors">View All {inventoryData.length} Machines</span>
+                            <div className="bg-charcoal/5 group-hover:bg-brand-red/10 p-2 rounded-full transition-colors">
+                                <ChevronRight size={18} className="text-charcoal group-hover:text-brand-red group-hover:translate-x-1 transition-all" />
+                            </div>
+                        </a>
+                    </motion.div>
+                </div>
+
+                {/* The Grid - Harmonious Cascade Reveals */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {featuredInventory.map((tractor, index) => (
+                        <motion.div
+                            key={tractor.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            // The card itself acts as a massive easy touch target
+                            className="group bg-white rounded-sm overflow-hidden border border-charcoal/5 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer flex flex-col h-full"
+                        >
+                            {/* Image Container with Cinematic Ken Burns */}
+                            <div className="relative aspect-[4/3] w-full overflow-hidden bg-charcoal">
+                                {/* Fallback/Placeholder styling until real images override */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-charcoal to-charcoal-light flex items-center justify-center opacity-50 z-0">
+                                     <Settings size={40} className="text-white/20" />
+                                </div>
+                                
+                                {/* 
+                                    Assuming the user will place images at /tractors/1.jpg 
+                                    or replacing this with DB images later. The scale-105 to scale-110 
+                                    is the profoundly slow, rich Ken Burns effect.
+                                */}
+                                <img 
+                                    src={`/tractors/${tractor.imageKey}.jpg`} 
+                                    alt={`TYM ${tractor.model}`}
+                                    onError={(e) => {
+                                        // Fallback if image not found during dev
+                                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1592860882773-87ce85fb28a8?q=80&w=1200&auto=format&fit=crop';
+                                    }}
+                                    className="absolute inset-0 w-full h-full object-cover z-10 scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-out opacity-90 group-hover:opacity-100"
+                                />
+
+                                {/* Overlay gradient to ensure text readability */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-20 pointer-events-none" />
+                                
+                                {/* High Contrast Tag */}
+                                <div className="absolute top-4 left-4 z-30">
+                                    <span className="bg-brand-red text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 shadow-lg backdrop-blur-sm">
+                                        In Stock
+                                    </span>
+                                </div>
+
+                                <div className="absolute bottom-4 right-4 z-30 bg-white/10 backdrop-blur-md rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <Maximize2 size={16} className="text-white" />
+                                </div>
+                            </div>
+
+                            {/* Card Content */}
+                            <div className="p-8 flex flex-col flex-grow bg-white relative z-30">
+                                <div className="flex justify-between items-start mb-4 gap-4">
+                                    <div>
+                                        <p className="text-xs font-bold text-charcoal/40 uppercase tracking-widest mb-1">TYM Tractors</p>
+                                        <h3 className="text-2xl font-black text-charcoal uppercase tracking-tight group-hover:text-brand-red transition-colors">{tractor.model}</h3>
+                                    </div>
+                                    <div className="text-right shrink-0">
+                                        <p className="text-xs font-bold text-charcoal/40 uppercase tracking-widest mb-1">Starting At</p>
+                                        <p className="text-xl font-bold text-charcoal">Call <span className="text-brand-red">Us</span></p>
+                                    </div>
+                                </div>
+
+                                {/* Divider */}
+                                <div className="w-full h-[1px] bg-charcoal/10 my-4 group-hover:bg-brand-red/20 transition-colors"></div>
+
+                                {/* Action Area */}
+                                <div className="mt-auto pt-2 flex items-center justify-between">
+                                    <span className="text-sm font-bold text-charcoal/60 uppercase tracking-wider group-hover:text-charcoal transition-colors">
+                                        View Details
+                                    </span>
+                                    <ChevronRight size={20} className="text-brand-red transform group-hover:translate-x-2 transition-transform duration-300" />
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default InventoryGrid;
