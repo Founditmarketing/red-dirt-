@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 const DealershipStory = () => {
     return (
-        <section id="about" className="py-24 md:py-32 bg-white relative">
+        <section id="about" className="py-16 md:py-32 bg-white relative">
             <div className="container mx-auto px-6">
-                <div className="flex flex-col lg:flex-row items-center gap-16">
+                <div className="flex flex-col lg:flex-row items-center gap-10 md:gap-16">
                     
                     {/* Visual / Facility Placeholder */}
                     <div className="w-full lg:w-1/2 relative">
@@ -24,9 +24,9 @@ const DealershipStory = () => {
                                 className="w-full h-full object-cover opacity-80"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 to-transparent" />
-                            <div className="absolute bottom-8 left-8 border-l-4 border-brand-red pl-4">
-                                <h4 className="text-white text-2xl font-black uppercase tracking-tight">Our Headquarters</h4>
-                                <p className="text-white/60 font-medium text-sm mt-1 uppercase tracking-widest">Alexandria, LA</p>
+                            <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8 border-l-4 border-brand-red pl-4">
+                                <h4 className="text-white text-xl md:text-2xl font-black uppercase tracking-tight">Our Headquarters</h4>
+                                <p className="text-white/60 font-medium text-xs md:text-sm mt-1 uppercase tracking-widest">Hwy 71 South • Alexandria, LA</p>
                             </div>
                         </motion.div>
 
@@ -54,7 +54,7 @@ const DealershipStory = () => {
                             <span className="text-charcoal/30">Forged in Mud.</span>
                         </h2>
                         
-                        <div className="space-y-6 text-charcoal/70 font-medium leading-relaxed mb-10 text-lg">
+                        <div className="space-y-4 md:space-y-6 text-charcoal/70 font-medium leading-relaxed mb-8 md:mb-10 text-base md:text-lg">
                             <p>
                                 When you run a farm or a construction crew, downtime isn't an inconvenience—it's lost money. That's why we don't just sell machinery; we partner with you to keep your operations moving.
                             </p>

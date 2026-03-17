@@ -111,7 +111,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 <li className="flex items-center gap-3"><Wrench size={16} className="text-brand-red shrink-0" /> <Link to="/parts-service" className="hover:text-white transition-colors">Schedule Service</Link></li>
                                 <li className="flex items-center gap-3"><ShieldCheck size={16} className="text-brand-red shrink-0" /> <Link to="/parts-service" className="hover:text-white transition-colors">Warranty Info</Link></li>
                                 <li className="flex items-center gap-3"><Clock size={16} className="text-brand-red shrink-0" /> <span>Mon - Fri: 8:00 AM - 5:00 PM</span></li>
-                                <li className="flex items-center gap-3"><Clock size={16} className="text-brand-red shrink-0" /> <span>Saturday: 8:00 AM - 12:00 PM</span></li>
+                                <li className="flex items-center gap-3"><Clock size={16} className="text-brand-red shrink-0" /> <span>Saturday: 8:00 AM - 3:00 PM</span></li>
                             </ul>
                         </div>
 
@@ -121,7 +121,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                             <ul className="space-y-6 opacity-80 text-sm">
                                 <li className="flex gap-4 items-start group">
                                     <MapPin className="shrink-0 mt-1 text-white/40 group-hover:text-brand-red transition-colors" size={20} />
-                                    <span><strong className="block text-white mb-1">Red Dirt Headquarters</strong>7547 Hwy 71<br />Alexandria, LA 71302</span>
+                                    <span><strong className="block text-white mb-1">Red Dirt Headquarters</strong>7547 Hwy 71 South<br />Alexandria, LA 71302</span>
                                 </li>
                                 <li className="flex gap-4 items-center group">
                                     <Phone className="shrink-0 text-white/40 group-hover:text-brand-red transition-colors" size={20} />
@@ -129,7 +129,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 </li>
                                 <li className="flex gap-4 items-center group">
                                     <Mail className="shrink-0 text-white/40 group-hover:text-brand-red transition-colors" size={20} />
-                                    <a href="mailto:reddirttractors@gamail.com" className="hover:text-white transition-colors font-bold">reddirttractors@gamail.com</a>
+                                    <a href="mailto:reddirttractors@gmail.com" className="hover:text-white transition-colors font-bold">reddirttractors@gmail.com</a>
                                 </li>
                             </ul>
                         </div>
