@@ -6,10 +6,10 @@ interface QuoteFormProps {
 
 const QuoteForm = ({ modelName }: QuoteFormProps) => {
     return (
-        <div className="bg-white p-8 border-t-4 border-brand-red shadow-2xl sticky top-32">
-            <div className="mb-6">
-                <h3 className="text-2xl font-black uppercase tracking-tight">Request a Quote</h3>
-                <p className="text-charcoal/60 font-medium text-sm mt-1">Get custom pricing for the {modelName}</p>
+        <div className="bg-white p-6 md:p-8 border-t-4 border-brand-red shadow-2xl relative lg:sticky lg:top-32">
+            <div className="mb-6 md:mb-8">
+                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight">Request a Quote</h3>
+                <p className="text-charcoal/60 font-medium text-xs md:text-sm mt-1">Get custom pricing for the {modelName}</p>
             </div>
 
             <form className="space-y-6">
@@ -29,18 +29,18 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
                 </div>
                 
                 <div className="flex items-center gap-3 pt-2">
-                    <input type="checkbox" id="financing" className="w-5 h-5 accent-brand-red cursor-pointer" />
-                    <label htmlFor="financing" className="text-sm font-bold uppercase tracking-wide text-charcoal/70 cursor-pointer">I am interested in financing</label>
+                    <input type="checkbox" id="financing" className="w-4 h-4 md:w-5 md:h-5 accent-brand-red cursor-pointer" />
+                    <label htmlFor="financing" className="text-xs md:text-sm font-bold uppercase tracking-wide text-charcoal/70 cursor-pointer">I am interested in financing</label>
                 </div>
 
                 <div className="flex items-center gap-3">
-                    <input type="checkbox" id="trade" className="w-5 h-5 accent-brand-red cursor-pointer" />
-                    <label htmlFor="trade" className="text-sm font-bold uppercase tracking-wide text-charcoal/70 cursor-pointer">I have a trade-in</label>
+                    <input type="checkbox" id="trade" className="w-4 h-4 md:w-5 md:h-5 accent-brand-red cursor-pointer" />
+                    <label htmlFor="trade" className="text-xs md:text-sm font-bold uppercase tracking-wide text-charcoal/70 cursor-pointer">I have a trade-in</label>
                 </div>
 
-                <button type="button" className="group bg-brand-red text-white px-8 py-4 w-full font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-brand-red-dark transition-all mt-6">
+                <button type="button" className="group bg-brand-red text-white px-6 md:px-8 py-4 w-full font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 hover:bg-brand-red-dark transition-all mt-6 md:mt-8">
                     <span>Get Pricing Options</span>
-                    <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+                    <ChevronRight className="group-hover:translate-x-1 transition-transform w-5 h-5" />
                 </button>
             </form>
         </div>

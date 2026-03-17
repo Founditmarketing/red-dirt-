@@ -60,40 +60,40 @@ const EquipmentDetail = () => {
     }, [id]);
 
     return (
-        <div className="pt-24 min-h-screen bg-off-white pb-24">
+        <div className="pt-20 md:pt-24 min-h-screen bg-off-white pb-16 md:pb-24">
             
             {/* Breadcrumb Navigation */}
-            <div className="bg-charcoal px-6 py-4">
-                <div className="container mx-auto flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/50">
-                    <Link to="/" className="hover:text-white transition-colors flex items-center gap-2">
-                        <ArrowLeft size={16} /> Back to Inventory
+            <div className="bg-charcoal px-4 md:px-6 py-4">
+                <div className="container mx-auto flex flex-wrap items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-white/50">
+                    <Link to="/" className="hover:text-white transition-colors flex items-center gap-1 md:gap-2 shrink-0">
+                        <ArrowLeft size={14} className="md:w-4 md:h-4" /> Back to Inventory
                     </Link>
-                    <ChevronRight size={16} />
-                    <span className="text-white">{data.make}</span>
-                    <ChevronRight size={16} />
-                    <span className="text-brand-red">{data.model}</span>
+                    <ChevronRight size={14} className="md:w-4 md:h-4 shrink-0" />
+                    <span className="text-white shrink-0">{data.make}</span>
+                    <ChevronRight size={14} className="md:w-4 md:h-4 shrink-0" />
+                    <span className="text-brand-red shrink-0 truncate">{data.model}</span>
                 </div>
             </div>
 
-            <div className="container mx-auto px-6 mt-12">
+            <div className="container mx-auto px-4 md:px-6 mt-8 md:mt-12">
                 
                 {/* Header */}
-                <div className="mb-12 border-b-2 border-charcoal/10 pb-8">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div className="mb-8 md:mb-12 border-b-2 border-charcoal/10 pb-6 md:pb-8">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
                         <div>
-                            <div className="flex items-center gap-4 mb-4">
-                                <span className="bg-charcoal text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">{data.category}</span>
-                                <span className="bg-brand-red text-white px-3 py-1 text-xs font-bold uppercase tracking-widest flex items-center gap-1">
-                                    <Shield size={12} /> 6-Year Warranty
+                            <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                                <span className="bg-charcoal text-white px-2 py-1 md:px-3 text-[10px] md:text-xs font-bold uppercase tracking-widest">{data.category}</span>
+                                <span className="bg-brand-red text-white px-2 py-1 md:px-3 text-[10px] md:text-xs font-bold uppercase tracking-widest flex items-center gap-1">
+                                    <Shield size={10} className="md:w-3 md:h-3" /> 6-Year Warranty
                                 </span>
                             </div>
-                            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight text-charcoal">
+                            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight text-charcoal leading-none">
                                 {data.make} <span className="text-brand-red">{data.model}</span>
                             </h1>
                         </div>
-                        <div className="text-left md:text-right">
-                            <div className="text-sm font-bold uppercase tracking-widest text-charcoal/50 mb-1">Starting At</div>
-                            <div className="text-3xl font-black text-charcoal">{data.price}</div>
+                        <div className="text-left md:text-right mt-2 md:mt-0">
+                            <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-charcoal/50 mb-1">Starting At</div>
+                            <div className="text-2xl md:text-3xl font-black text-charcoal">{data.price}</div>
                         </div>
                     </div>
                 </div>
@@ -102,24 +102,24 @@ const EquipmentDetail = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
                     
                     {/* Left Column (Gallery & Details) */}
-                    <div className="lg:col-span-2 space-y-16">
+                    <div className="lg:col-span-2 space-y-12 md:space-y-16">
                         <Gallery images={data.images} />
 
                         {/* Description & Features */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pl-1 md:pl-0">
                             <div>
-                                <h3 className="text-2xl font-black uppercase tracking-tighter mb-6">Overview</h3>
-                                <p className="text-charcoal/70 font-medium leading-relaxed">{data.description}</p>
+                                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 md:mb-6">Overview</h3>
+                                <p className="text-charcoal/70 font-medium leading-relaxed text-sm md:text-base">{data.description}</p>
                             </div>
                             <div>
-                                <h3 className="text-2xl font-black uppercase tracking-tighter mb-6">Key Features</h3>
-                                <ul className="space-y-4">
+                                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 md:mb-6">Key Features</h3>
+                                <ul className="space-y-3 md:space-y-4">
                                     {data.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-start gap-4">
-                                            <div className="mt-1 w-5 h-5 rounded-full bg-brand-red/10 flex items-center justify-center shrink-0">
-                                                <div className="w-2 h-2 rounded-full bg-brand-red"></div>
+                                        <li key={idx} className="flex items-start gap-3 md:gap-4">
+                                            <div className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded-full bg-brand-red/10 flex items-center justify-center shrink-0">
+                                                <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand-red"></div>
                                             </div>
-                                            <span className="font-bold text-charcoal text-sm">{feature}</span>
+                                            <span className="font-bold text-charcoal text-xs md:text-sm leading-tight md:leading-normal pt-0.5">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
