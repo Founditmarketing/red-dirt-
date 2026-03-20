@@ -33,7 +33,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex gap-8 items-center">
-                        <a href="/#inventory" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Inventory</a>
+                        <Link to="/inventory" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Inventory</Link>
                         <Link to="/parts-service" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Parts & Service</Link>
                         <Link to="/transparency" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Transparency</Link>
                         <a href="/#about" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">About</a>
@@ -63,7 +63,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         transition={{ type: 'tween', ease: 'circOut' }}
                         className="fixed inset-0 z-40 bg-charcoal flex flex-col items-center justify-center gap-8 md:hidden"
                     >
-                        <a href="/#inventory" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Inventory</a>
+                        <Link to="/inventory" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Inventory</Link>
                         <Link to="/parts-service" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Parts & Service</Link>
                         <Link to="/transparency" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Transparency</Link>
                         <a href="/#about" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</a>
