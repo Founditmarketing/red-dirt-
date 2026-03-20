@@ -53,8 +53,8 @@ const Trailers = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
                     {[
-                        { name: 'Load Trail', logo: '/brands/load_trail.png' },
-                        { name: 'East Texas Trailers', logo: '/brands/east_texas_trailers.png' },
+                        { name: 'Load Trail', logo: '/Load-Trail_Horizontal_RGB.png' },
+                        { name: 'East Texas Trailers', logo: '/Ett-logo-no-background2.png' },
                     ].map((brand, index) => (
                         <motion.div
                             key={index}
