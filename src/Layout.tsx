@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="min-h-screen flex flex-col font-sans text-charcoal bg-off-white">
             {/* Navigation */}
             <nav
-                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-charcoal/90 backdrop-blur-md py-4 shadow-xl border-b border-white/10' : 'bg-transparent py-6'
+                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-charcoal/95 backdrop-blur-md py-4 shadow-xl border-b border-white/10' : 'bg-charcoal/80 backdrop-blur-sm py-6'
                     }`}
             >
                 <div className="container mx-auto px-6 flex justify-between items-center">
