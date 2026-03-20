@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronRight, Phone, Truck } from 'lucide-react';
+import { ChevronRight, Phone } from 'lucide-react';
 
 const Trailers = () => {
     return (
@@ -32,64 +32,43 @@ const Trailers = () => {
                 </div>
             </section>
 
-            {/* Trailer Categories */}
+            {/* Brand Logos Section */}
             <section className="container mx-auto px-4 md:px-6 py-16 md:py-24">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="mb-12 md:mb-16"
+                    className="mb-12 md:mb-16 text-center"
                 >
-                    <div className="flex items-center gap-3 mb-4">
+                    <div className="flex items-center justify-center gap-3 mb-4">
                         <span className="w-8 h-[2px] bg-brand-red"></span>
-                        <h3 className="text-brand-red font-bold tracking-[0.2em] uppercase text-xs md:text-sm">What We Carry</h3>
+                        <h3 className="text-brand-red font-bold tracking-[0.2em] uppercase text-xs md:text-sm">Authorized Dealer For</h3>
+                        <span className="w-8 h-[2px] bg-brand-red"></span>
                     </div>
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-charcoal leading-none">
-                        Trailer <span className="text-black/20">Lineup</span>
+                        Our <span className="text-black/20">Brands</span>
                     </h2>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
                     {[
-                        {
-                            title: 'Utility Trailers',
-                            description: 'Versatile and dependable for everyday hauling needs around the farm, job site, or property.',
-                        },
-                        {
-                            title: 'Equipment Trailers',
-                            description: 'Heavy-duty trailers designed to transport tractors, skid steers, excavators, and other large equipment.',
-                        },
-                        {
-                            title: 'Dump Trailers',
-                            description: 'Hydraulic dump trailers for moving dirt, gravel, debris, and materials with ease.',
-                        },
-                        {
-                            title: 'Flatbed Trailers',
-                            description: 'Open flatbed designs for maximum flexibility when loading and hauling oversized cargo.',
-                        },
-                        {
-                            title: 'Enclosed Trailers',
-                            description: 'Protect your cargo from the elements with fully enclosed trailer options.',
-                        },
-                        {
-                            title: 'Specialty Trailers',
-                            description: 'Ask us about specialty trailer options for unique hauling requirements.',
-                        },
-                    ].map((category, index) => (
+                        { name: 'Load Trail', logo: '/brands/load_trail.png' },
+                        { name: 'East Texas Trailers', logo: '/brands/east_texas_trailers.png' },
+                    ].map((brand, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: index * 0.15 }}
                         >
-                            <div className="bg-white border border-charcoal/5 shadow-sm hover:shadow-2xl transition-all duration-500 p-8 md:p-10 h-full flex flex-col rounded-sm group">
-                                <div className="w-12 h-12 bg-brand-red/10 flex items-center justify-center rounded-sm mb-6 group-hover:bg-brand-red transition-colors">
-                                    <Truck size={24} className="text-brand-red group-hover:text-white transition-colors" />
-                                </div>
-                                <h3 className="text-2xl font-black text-charcoal uppercase tracking-tight mb-3">{category.title}</h3>
-                                <p className="text-charcoal/60 font-medium leading-relaxed flex-grow">{category.description}</p>
+                            <div className="bg-white border border-charcoal/5 shadow-sm hover:shadow-2xl transition-all duration-500 p-10 md:p-14 flex items-center justify-center rounded-sm group h-64 md:h-80">
+                                <img
+                                    src={brand.logo}
+                                    alt={`${brand.name} Logo`}
+                                    className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-500"
+                                />
                             </div>
                         </motion.div>
                     ))}
