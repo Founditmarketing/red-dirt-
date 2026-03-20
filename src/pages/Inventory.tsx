@@ -4,54 +4,46 @@ import { Link } from 'react-router-dom';
 
 import { inventoryData } from '../data/inventory';
 
-const InventoryGrid = () => {
-    const featuredInventory = inventoryData.slice(0, 6);
-
+const Inventory = () => {
     return (
-        <section id="inventory" className="bg-off-white py-16 md:py-32 relative">
-            <div className="container mx-auto px-4 md:px-6">
-                
-                {/* Section Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                    <motion.div 
+        <div className="pt-24 min-h-screen bg-off-white">
+            {/* Hero Header */}
+            <section className="relative h-[45vh] md:h-[50vh] flex items-center bg-charcoal overflow-hidden mt-16 md:mt-0">
+                <div className="absolute inset-0 z-0 opacity-40">
+                    <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/90 to-brand-red/20 z-10" />
+                    <img src="/hero_drone_tractors.svg" alt="Equipment Lot" className="w-full h-full object-cover grayscale opacity-30" />
+                </div>
+                <div className="container mx-auto px-4 md:px-6 relative z-20">
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="max-w-2xl"
+                        className="max-w-3xl"
                     >
                         <div className="flex items-center gap-3 mb-4">
                             <span className="w-8 h-[2px] bg-brand-red"></span>
-                            <h3 className="text-brand-red font-bold tracking-[0.2em] uppercase text-xs md:text-sm">Now on the Lot</h3>
+                            <h3 className="text-brand-red font-bold tracking-[0.2em] uppercase text-xs md:text-sm">Complete Lineup</h3>
                         </div>
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-charcoal leading-none">
-                            Featured <span className="text-black/20">Equipment</span>
-                        </h2>
-                    </motion.div>
-
-                    <motion.div
-                         initial={{ opacity: 0, x: 20 }}
-                         whileInView={{ opacity: 1, x: 0 }}
-                         viewport={{ once: true }}
-                         transition={{ duration: 0.6, delay: 0.2 }}
-                         className="w-full md:w-auto"
-                    >
-                        <Link to="/inventory" className="group flex items-center justify-center gap-4 bg-brand-red text-white hover:bg-brand-red-dark px-10 py-5 rounded-sm transition-all shadow-xl hover:shadow-2xl w-full">
-                            <span className="font-black uppercase tracking-widest text-sm md:text-base">View All {inventoryData.length} Tractors</span>
-                            <ChevronRight size={20} className="group-hover:translate-x-1 transition-all" />
-                        </Link>
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight text-white mb-4 md:mb-6 leading-none">
+                            All <span className="text-brand-red">Inventory</span>
+                        </h1>
+                        <p className="text-base md:text-xl text-white/80 font-medium max-w-2xl border-l-4 border-brand-red pl-4 md:pl-6 leading-relaxed">
+                            Browse our complete selection of {inventoryData.length} tractors and equipment currently on the lot.
+                        </p>
                     </motion.div>
                 </div>
+            </section>
 
-                {/* Featured Grid (6 items) */}
+            {/* Full Inventory Grid */}
+            <section className="container mx-auto px-4 md:px-6 py-12 md:py-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {featuredInventory.map((tractor, index) => (
+                    {inventoryData.map((tractor, index) => (
                         <motion.div
                             key={tractor.id}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.6, delay: index * 0.05 }}
                             className="h-full flex flex-col group cursor-pointer"
                         >
                             <Link to={`/equipment/${tractor.id}`} className="bg-white rounded-sm overflow-hidden border border-charcoal/5 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full outline-none focus-visible:ring-2 focus-visible:ring-brand-red">
@@ -107,9 +99,9 @@ const InventoryGrid = () => {
                         </motion.div>
                     ))}
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     );
 };
 
-export default InventoryGrid;
+export default Inventory;
