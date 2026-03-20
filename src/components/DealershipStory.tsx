@@ -18,7 +18,7 @@ const DealershipStory = () => {
                         >
                             {/* Will be replaced by actual facility/team photo */}
                             <img 
-                                src="/hero_about.png" 
+                                src="/about.jpg" 
                                 alt="Red Dirt Dealership Facility" 
                                 className="w-full h-full object-cover opacity-80"
                             />
