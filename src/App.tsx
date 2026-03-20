@@ -3,6 +3,7 @@ import Layout from './Layout';
 import Home from './pages/Home';
 import EquipmentDetail from './pages/EquipmentDetail';
 import PartsService from './pages/PartsService';
+import Transparency from './pages/Transparency';
 import ScrollToAnchor from './components/ScrollToAnchor';
 import { Helmet } from 'react-helmet-async';
 
@@ -66,6 +67,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/equipment/:id" element={<EquipmentDetail />} />
           <Route path="/parts-service" element={<PartsService />} />
+          <Route path="/transparency" element={<Transparency />} />
         </Routes>
       </Layout>
     </Router>
