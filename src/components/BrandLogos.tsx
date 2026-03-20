@@ -3,7 +3,7 @@ const BrandLogos = () => {
     const brands = [
         { name: "TYM Tractors", url: "/brands/tym.png" },
         { name: "Mahindra", url: "/brands/mahindra.png" },
-        { name: "Ferris", url: "/brands/ferris.svg" },
+        { name: "Ferris", url: "/brands/ferris.png" },
         { name: "Wacker Neuson", url: "/brands/wacker_neuson.png" },
         { name: "Yanmar", url: "/brands/yanmar.png" }
     ];
@@ -27,12 +27,12 @@ const BrandLogos = () => {
                     {SCROLLING_BRANDS.map((brand, index) => (
                         <div
                             key={index}
-                            className="w-48 md:w-72 mx-8 md:mx-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0"
+                            className="w-96 md:w-[36rem] mx-12 md:mx-24 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0"
                         >
                             <img 
                                 src={brand.url} 
                                 alt={`${brand.name} Logo`} 
-                                className="w-full h-auto max-h-24 md:max-h-32 object-contain"
+                                className="w-full h-auto max-h-48 md:max-h-64 object-contain"
                             />
                         </div>
                     ))}
