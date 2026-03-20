@@ -17,7 +17,7 @@ const Transparency = () => {
             <section className="relative h-[45vh] md:h-[50vh] flex items-center bg-charcoal overflow-hidden mt-16 md:mt-0">
                 <div className="absolute inset-0 z-0 opacity-40">
                     <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/90 to-brand-red/20 z-10" />
-                    <img src="/hero_drone_tractors.svg" alt="Red Dirt Lot" className="w-full h-full object-cover grayscale opacity-30" />
+                    <img src="/hero_transparency.png" alt="Red Dirt Lot" className="w-full h-full object-cover" />
                 </div>
                 <div className="container mx-auto px-4 md:px-6 relative z-20">
                     <motion.div

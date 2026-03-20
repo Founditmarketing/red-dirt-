@@ -79,8 +79,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
             {/* Institutional Footer */}
             <footer id="contact" className="bg-charcoal text-white pt-24 pb-12 border-t border-white/10 relative overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <img src="/hero_contact.png" alt="" className="w-full h-full object-cover opacity-10" />
+                </div>
                 {/* Background accent */}
-                <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-red/5 to-transparent pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-red/5 to-transparent pointer-events-none z-[1]"></div>
                 
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
