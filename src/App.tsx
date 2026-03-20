@@ -6,6 +6,7 @@ import PartsService from './pages/PartsService';
 import Transparency from './pages/Transparency';
 import Inventory from './pages/Inventory';
 import Implements from './pages/Implements';
+import Trailers from './pages/Trailers';
 import ScrollToAnchor from './components/ScrollToAnchor';
 import { Helmet } from 'react-helmet-async';
 
@@ -72,6 +73,7 @@ function App() {
           <Route path="/transparency" element={<Transparency />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/implements" element={<Implements />} />
+          <Route path="/trailers" element={<Trailers />} />
         </Routes>
       </Layout>
     </Router>

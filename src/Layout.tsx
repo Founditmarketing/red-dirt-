@@ -36,7 +36,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         <Link to="/inventory" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Inventory</Link>
                         <Link to="/parts-service" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Parts & Service</Link>
                         <Link to="/transparency" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Transparency</Link>
-                        <Link to="/implements" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Implements</Link>                        <a href="/#about" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">About</a>
+                        <Link to="/implements" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Implements</Link>
+                        <Link to="/trailers" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Trailers</Link>
+                        <a href="/#about" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">About</a>
                         <a href="#contact" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Contact</a>
                         <a href="sms://+13184429010" className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2 rounded font-bold uppercase tracking-wider transition-all transform hover:-translate-y-1 hover:shadow-lg">
                             Text Us!
@@ -66,7 +68,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         <Link to="/inventory" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Inventory</Link>
                         <Link to="/parts-service" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Parts & Service</Link>
                         <Link to="/transparency" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Transparency</Link>
-                        <Link to="/implements" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Implements</Link>                        <a href="/#about" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+                        <Link to="/implements" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Implements</Link>
+                        <Link to="/trailers" className="text-white hover:text-brand-red transition-colors font-medium uppercase tracking-wide text-sm">Trailers</Link>
+                        <a href="/#about" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</a>
                         <a href="#contact" className="text-white text-3xl font-heading font-black uppercase tracking-tight hover:text-brand-red transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
                     </motion.div>
                 )}
