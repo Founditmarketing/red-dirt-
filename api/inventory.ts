@@ -21,12 +21,13 @@ export default async function handler(req: any, res: any) {
             return res.status(500).json({ error: 'Missing Google credentials in Vercel environment variables. Need GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY, and GOOGLE_SHEET_ID.' });
         }
 
-        const auth = new google.auth.JWT(
-            clientEmail,
-            undefined,
-            privateKey,
-            ['https://www.googleapis.com/auth/spreadsheets.readonly']
-        );
+        const auth = new google.auth.GoogleAuth({
+            credentials: {
+                client_email: clientEmail,
+                private_key: privateKey,
+            },
+            scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+        });
 
         const sheets = google.sheets({ version: 'v4', auth });
         
