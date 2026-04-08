@@ -37,7 +37,10 @@ const EquipmentDetail = () => {
                 const dynamicSpecs: any = {};
                 
                 Object.keys(tractorInfo).forEach(key => {
-                     if (!standardKeys.includes(key)) {
+                     const lowerKey = key.toLowerCase();
+                     const isImageColumn = lowerKey.includes('image') || lowerKey.includes('url');
+                     
+                     if (!standardKeys.includes(key) && !isImageColumn) {
                           dynamicSpecs[key] = tractorInfo[key];
                      }
                 });
@@ -69,7 +72,7 @@ const EquipmentDetail = () => {
     }
 
     return (
-        <div className="pt-20 md:pt-24 min-h-screen bg-off-white pb-16 md:pb-24">
+        <div className="min-h-screen bg-off-white pb-16 md:pb-24">
             <Helmet>
                 <title>{`${data.make} ${data.model} Tractor | Red Dirt Tractors in Alexandria, LA`}</title>
                 <meta name="description" content={`Explore the ${data.make} ${data.model}. ${data.description.substring(0, 150)}...`} />
@@ -77,8 +80,9 @@ const EquipmentDetail = () => {
                 <meta property="og:description" content={`Explore the ${data.make} ${data.model}. ${data.description.substring(0, 150)}...`} />
             </Helmet>
             
-            {/* Breadcrumb Navigation */}
-            <div className="bg-charcoal px-4 md:px-6 py-4">
+            {/* Header Gap Filler & Breadcrumbs */}
+            <div className="bg-charcoal pt-20 md:pt-24 w-full">
+                <div className="px-4 md:px-6 py-4">
                 <div className="container mx-auto flex flex-wrap items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-white/50">
                     <Link to="/" className="hover:text-white transition-colors flex items-center gap-1 md:gap-2 shrink-0">
                         <ArrowLeft size={14} className="md:w-4 md:h-4" /> Back to Inventory
@@ -87,6 +91,7 @@ const EquipmentDetail = () => {
                     <span className="text-white shrink-0">{data.make}</span>
                     <ChevronRight size={14} className="md:w-4 md:h-4 shrink-0" />
                     <span className="text-brand-red shrink-0 truncate">{data.model}</span>
+                </div>
                 </div>
             </div>
 
