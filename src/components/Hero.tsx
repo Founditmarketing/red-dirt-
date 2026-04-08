@@ -25,16 +25,16 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                    className="max-w-4xl"
+                    className="max-w-5xl w-full"
                 >
                     <div className="flex items-center gap-3 mb-4 md:mb-6">
                         <span className="w-8 md:w-12 h-[2px] bg-brand-red"></span>
-                        <h2 className="text-brand-red font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase text-xs sm:text-sm md:text-base bg-black/20 backdrop-blur-sm px-2 md:px-3 py-1 rounded-sm inline-block">
+                        <h2 className="text-brand-red font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase text-xs sm:text-sm md:text-base bg-transparent md:bg-black/20 md:backdrop-blur-sm md:px-3 md:py-1 md:rounded-sm inline-block">
                             Central Louisiana's Premier Dealer
                         </h2>
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-black uppercase leading-[1.1] md:leading-[0.9] mb-6 md:mb-8 drop-shadow-2xl">
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-black uppercase leading-[1.1] md:leading-tight mb-6 md:mb-8 drop-shadow-2xl whitespace-nowrap">
                         Move the <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Earth.</span><br />
                         Master the <span className="text-brand-red">Land.</span>
                     </h1>
