@@ -5,6 +5,11 @@ export default async function handler(req: any, res: any) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
+    // Force Dynamic: Disable Vercel aggressive Edge caching
+    res.setHeader('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
     try {
         const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
         const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
@@ -32,10 +37,10 @@ export default async function handler(req: any, res: any) {
         
         const firstSheetName = spreadsheet.data.sheets?.[0]?.properties?.title || 'Sheet1';
 
-        // Get all values from the first sheet
+        // Get all values from the first sheet up to 2000 rows
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId: sheetId,
-            range: `'${firstSheetName}'!A:Z`,
+            range: `'${firstSheetName}'!A1:Z2000`,
         });
 
         const rows = response.data.values;
@@ -47,7 +52,12 @@ export default async function handler(req: any, res: any) {
         // E.g. "Item Name" -> "item_name", "Price" -> "price", "Status" -> "status"
         const headers = rows[0].map((h: string) => h.trim().toLowerCase().replace(/ /g, '_'));
         
-        const data = rows.slice(1).map((row: any[], index: number) => {
+        // Filter out completely empty rows
+        const validRows = rows.slice(1).filter((row: any[]) => 
+            row && row.length > 0 && row.some((cell: string) => cell && cell.trim() !== '')
+        );
+        
+        const data = validRows.map((row: any[], index: number) => {
             const item: any = { id: index + 1 }; // Default numeric ID if missing
             
             headers.forEach((header: string, i: number) => {
