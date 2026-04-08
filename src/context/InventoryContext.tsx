@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { inventoryData as fallbackData, type TractorItem } from '../data/inventory';
+import { type TractorItem } from '../data/inventory';
 
 // We extend the base item to support dynamic properties from Google Sheets
 export interface LiveInventoryItem extends TractorItem {
@@ -13,7 +13,7 @@ interface InventoryContextType {
 }
 
 const InventoryContext = createContext<InventoryContextType>({
-    inventory: fallbackData as LiveInventoryItem[], // Initial state uses fallback temporarily
+    inventory: [], // Removed local fallback data
     loading: true,
     error: null,
 });
@@ -47,9 +47,9 @@ export const InventoryProvider: React.FC<{ children: React.ReactNode }> = ({ chi
                 
                 setLoading(false);
             } catch (err: any) {
-                console.warn("Failed to fetch live Google Sheets data. Falling back to static data.", err);
+                console.error("Failed to fetch live Google Sheets data.", err);
                 setError(err.message);
-                setInventory(fallbackData as LiveInventoryItem[]);
+                setInventory([]); // Fail gracefully to empty state
                 setLoading(false);
             }
         };
