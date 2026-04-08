@@ -7,66 +7,57 @@ import SpecsTable from '../components/equipment/SpecsTable';
 import QuoteForm from '../components/equipment/QuoteForm';
 
 
-// We will fetch the actual data later, mock data for now
-const mockEquipmentData = {
-    id: "1",
-    make: "TYM",
-    model: "T25",
-    category: "Sub-Compact Tractor",
-    price: "Call for Pricing",
-    description: "The TYM T25 is engineered for versatility and power in a compact frame. Whether you're maintaining a small acreage, moving materials, or handling precise landscaping tasks, the T25 delivers professional-grade performance. Features a robust Yanmar engine and intuitive controls designed for all skill levels.",
-    images: [
-        "/tractors/12.jpg",
-        "/tractors/11.jpg",
-        "/tractors/13.jpg"
-    ],
-    specs: {
-        engineHP: "24.5 HP",
-        ptoHP: "18.3 HP",
-        weight: "1,610 lbs",
-        loaderCapacity: "1,380 lbs (to max height)",
-        transmission: "2-Range HST"
-    },
-    features: [
-        "Yanmar 3-Cylinder Diesel Engine",
-        "Dual Gear Pump Hydraulic System",
-        "Foldable ROPS",
-        "Cruise Control Standard",
-        "Ergonomic Operator Station"
-    ]
-};
-
 import { useInventory } from '../context/InventoryContext';
 
 const EquipmentDetail = () => {
     const { id } = useParams();
     const { inventory, loading } = useInventory();
-    const [data, setData] = useState(mockEquipmentData);
+    const [data, setData] = useState<any>(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
         if (id && inventory.length > 0) {
             const tractorInfo = inventory.find((t) => t.id.toString() === id);
             if (tractorInfo) {
-                // Merge dynamically loaded core info into the rich UI schema
+                // Parse out images if they exist, otherwise fallback
+                const images = [
+                    `/tractors/${tractorInfo.id}.jpg`,
+                    "/tractors/12.jpg", // fallback
+                    "/tractors/11.jpg"  // fallback
+                ];
+                
+                // Parse features if they sent standard comma separated string, else empty
+                const featuresStr = tractorInfo.features || '';
+                const featuresList = typeof featuresStr === 'string' && featuresStr.trim() !== '' 
+                    ? featuresStr.split(',').map(s => s.trim()) 
+                    : [];
+
+                // Filter out standard keys so we can dump the rest into the dynamic SpecsTable
+                const standardKeys = ['id', 'make', 'model', 'category', 'price', 'description', 'features'];
+                const dynamicSpecs: any = {};
+                
+                Object.keys(tractorInfo).forEach(key => {
+                     if (!standardKeys.includes(key)) {
+                          dynamicSpecs[key] = tractorInfo[key];
+                     }
+                });
+
                 setData({
-                    ...mockEquipmentData,
-                    ...tractorInfo, // this allows price, description etc to flow from Google Sheets
-                    id: tractorInfo.id.toString(),
-                    model: tractorInfo.model || mockEquipmentData.model,
-                    make: tractorInfo.make || mockEquipmentData.make,
-                    price: tractorInfo.price || mockEquipmentData.price,
-                    images: [
-                        `/tractors/${tractorInfo.id}.jpg`,
-                        "/tractors/12.jpg", // Secondary placeholder shots
-                        "/tractors/11.jpg"
-                    ]
+                    ...tractorInfo,
+                    model: tractorInfo.model || 'Unknown Model',
+                    make: tractorInfo.make || 'Equipment',
+                    price: tractorInfo.price || 'Call for Pricing',
+                    category: tractorInfo.category || 'Tractor',
+                    description: tractorInfo.description || 'Contact us for more details about this equipment.',
+                    images,
+                    features: featuresList,
+                    specs: dynamicSpecs
                 });
             }
         }
     }, [id, inventory]);
 
-    if (loading && data.id === "1") {
+    if (loading || !data) {
         return (
             <div className="pt-20 md:pt-24 min-h-screen bg-off-white pb-16 md:pb-24 flex items-center justify-center">
                  <div className="text-center">
@@ -135,19 +126,21 @@ const EquipmentDetail = () => {
                                 <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 md:mb-6">Overview</h3>
                                 <p className="text-charcoal/70 font-medium leading-relaxed text-sm md:text-base">{data.description}</p>
                             </div>
-                            <div>
-                                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 md:mb-6">Key Features</h3>
-                                <ul className="space-y-3 md:space-y-4">
-                                    {data.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-start gap-3 md:gap-4">
-                                            <div className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded-full bg-brand-red/10 flex items-center justify-center shrink-0">
-                                                <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand-red"></div>
-                                            </div>
-                                            <span className="font-bold text-charcoal text-xs md:text-sm leading-tight md:leading-normal pt-0.5">{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                            {data.features && data.features.length > 0 && (
+                                <div>
+                                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 md:mb-6">Key Features</h3>
+                                    <ul className="space-y-3 md:space-y-4">
+                                        {data.features.map((feature: string, idx: number) => (
+                                            <li key={idx} className="flex items-start gap-3 md:gap-4">
+                                                <div className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded-full bg-brand-red/10 flex items-center justify-center shrink-0">
+                                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand-red"></div>
+                                                </div>
+                                                <span className="font-bold text-charcoal text-xs md:text-sm leading-tight md:leading-normal pt-0.5">{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
 
                         {/* Technical Specifications */}
