@@ -22,7 +22,7 @@ const EquipmentDetail = () => {
             if (tractorInfo) {
                 // Parse out images if they exist, otherwise empty
                 let images: string[] = [];
-                const imgStr = tractorInfo.image_url || tractorInfo.images || tractorInfo.image || tractorInfo.photos || tractorInfo['image url'];
+                const imgStr = tractorInfo['Image URL'] || tractorInfo.image_url || tractorInfo.images || tractorInfo.image || tractorInfo.photos || tractorInfo['image url'];
                 if (imgStr && typeof imgStr === 'string' && imgStr.trim() !== '') {
                     images = imgStr.split(/[\s,]+/).filter(Boolean).map((imgUrl: string) => {
                         return processGoogleDriveUrl(imgUrl);

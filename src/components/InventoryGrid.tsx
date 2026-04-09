@@ -59,7 +59,7 @@ const InventoryGrid = () => {
                 {/* Featured Grid (6 items) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {featuredInventory.map((tractor, index) => {
-                        const imgStr = tractor.image_url || tractor.images || tractor.image || tractor.photos || tractor['image url'];
+                        const imgStr = tractor['Image URL'] || tractor.image_url || tractor.images || tractor.image || tractor.photos || tractor['image url'];
                         let mainImageUrl = '';
                         if (imgStr && typeof imgStr === 'string' && imgStr.trim() !== '') {
                             const images = imgStr.split(/[\s,]+/).filter(Boolean);

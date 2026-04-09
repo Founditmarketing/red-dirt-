@@ -51,7 +51,7 @@ const Inventory = () => {
             <section className="container mx-auto px-4 md:px-6 py-12 md:py-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {inventory.map((tractor, index) => {
-                        const imgStr = tractor.image_url || tractor.images || tractor.image || tractor.photos || tractor['image url'];
+                        const imgStr = tractor['Image URL'] || tractor.image_url || tractor.images || tractor.image || tractor.photos || tractor['image url'];
                         let mainImageUrl = '';
                         if (imgStr && typeof imgStr === 'string' && imgStr.trim() !== '') {
                             const images = imgStr.split(/[\s,]+/).filter(Boolean);
