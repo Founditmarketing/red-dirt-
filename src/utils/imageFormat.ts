@@ -1,6 +1,6 @@
 export const processGoogleDriveUrl = (url: string): string => {
     // Regex to extract the file ID from a standard Google Drive share link
-    const driveRegex = /drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/;
+    const driveRegex = /\/d\/([a-zA-Z0-9_-]+)/;
     const match = url.match(driveRegex);
     
     if (match && match[1]) {
