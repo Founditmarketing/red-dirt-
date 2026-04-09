@@ -19,12 +19,14 @@ const EquipmentDetail = () => {
         if (id && inventory.length > 0) {
             const tractorInfo = inventory.find((t) => t.id.toString() === id);
             if (tractorInfo) {
-                // Parse out images if they exist, otherwise fallback
-                const images = [
-                    `/tractors/${tractorInfo.id}.jpg`,
-                    "/tractors/12.jpg", // fallback
-                    "/tractors/11.jpg"  // fallback
-                ];
+                // Parse out images if they exist, otherwise empty
+                let images: string[] = [];
+                const imgStr = tractorInfo.image_url || tractorInfo.images || tractorInfo.image || tractorInfo.photos || tractorInfo['image url'];
+                if (imgStr && typeof imgStr === 'string' && imgStr.trim() !== '') {
+                    images = imgStr.split(/[\s,]+/).filter(Boolean).map((imgUrl: string) => {
+                        return imgUrl.startsWith('http') ? imgUrl : `/tractors/${imgUrl}`;
+                    });
+                }
                 
                 // Parse features if they sent standard comma separated string, else empty
                 const featuresStr = tractorInfo.features || '';

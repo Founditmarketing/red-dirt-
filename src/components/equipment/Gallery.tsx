@@ -22,16 +22,22 @@ const Gallery = ({ images }: GalleryProps) => {
             {/* Main Stage */}
             <div className="relative aspect-[4/3] md:aspect-video bg-charcoal/5 rounded-sm overflow-hidden group">
                 <AnimatePresence mode="wait">
-                    <motion.img
-                        key={currentIndex}
-                        src={images[currentIndex]}
-                        alt={`Equipment view ${currentIndex + 1}`}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="w-full h-full object-cover"
-                    />
+                    {images && images.length > 0 ? (
+                        <motion.img
+                            key={currentIndex}
+                            src={images[currentIndex]}
+                            alt={`Equipment view ${currentIndex + 1}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="w-full h-full object-cover relative z-10"
+                        />
+                    ) : (
+                        <div className="flex flex-col items-center justify-center h-full w-full opacity-50 z-10 relative">
+                            <span className="font-bold uppercase tracking-widest text-sm">No Images Available</span>
+                        </div>
+                    )}
                 </AnimatePresence>
 
                 {/* Navigation Arrows */}

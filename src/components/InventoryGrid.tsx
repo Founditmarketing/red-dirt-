@@ -57,7 +57,17 @@ const InventoryGrid = () => {
 
                 {/* Featured Grid (6 items) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {featuredInventory.map((tractor, index) => (
+                    {featuredInventory.map((tractor, index) => {
+                        const imgStr = tractor.image_url || tractor.images || tractor.image || tractor.photos || tractor['image url'];
+                        let mainImageUrl = '';
+                        if (imgStr && typeof imgStr === 'string' && imgStr.trim() !== '') {
+                            const images = imgStr.split(/[\s,]+/).filter(Boolean);
+                            if (images.length > 0) {
+                                mainImageUrl = images[0].startsWith('http') ? images[0] : `/tractors/${images[0]}`;
+                            }
+                        }
+
+                        return (
                         <motion.div
                             key={tractor.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -71,16 +81,16 @@ const InventoryGrid = () => {
                                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-charcoal">
                                     <div className="absolute inset-0 bg-gradient-to-tr from-charcoal to-charcoal-light flex items-center justify-center opacity-50 z-0">
                                          <Settings size={40} className="text-white/20" />
+                                         <span className="absolute mt-16 text-xs font-bold uppercase tracking-widest text-white/40">No Image</span>
                                     </div>
                                     
-                                    <img 
-                                        src={`/tractors/${tractor.id}.jpg`} 
-                                        alt={`${tractor.make} ${tractor.model}`}
-                                        onError={(e) => {
-                                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1592860882773-87ce85fb28a8?q=80&w=1200&auto=format&fit=crop';
-                                        }}
-                                        className="absolute inset-0 w-full h-full object-cover z-10 scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-out opacity-90 group-hover:opacity-100"
-                                    />
+                                    {mainImageUrl && (
+                                        <img 
+                                            src={mainImageUrl} 
+                                            alt={`${tractor.make} ${tractor.model}`}
+                                            className="absolute inset-0 w-full h-full object-cover z-10 scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-out opacity-90 group-hover:opacity-100"
+                                        />
+                                    )}
 
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-20 pointer-events-none" />
                                     
