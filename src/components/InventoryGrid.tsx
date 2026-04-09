@@ -127,7 +127,8 @@ const InventoryGrid = () => {
                                 </div>
                             </Link>
                         </motion.div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>

@@ -119,7 +119,8 @@ const Inventory = () => {
                                 </div>
                             </Link>
                         </motion.div>
-                    ))}
+                        );
+                    })}
                 </div>
             </section>
         </div>
