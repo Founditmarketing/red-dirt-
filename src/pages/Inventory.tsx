@@ -3,6 +3,7 @@ import { ChevronRight, Settings, Maximize2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { useInventory } from '../context/InventoryContext';
+import { processGoogleDriveUrl } from '../utils/imageFormat';
 
 const Inventory = () => {
     const { inventory, loading } = useInventory();
@@ -55,7 +56,7 @@ const Inventory = () => {
                         if (imgStr && typeof imgStr === 'string' && imgStr.trim() !== '') {
                             const images = imgStr.split(/[\s,]+/).filter(Boolean);
                             if (images.length > 0) {
-                                mainImageUrl = images[0].startsWith('http') ? images[0] : `/tractors/${images[0]}`;
+                                mainImageUrl = processGoogleDriveUrl(images[0]);
                             }
                         }
 

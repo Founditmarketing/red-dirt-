@@ -8,6 +8,7 @@ import QuoteForm from '../components/equipment/QuoteForm';
 
 
 import { useInventory } from '../context/InventoryContext';
+import { processGoogleDriveUrl } from '../utils/imageFormat';
 
 const EquipmentDetail = () => {
     const { id } = useParams();
@@ -24,7 +25,7 @@ const EquipmentDetail = () => {
                 const imgStr = tractorInfo.image_url || tractorInfo.images || tractorInfo.image || tractorInfo.photos || tractorInfo['image url'];
                 if (imgStr && typeof imgStr === 'string' && imgStr.trim() !== '') {
                     images = imgStr.split(/[\s,]+/).filter(Boolean).map((imgUrl: string) => {
-                        return imgUrl.startsWith('http') ? imgUrl : `/tractors/${imgUrl}`;
+                        return processGoogleDriveUrl(imgUrl);
                     });
                 }
                 
