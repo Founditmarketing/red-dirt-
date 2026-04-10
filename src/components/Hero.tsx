@@ -30,7 +30,8 @@ const Hero = () => {
                     <div className="flex items-center gap-3 mb-4 md:mb-6">
                         <span className="w-8 md:w-12 h-[2px] bg-brand-red"></span>
                         <h2 className="text-brand-red font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase text-xs sm:text-sm md:text-base bg-transparent md:bg-black/20 md:backdrop-blur-sm md:px-3 md:py-1 md:rounded-sm inline-block">
-                            Central Louisiana's Premier Dealer
+                            <span className="md:hidden">Premier Dealer</span>
+                            <span className="hidden md:inline">Central Louisiana's Premier Dealer</span>
                         </h2>
                     </div>
 

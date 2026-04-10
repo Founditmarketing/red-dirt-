@@ -1,4 +1,30 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useEffect, useState, useRef } from 'react';
+
+const CountUp = ({ end, suffix = "", duration = 2 }: { end: number, suffix?: string, duration?: number }) => {
+    const [count, setCount] = useState(0);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+    useEffect(() => {
+        if (isInView) {
+            let startTimestamp: number | null = null;
+            const step = (timestamp: number) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4); // Smoother, more dramatic ease out
+                setCount(Math.floor(easeOutQuart * end));
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+    }, [isInView, end, duration]);
+
+    return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
+};
 
 const TrustMetrics = () => {
     return (
@@ -10,17 +36,23 @@ const TrustMetrics = () => {
                 <div className="grid grid-cols-2 md:grid-cols-4 text-center md:divide-x divide-white/20">
                     
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="pb-8 md:pb-0 border-b border-r md:border-none border-white/20">
-                        <div className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-1 md:mb-2">10</div>
+                        <div className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-1 md:mb-2">
+                            <CountUp end={10} />
+                        </div>
                         <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Years in Business</div>
                     </motion.div>
 
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} className="pb-8 md:pb-0 border-b md:border-none border-white/20">
-                        <div className="text-4xl sm:text-5xl md:text-[64px] font-black tracking-tighter mb-1 md:mb-2">4,000+</div>
+                        <div className="text-4xl sm:text-5xl md:text-[64px] font-black tracking-tighter mb-1 md:mb-2">
+                            <CountUp end={4000} suffix="+" duration={2.5} />
+                        </div>
                         <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Machines Sold</div>
                     </motion.div>
 
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="pt-8 md:pt-0 border-r md:border-none border-white/20">
-                        <div className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-1 md:mb-2">4</div>
+                        <div className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-1 md:mb-2">
+                            <CountUp end={4} />
+                        </div>
                         <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Certified Techs</div>
                     </motion.div>
 
