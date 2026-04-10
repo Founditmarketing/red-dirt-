@@ -10,6 +10,26 @@ import QuoteForm from '../components/equipment/QuoteForm';
 import { useInventory } from '../context/InventoryContext';
 import { processGoogleDriveUrl } from '../utils/imageFormat';
 
+const getFinanceLinks = (make: string) => {
+    const makeLower = make?.toLowerCase() || '';
+    if (makeLower.includes('mahindra')) {
+        return [{ name: "Apply with Mahindra Finance", url: "https://applynow-cica-prd.mahindrafinanceusa.com/?entityId=3&dealerCode=13276" }];
+    }
+    if (makeLower.includes('tym')) {
+        return [{ name: "Apply with DLL Finance", url: "https://applynow-cica-prd.dllgroup.com/?entityid=2&dealerCode=013276" }];
+    }
+    if (makeLower.includes('ferris')) {
+        return [
+            { name: "Apply with Sheffield", url: "https://prequalify.sheffieldfinancial.com/Apply/Dealer/48349?source=web" },
+            { name: "Apply with Synchrony", url: "https://www.mysynchrony.com/mmc/PC239787290" }
+        ];
+    }
+    if (makeLower.includes('wacker')) {
+        return [{ name: "Apply with Vibrant", url: "https://preapproval-wackerneuson.vibrantequipmentlending.com//main#/entity/FTOS_BNKAP_RetailApplicantData/insert/form/VIB_B2C_CustomerDataCollect/buid=63c77439-6c38-49fe-aa27-6610fe47b50a" }];
+    }
+    return [{ name: "Text for Finance Options", url: "sms:3184429010" }];
+};
+
 const EquipmentDetail = () => {
     const { id } = useParams();
     const { inventory, loading } = useInventory();
@@ -157,9 +177,33 @@ const EquipmentDetail = () => {
                         </div>
                     </div>
 
-                    {/* Right Column (Sticky Quote Form) */}
+                    {/* Right Column (Sticky Section) */}
                     <div className="relative">
-                        <QuoteForm modelName={`${data.make} ${data.model}`} />
+                        <div className="lg:sticky lg:top-32 space-y-8">
+                            <QuoteForm modelName={`${data.make} ${data.model}`} />
+                            
+                            {/* Brand Specific Finance Links */}
+                            <div className="bg-white p-6 md:p-8 border-t-4 border-brand-red/50 shadow-2xl">
+                                <div className="mb-6">
+                                    <h3 className="text-xl font-black uppercase tracking-tight">Finance This {data.make}</h3>
+                                    <p className="text-charcoal/60 font-medium text-xs md:text-sm mt-1">Get approved quickly through our partners</p>
+                                </div>
+                                <div className="space-y-3">
+                                    {getFinanceLinks(data.make).map((link, idx) => (
+                                        <a 
+                                            key={idx}
+                                            href={link.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="bg-charcoal text-white px-4 py-3 w-full font-bold uppercase tracking-widest text-xs flex items-center justify-between hover:bg-brand-red transition-colors group rounded-sm"
+                                        >
+                                            <span>{link.name}</span>
+                                            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

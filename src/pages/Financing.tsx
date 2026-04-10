@@ -2,24 +2,44 @@ import { Helmet } from 'react-helmet-async';
 import { DollarSign, Calculator, ChevronRight } from 'lucide-react';
 
 const Financing = () => {
-    // ---------------------------------------------------------
-    // TODO: PLUG IN YOUR FINANCING LINKS HERE ONCE YOU GET THEM
-    // ---------------------------------------------------------
     const financingOptions = [
         {
-            providerName: "Financing Provider 1",
-            description: "Flexible terms and competitive rates for all your equipment needs.",
-            applyLink: "#", // Replace '#' with the actual link when you receive it
+            providerName: "Mahindra Finance",
+            brandName: "Mahindra",
+            logoUrl: "/brands/mahindralogo.webp",
+            description: "Dedicated financing options tailored specifically for your new Mahindra equipment.",
+            applyLinks: [{ name: "Apply Now", url: "https://applynow-cica-prd.mahindrafinanceusa.com/?entityId=3&dealerCode=13276" }],
         },
         {
-            providerName: "Financing Provider 2",
-            description: "Quick approval process and low money down options available.",
-            applyLink: "#", // Replace '#' with the actual link when you receive it
+            providerName: "DLL Finance",
+            brandName: "TYM Tractors",
+            logoUrl: "/brands/tymlogo.png",
+            description: "Flexible terms and competitive rates for all your TYM Tractor needs.",
+            applyLinks: [{ name: "Apply Now", url: "https://applynow-cica-prd.dllgroup.com/?entityid=2&dealerCode=013276" }],
         },
         {
-            providerName: "Financing Provider 3",
-            description: "Specialized agricultural financing and seasonal payment plans.",
-            applyLink: "#", // Replace '#' with the actual link when you receive it
+            providerName: "Sheffield & Synchrony",
+            brandName: "Ferris",
+            logoUrl: "/brands/ferrislogo.webp",
+            description: "Quick approval processes and multiple options available for Ferris mowers.",
+            applyLinks: [
+                { name: "Apply with Sheffield", url: "https://prequalify.sheffieldfinancial.com/Apply/Dealer/48349?source=web" },
+                { name: "Apply with Synchrony", url: "https://www.mysynchrony.com/mmc/PC239787290" }
+            ],
+        },
+        {
+            providerName: "Vibrant Equipment Lending",
+            brandName: "Wacker Neuson",
+            logoUrl: "/brands/Wacker_Neuson_Logo.png",
+            description: "Specialized construction equipment financing and seasonal payment plans.",
+            applyLinks: [{ name: "Apply Now", url: "https://preapproval-wackerneuson.vibrantequipmentlending.com//main#/entity/FTOS_BNKAP_RetailApplicantData/insert/form/VIB_B2C_CustomerDataCollect/buid=63c77439-6c38-49fe-aa27-6610fe47b50a" }],
+        },
+        {
+            providerName: "Custom Financing",
+            brandName: "Implements, Trailers & More",
+            logoUrl: null, // We'll just show the generic icon if no logo
+            description: "Rates and terms vary for implements and trailers. Send us a text for a custom quote and finance options.",
+            applyLinks: [{ name: "Contact Us", url: "sms:3184429010" }],
         }
     ];
 
@@ -59,21 +79,33 @@ const Financing = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {financingOptions.map((option, index) => (
                         <div key={index} className="bg-white border border-charcoal/10 rounded-sm shadow-xl hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 p-8 flex flex-col group">
-                            <div className="w-14 h-14 bg-brand-red/10 flex items-center justify-center rounded-full mb-6 transition-transform group-hover:scale-110">
-                                <DollarSign className="text-brand-red" size={28} />
+                            <div className="h-20 flex items-center justify-start mb-6">
+                                {option.logoUrl ? (
+                                    <img src={option.logoUrl} alt={`${option.brandName} Logo`} className="max-h-full max-w-full object-contain" />
+                                ) : (
+                                    <div className="w-14 h-14 bg-brand-red/10 flex items-center justify-center rounded-full transition-transform group-hover:scale-110">
+                                        <DollarSign className="text-brand-red" size={28} />
+                                    </div>
+                                )}
                             </div>
-                            <h3 className="text-xl font-black text-charcoal uppercase tracking-tight mb-3 group-hover:text-brand-red transition-colors">{option.providerName}</h3>
+                            <h3 className="text-xl font-black text-charcoal uppercase tracking-tight mb-1 group-hover:text-brand-red transition-colors">{option.brandName}</h3>
+                            <p className="text-xs font-bold text-charcoal/50 uppercase tracking-widest mb-3">{option.providerName}</p>
                             <p className="text-charcoal/70 mb-8 flex-grow text-sm md:text-base leading-relaxed">
                                 {option.description}
                             </p>
-                            <a 
-                                href={option.applyLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-brand-red text-white py-3 px-6 rounded-sm font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 hover:bg-charcoal hover:shadow-lg transition-all w-full"
-                            >
-                                Apply Now <ChevronRight size={18} />
-                            </a>
+                            <div className="flex flex-col gap-3 w-full">
+                                {option.applyLinks.map((link, linkIdx) => (
+                                    <a 
+                                        key={linkIdx}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`py-3 px-6 rounded-sm font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 transition-all w-full ${linkIdx === 0 ? 'bg-brand-red text-white hover:bg-charcoal hover:shadow-lg' : 'bg-charcoal/5 text-charcoal hover:bg-charcoal/10'}`}
+                                    >
+                                        {link.name} <ChevronRight size={18} />
+                                    </a>
+                                ))}
+                            </div>
                         </div>
                     ))}
                 </div>
