@@ -7,7 +7,7 @@ import { processGoogleDriveUrl } from '../utils/imageFormat';
 
 const InventoryGrid = () => {
     const { inventory, loading } = useInventory();
-    const featuredInventory = inventory.slice(0, 6);
+    const featuredInventory = inventory.slice(0, 4);
 
     if (loading) {
         return (
@@ -56,8 +56,8 @@ const InventoryGrid = () => {
                     </motion.div>
                 </div>
 
-                {/* Featured Grid (6 items) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Featured Grid (4 items) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
                     {featuredInventory.map((tractor, index) => {
                         const imgStr = tractor['Image URL'] || tractor.image_url || tractor.images || tractor.image || tractor.photos || tractor['image url'];
                         let mainImageUrl = '';
