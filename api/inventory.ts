@@ -30,12 +30,12 @@ export default async function handler(req: any, res: any) {
         });
 
         const sheets = google.sheets({ version: 'v4', auth });
-        
+
         // Retrieve the first sheet dynamically in case it's named something else
         const spreadsheet = await sheets.spreadsheets.get({
             spreadsheetId: sheetId,
         });
-        
+
         const firstSheetName = spreadsheet.data.sheets?.[0]?.properties?.title || 'Sheet1';
 
         // Get all values from the first sheet up to 2000 rows
@@ -52,36 +52,36 @@ export default async function handler(req: any, res: any) {
         // Parse headers. Lowercase and replace spaces with camelCase or underscores.
         // E.g. "Item Name" -> "item_name", "Price" -> "price", "Status" -> "status"
         const headers = rows[0].map((h: string) => h.trim().toLowerCase().replace(/ /g, '_'));
-        
+
         // Filter out completely empty rows
-        const validRows = rows.slice(1).filter((row: any[]) => 
+        const validRows = rows.slice(1).filter((row: any[]) =>
             row && row.length > 0 && row.some((cell: string) => cell && cell.trim() !== '')
         );
-        
+
         const data = validRows.map((row: any[], index: number) => {
             const item: any = { id: index + 1 }; // Default numeric ID if missing
-            
+
             headers.forEach((header: string, i: number) => {
                 // To support both camelCase and standardized headers on frontend
                 let val = row[i] || '';
-                
+
                 // If it's a duplicate header, only overwrite if the new value is longer.
                 if (!item[header] || (val && val.length > item[header].length)) {
                     item[header] = val;
                 }
-                
+
                 // Also create generic camelCase alias for standard front-end mapping:
                 if (header === 'item_name' || header === 'name') {
-                     if (!item.model || val.length > item.model.length) item.model = val;
+                    if (!item.model || val.length > item.model.length) item.model = val;
                 }
                 if (header === 'category' && val) item.category = val;
                 if ((header === 'make' || header === 'brand') && val) item.make = val;
                 if (header === 'model' && val) {
-                     if (!item.model || val.length > item.model.length) item.model = val;
+                    if (!item.model || val.length > item.model.length) item.model = val;
                 }
                 if ((header === 'id' || header === 'item_id') && val) item.id = val;
             });
-            
+
             return item;
         });
 

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { ChevronRight, Settings, Maximize2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -20,8 +21,41 @@ const InventoryGrid = () => {
         );
     }
 
+    const schemaItemList = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": featuredInventory.map((tractor, index) => {
+            const imgStr = tractor['Image URL'] || tractor.image_url || tractor.images || tractor.image || tractor.photos || tractor['image url'];
+            let mainImageUrl = '';
+            if (imgStr && typeof imgStr === 'string' && imgStr.trim() !== '') {
+                const images = imgStr.split(/[\s,]+/).filter(Boolean);
+                if (images.length > 0) {
+                    mainImageUrl = processGoogleDriveUrl(images[0]);
+                    if (mainImageUrl.startsWith('/')) {
+                        mainImageUrl = `https://reddirt-tractors.com${mainImageUrl}`;
+                    }
+                }
+            }
+            return {
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                    "@type": "Product",
+                    "name": `${tractor.make} ${tractor.model}`,
+                    "image": mainImageUrl,
+                    "url": `https://reddirt-tractors.com/equipment/${tractor.id}`
+                }
+            };
+        }).filter(item => item.item.image)
+    };
+
     return (
         <section id="inventory" className="bg-off-white py-16 md:py-32 relative">
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify(schemaItemList)}
+                </script>
+            </Helmet>
             <div className="container mx-auto px-4 md:px-6">
                 
                 {/* Section Header */}
