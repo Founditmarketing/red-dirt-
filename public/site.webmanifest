@@ -1,0 +1,18 @@
+{
+  "name": "Red Dirt Tractors",
+  "short_name": "Red Dirt",
+  "description": "Central Louisiana's TYM, Mahindra, Ferris, Wacker Neuson, and Yanmar dealer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1A1A1A",
+  "theme_color": "#1A1A1A",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
