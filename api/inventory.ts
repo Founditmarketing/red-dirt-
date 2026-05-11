@@ -91,7 +91,10 @@ async function fetchSheetRows(
         sheets?: Array<{ properties?: { title?: string } }>;
     };
     let sheetName = meta.sheets?.[0]?.properties?.title || 'Sheet1';
-    const inventorySheet = meta.sheets?.find(s => s.properties?.title?.toLowerCase() === 'inventory');
+    const inventorySheet = meta.sheets?.find(s => {
+        const t = s.properties?.title?.toLowerCase();
+        return t === 'inventory_feed' || t === 'inventory';
+    });
     if (inventorySheet && inventorySheet.properties?.title) {
         sheetName = inventorySheet.properties.title;
     }
@@ -117,10 +120,22 @@ const normalizeHeader = (h: string) =>
 
 function rowsToItems(rows: SheetRow[]): Record<string, unknown>[] {
     if (!rows || rows.length === 0) return [];
-    const headers = rows[0].map(normalizeHeader);
-    const valid = rows.slice(1).filter((row) =>
-        row && row.length > 0 && row.some((cell) => cell && cell.trim() !== ''),
-    );
+
+    let headerIndex = 0;
+    for (let i = 0; i < Math.min(10, rows.length); i++) {
+        const filledCols = rows[i].filter(cell => cell && cell.trim() !== '').length;
+        if (filledCols >= 3) {
+            headerIndex = i;
+            break;
+        }
+    }
+
+    const headers = rows[headerIndex].map(normalizeHeader);
+    const valid = rows.slice(headerIndex + 1).filter((row) => {
+        if (!row || row.length === 0) return false;
+        const filledCount = row.filter((cell) => cell && cell.trim() !== '').length;
+        return filledCount > 1; // Skips category rows like "TYM" which only have 1 filled cell
+    });
 
     return valid.map((row, index) => {
         const item: Record<string, unknown> = { id: index + 1 };
