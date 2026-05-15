@@ -15,7 +15,7 @@ interface Tile {
 const featured: Tile = {
     to: '/inventory',
     eyebrow: 'Live inventory',
-    title: 'On the lot today.',
+    title: 'On the lot.',
     body: 'TYM, Mahindra, Yanmar, Ferris. Compact utility through 100+ HP. Updated daily from our floor.',
     image: '/tractors/12.jpg',
 };
@@ -25,7 +25,7 @@ const secondary: Tile[] = [
         to: '/parts-service',
         eyebrow: 'Service',
         title: 'Parts & Service',
-        body: 'Field dispatch, in-shop repair, and a parts counter that actually has the part.',
+        body: 'In-shop repair and a parts counter that actually has the part.',
         image: '/hero_parts_service.png',
     },
     {

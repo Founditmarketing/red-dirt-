@@ -68,10 +68,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 />
                             </picture>
                             <p className="opacity-60 mb-8 leading-relaxed text-sm">
-                                Central Louisiana's premium headquarters for heavy-duty
-                                construction equipment, agricultural tractors, and
-                                professional-grade attachments. Built on trust, driven by
-                                power.
+                                Central Louisiana's headquarters for construction equipment,
+                                tractors, and professional-grade attachments.
                             </p>
                             <div className="flex gap-4">
                                 <a

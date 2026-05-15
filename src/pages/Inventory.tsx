@@ -275,7 +275,7 @@ const Inventory = () => {
     return (
         <div className="min-h-screen bg-off-white pb-32">
             <Helmet>
-                <title>Tractor Inventory | Red Dirt Tractors in Alexandria, LA</title>
+                <title>Equipment Inventory | Red Dirt Tractors in Alexandria, LA</title>
                 <meta name="description" content={metaDescription} />
                 <script type="application/ld+json">{JSON.stringify(inventorySchema)}</script>
             </Helmet>
@@ -285,7 +285,7 @@ const Inventory = () => {
                 <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
                     <div className="lg:col-span-7">
                         <p className="text-xs font-bold tracking-[0.3em] uppercase text-brand-red mb-5">
-                            {isFallbackInventory ? 'Live feed syncing' : 'On the lot today'}
+                            {isFallbackInventory ? 'Live feed syncing' : 'On the lot'}
                         </p>
                         <h1 className="font-heading font-black uppercase text-charcoal leading-[0.92] sm:leading-[0.9] tracking-tight text-4xl sm:text-6xl md:text-7xl">
                             {pageTitle}
@@ -668,10 +668,10 @@ const Inventory = () => {
                                                 <div className="mt-auto pt-5 border-t border-charcoal/10 flex items-end justify-between gap-3">
                                                     <div>
                                                         <p className="text-[10px] font-bold text-charcoal/50 uppercase tracking-[0.25em] mb-1">
-                                                            {isFallbackInventory ? 'Pricing' : 'Starting at'}
+                                                            {price ? (isFallbackInventory ? 'Pricing' : 'Starting at') : 'Pricing'}
                                                         </p>
                                                         <p className="font-heading font-black text-charcoal text-lg md:text-xl tracking-tight">
-                                                            {price ? formatMoney(price) : tractor.price || 'Call us'}
+                                                            {price ? formatMoney(price) : 'Contact for pricing'}
                                                         </p>
                                                     </div>
                                                     <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.25em] text-charcoal group-hover:text-brand-red transition-colors">

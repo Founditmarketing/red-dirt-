@@ -5,7 +5,6 @@ import {
     CalendarCheck,
     ClipboardCheck,
     Coins,
-    Compass,
     HandshakeIcon,
     type LucideIcon,
     MapPin,
@@ -48,7 +47,7 @@ export const NAV_GROUPS: NavGroup[] = [
         items: [
             {
                 to: '/inventory',
-                label: 'Tractor Inventory',
+                label: 'Equipment Inventory',
                 description: 'Live stock filtered by brand, category, or price.',
                 icon: Tractor,
             },
@@ -88,38 +87,6 @@ export const NAV_GROUPS: NavGroup[] = [
         },
     },
     {
-        id: 'service',
-        label: 'Service',
-        items: [
-            {
-                to: '/parts-service',
-                label: 'Parts & Service',
-                description: 'Factory-trained techs and a deep parts counter.',
-                icon: Wrench,
-            },
-            {
-                to: '/parts-service#schedule',
-                label: 'Schedule Service',
-                description: 'Book in-shop or mobile service appointments.',
-                icon: CalendarCheck,
-            },
-            {
-                to: '/parts-service#warranty',
-                label: 'Warranty',
-                description: 'Brand warranty support, claims, and history.',
-                icon: HandshakeIcon,
-            },
-        ],
-        feature: {
-            eyebrow: 'In-shop and in-field',
-            title: 'Service without the runaround',
-            copy: 'Drop it off, schedule a field call, or call the parts counter. Real techs, real availability.',
-            ctaLabel: 'Open service',
-            ctaTo: '/parts-service',
-            image: '/hero_parts_service.png',
-        },
-    },
-    {
         id: 'finance',
         label: 'Finance',
         items: [
@@ -152,6 +119,38 @@ export const NAV_GROUPS: NavGroup[] = [
         },
     },
     {
+        id: 'service',
+        label: 'Service',
+        items: [
+            {
+                to: '/parts-service',
+                label: 'Parts & Service',
+                description: 'Factory-trained techs and a deep parts counter.',
+                icon: Wrench,
+            },
+            {
+                to: '/parts-service#schedule',
+                label: 'Schedule Service',
+                description: 'Book an in-shop service appointment.',
+                icon: CalendarCheck,
+            },
+            {
+                to: '/parts-service#warranty',
+                label: 'Warranty',
+                description: 'Brand warranty support, claims, and history.',
+                icon: HandshakeIcon,
+            },
+        ],
+        feature: {
+            eyebrow: 'In-shop service',
+            title: 'Service without the runaround',
+            copy: 'Drop it off or call the parts counter. Real techs, real availability.',
+            ctaLabel: 'Open service',
+            ctaTo: '/parts-service',
+            image: '/hero_parts_service.png',
+        },
+    },
+    {
         id: 'company',
         label: 'Company',
         items: [
@@ -175,15 +174,9 @@ export const NAV_GROUPS: NavGroup[] = [
             },
             {
                 to: '/contact',
-                label: 'Visit & Hours',
+                label: 'Plan Your Visit',
                 description: '7547 Hwy 71 South, Alexandria, LA.',
                 icon: MapPin,
-            },
-            {
-                to: '/dealer/alexandria-la',
-                label: 'Service Area',
-                description: 'Dedicated pages for nearby cities.',
-                icon: Compass,
             },
         ],
         feature: {

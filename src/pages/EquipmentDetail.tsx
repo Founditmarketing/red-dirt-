@@ -149,6 +149,9 @@ const EquipmentDetail = () => {
                             <SaveButton item={data} variant="inline" />
                         </div>
                     </div>
+                    <p className="mt-4 text-sm text-charcoal/55 font-medium">
+                        Choose from what's on the lot or order to your exact specs — we'll configure it, finance it, and get it ready.
+                    </p>
                 </div>
 
                 {/* Main Grid */}
@@ -161,7 +164,6 @@ const EquipmentDetail = () => {
                         {/* Description & Features */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pl-1 md:pl-0">
                             <div>
-                                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 md:mb-6">Overview</h3>
                                 <p className="text-charcoal/70 font-medium leading-relaxed text-sm md:text-base">{data.description}</p>
                             </div>
                             {data.features && data.features.length > 0 && (

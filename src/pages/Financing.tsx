@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet-async';
-import { DollarSign, Calculator, ChevronRight } from 'lucide-react';
+import { DollarSign, Calculator, ChevronRight, MessageSquare, Phone, Landmark } from 'lucide-react';
+
+import PaymentEstimator from '../components/PaymentEstimator';
 
 const Financing = () => {
     const financingOptions = [
@@ -78,18 +80,17 @@ const Financing = () => {
                                 </p>
                                 <div className="flex flex-wrap gap-3">
                                     <a
-                                        href="https://prequalify.sheffieldfinancial.com/Apply/Dealer/48349?source=web"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        href="#providers"
                                         className="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white px-5 py-3 font-bold uppercase tracking-[0.2em] text-xs transition-colors"
                                     >
-                                        Apply with Sheffield
+                                        Choose a lender
                                         <ChevronRight size={14} />
                                     </a>
                                     <a
                                         href="sms://+13184429010"
                                         className="inline-flex items-center gap-2 border border-white/30 hover:bg-white hover:text-charcoal px-5 py-3 font-bold uppercase tracking-[0.2em] text-xs transition-colors"
                                     >
+                                        <MessageSquare size={14} />
                                         Text us
                                     </a>
                                 </div>
@@ -100,7 +101,7 @@ const Financing = () => {
             </div>
 
             {/* Financing Links Section */}
-            <div className="container mx-auto px-6 max-w-7xl">
+            <div id="providers" className="container mx-auto px-6 max-w-7xl">
                 <div className="mb-12 text-center max-w-2xl mx-auto">
                     <h2 className="text-3xl font-black text-charcoal uppercase tracking-tight mb-4">Choose Your Provider</h2>
                     <p className="text-charcoal/60">
@@ -142,8 +143,41 @@ const Financing = () => {
                     ))}
                 </div>
 
-                {/* Additional Info */}
-                <div className="mt-20 bg-charcoal text-white p-8 md:p-14 flex flex-col md:flex-row gap-8 md:gap-12 items-start md:items-center">
+                {/* Bring Your Own Financing */}
+                <div className="mt-12 bg-off-white border border-charcoal/10 p-8 md:p-12 flex flex-col md:flex-row gap-6 md:gap-10 items-start">
+                    <div className="bg-charcoal text-white p-4 rounded-sm shrink-0">
+                        <Landmark size={28} />
+                    </div>
+                    <div className="flex-1">
+                        <p className="text-xs font-bold tracking-[0.3em] uppercase text-brand-red mb-3">
+                            Already have a lender?
+                        </p>
+                        <h4 className="font-heading font-black uppercase text-charcoal tracking-tight text-2xl md:text-3xl mb-3 leading-tight">
+                            Bring your own financing.
+                        </h4>
+                        <p className="text-charcoal/70 mb-5 max-w-2xl leading-relaxed">
+                            Already working with your bank or credit union? No problem. Put us in contact with your lender and we will get them everything they need to hand you the check. We work with any institution.
+                        </p>
+                        <div className="flex flex-wrap gap-3">
+                            <a href="tel:3184429010" className="inline-flex items-center gap-2 bg-charcoal text-white hover:bg-brand-red px-5 py-3 font-bold uppercase tracking-[0.2em] text-xs transition-colors">
+                                <Phone size={14} />
+                                Call 318-442-9010
+                            </a>
+                            <a href="sms://+13184429010" className="inline-flex items-center gap-2 border border-charcoal text-charcoal hover:bg-charcoal hover:text-white px-5 py-3 font-bold uppercase tracking-[0.2em] text-xs transition-colors">
+                                <MessageSquare size={14} />
+                                Text us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Payment Estimator */}
+                <div className="mt-12 max-w-xl mx-auto">
+                    <PaymentEstimator price={35000} modelLabel="average equipment" />
+                </div>
+
+                {/* Talk to a Human */}
+                <div className="mt-12 bg-charcoal text-white p-8 md:p-14 flex flex-col md:flex-row gap-8 md:gap-12 items-start md:items-center">
                     <div className="bg-brand-red text-white p-5 shrink-0">
                         <Calculator size={28} />
                     </div>
@@ -152,14 +186,21 @@ const Financing = () => {
                             Talk to a human
                         </p>
                         <h4 className="font-heading font-black uppercase text-white tracking-tight text-2xl md:text-3xl mb-3 leading-tight">
-                            Need help estimating your payments?
+                            Need help deciding?
                         </h4>
                         <p className="text-white/70 mb-5 max-w-2xl leading-relaxed">
-                            Our sales team is ready to help you crunch the numbers. Give us a call or stop by the dealership, and we'll walk you through all your financing options to find the perfect fit for your budget.
+                            Our sales team is ready to walk you through every option. Call, text, or stop by the dealership — we will help you find the right fit for your budget.
                         </p>
-                        <a href="tel:3184429010" className="text-white font-bold uppercase tracking-[0.25em] text-sm border-b border-white pb-1 hover:text-brand-red hover:border-brand-red inline-flex items-center gap-2 transition-colors">
-                            Call our finance experts <ChevronRight size={16} />
-                        </a>
+                        <div className="flex flex-wrap gap-3">
+                            <a href="tel:3184429010" className="text-white font-bold uppercase tracking-[0.25em] text-sm border-b border-white pb-1 hover:text-brand-red hover:border-brand-red inline-flex items-center gap-2 transition-colors">
+                                <Phone size={14} />
+                                Call us
+                            </a>
+                            <a href="sms://+13184429010" className="text-white font-bold uppercase tracking-[0.25em] text-sm border-b border-white pb-1 hover:text-brand-red hover:border-brand-red inline-flex items-center gap-2 transition-colors">
+                                <MessageSquare size={14} />
+                                Text us
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

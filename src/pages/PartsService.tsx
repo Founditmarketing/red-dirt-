@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { Wrench, Settings, ShieldCheck, Phone, ChevronRight } from 'lucide-react';
+import { Wrench, Settings, ShieldCheck, Phone, ChevronRight, ExternalLink, MessageSquare } from 'lucide-react';
 
 const PartsService = () => {
     return (
@@ -9,7 +9,7 @@ const PartsService = () => {
                 <title>Parts &amp; Service | Red Dirt Tractors in Alexandria, LA</title>
                 <meta
                     name="description"
-                    content="Schedule certified service or order genuine parts for TYM, Mahindra, Ferris, Wacker Neuson, and Yanmar equipment. Mobile dispatch and in-shop repair available from our Hwy 71 South store."
+                    content="Schedule certified service or order genuine parts for TYM, Mahindra, Ferris, Wacker Neuson, and Yanmar equipment. In-shop repair available from our Hwy 71 South store."
                 />
                 <link rel="canonical" href="https://reddirt-tractors.com/parts-service" />
             </Helmet>
@@ -35,7 +35,7 @@ const PartsService = () => {
                              Genuine <span className="text-brand-red">parts.</span>
                          </h1>
                          <p className="text-base md:text-xl text-white/75 font-medium max-w-2xl leading-relaxed">
-                             Maximum uptime is our priority. Our certified technicians and fully-stocked parts counter ensure your equipment never stops working.
+                             Maximum uptime is our priority. Our certified technicians stock most maintenance parts and can order what you need fast.
                          </p>
                      </motion.div>
                  </div>
@@ -54,7 +54,7 @@ const PartsService = () => {
                                 </div>
                                 <div>
                                     <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-none">Schedule Service</h2>
-                                    <p className="text-charcoal/60 font-medium mt-1 text-sm md:text-base">Mobile dispatch or in-shop repair.</p>
+                                    <p className="text-charcoal/60 font-medium mt-1 text-sm md:text-base">Bring it in — we'll take care of the rest.</p>
                                 </div>
                             </div>
 
@@ -124,6 +124,56 @@ const PartsService = () => {
                             </ul>
                         </div>
                     </div>
+
+                        {/* Warranty Info */}
+                        <div className="bg-white border border-charcoal/10 p-6 md:p-8 shadow-sm">
+                            <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                                <ShieldCheck className="text-brand-red w-6 h-6 md:w-7 md:h-7" />
+                                <h3 className="text-lg md:text-xl font-black uppercase tracking-tight">Warranty Info</h3>
+                            </div>
+                            <p className="text-charcoal/65 font-medium text-sm leading-relaxed mb-5">
+                                Each brand handles warranty claims differently. Use the links below to check coverage, register equipment, or start a claim.
+                            </p>
+                            <ul className="space-y-3">
+                                <li>
+                                    <a href="https://www.tymsales.com/warranty" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-sm font-bold text-charcoal hover:text-brand-red transition-colors group">
+                                        <span>TYM Warranty</span>
+                                        <ExternalLink size={14} className="text-charcoal/40 group-hover:text-brand-red transition-colors" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.mahindrausa.com/warranty" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-sm font-bold text-charcoal hover:text-brand-red transition-colors group">
+                                        <span>Mahindra Warranty</span>
+                                        <ExternalLink size={14} className="text-charcoal/40 group-hover:text-brand-red transition-colors" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.ferrismowers.com/na/en_US/support/warranty.html" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-sm font-bold text-charcoal hover:text-brand-red transition-colors group">
+                                        <span>Ferris Warranty</span>
+                                        <ExternalLink size={14} className="text-charcoal/40 group-hover:text-brand-red transition-colors" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.wackerneuson.us/en-us/support/warranty/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-sm font-bold text-charcoal hover:text-brand-red transition-colors group">
+                                        <span>Wacker Neuson Warranty</span>
+                                        <ExternalLink size={14} className="text-charcoal/40 group-hover:text-brand-red transition-colors" />
+                                    </a>
+                                </li>
+                            </ul>
+                            <div className="mt-5 pt-4 border-t border-charcoal/10">
+                                <p className="text-xs text-charcoal/50 font-medium">Questions about your coverage? Call or text us — we handle the paperwork.</p>
+                                <div className="flex flex-wrap gap-3 mt-3">
+                                    <a href="tel:3184429010" className="inline-flex items-center gap-2 text-xs font-bold text-charcoal hover:text-brand-red transition-colors">
+                                        <Phone size={12} />
+                                        Call
+                                    </a>
+                                    <a href="sms://+13184429010" className="inline-flex items-center gap-2 text-xs font-bold text-charcoal hover:text-brand-red transition-colors">
+                                        <MessageSquare size={12} />
+                                        Text
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
                 </div>
             </section>

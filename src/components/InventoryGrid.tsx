@@ -34,7 +34,8 @@ const matchesChip = (item: any, chip: ChipKey): boolean => {
 
     switch (chip) {
         case 'tractor':
-            return /(tractor|compact|utility)/.test(cat);
+            return /(tractor|compact|utility)/i.test(cat) ||
+                /^(tym|mahindra|yanmar)/i.test(String(item.make || ''));
         case 'mower':
             return /(mow|zero[- ]turn|ferris)/.test(cat) ||
                 /ferris/i.test(String(item.make || ''));
@@ -261,7 +262,7 @@ const InventoryGrid = () => {
                                                             {price ? 'Starting at' : 'Pricing'}
                                                         </p>
                                                         <p className="font-heading font-black text-charcoal text-lg tracking-tight">
-                                                            {price ? formatMoney(price) : tractor.price || 'Call us'}
+                                                            {price ? formatMoney(price) : 'Contact for pricing'}
                                                         </p>
                                                     </div>
                                                     <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.2em] text-charcoal group-hover:text-brand-red transition-colors">

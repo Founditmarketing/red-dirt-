@@ -1,9 +1,7 @@
 import { Helmet } from 'react-helmet-async';
-import { ChevronRight, Clock, Mail, MapPin, MessageSquare, Phone } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Clock, Mail, MapPin, MessageSquare, Phone } from 'lucide-react';
 
 import PageHero from '../components/PageHero';
-import { DEALER_CITIES } from '../data/dealerCities';
 
 const MAP_EMBED =
   'https://maps.google.com/maps?q=7547+Hwy+71+South+Alexandria+LA+71302&hl=en&z=14&output=embed';
@@ -14,7 +12,7 @@ const Contact = () => {
   return (
     <>
       <Helmet>
-        <title>Contact &amp; Hours | Red Dirt Tractors</title>
+        <title>Plan Your Visit | Red Dirt Tractors</title>
         <meta
           name="description"
           content="Visit Red Dirt Tractors on Hwy 71 in Alexandria, LA. Store hours, phone, email, and directions to our dealership and service department."
@@ -23,9 +21,9 @@ const Contact = () => {
       </Helmet>
 
       <PageHero
-        eyebrow="Visit Red Dirt"
+        eyebrow="Plan Your Visit"
         title="Let's get you on the schedule."
-        subtitle="Call the parts counter, book service, or walk the lot with someone who actually runs equipment, not a call center."
+        subtitle="Call the parts counter, book a service appointment, or walk the lot with someone who actually runs equipment — not a call center."
         imageSrc="/hero_contact.png"
         imageAlt=""
       />
@@ -124,45 +122,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-off-white border-t border-charcoal/10">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-red mb-3">
-                Service area
-              </p>
-              <h2 className="font-heading font-black uppercase tracking-tight text-3xl md:text-4xl text-charcoal leading-tight">
-                Serving Central Louisiana from Hwy 71.
-              </h2>
-            </div>
-            <p className="text-charcoal/65 font-medium max-w-md">
-              We work with customers across these communities every week. Click your town for a
-              dedicated page with directions and what we cover locally.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {DEALER_CITIES.map((c) => (
-              <Link
-                key={c.slug}
-                to={`/dealer/${c.slug}`}
-                className="group bg-white border border-charcoal/10 hover:border-brand-red transition-colors p-5"
-              >
-                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-charcoal/45 mb-1">
-                  {c.distance}
-                </p>
-                <p className="font-heading font-black uppercase tracking-tight text-charcoal text-lg mb-2 group-hover:text-brand-red transition-colors">
-                  {c.name}, {c.state}
-                </p>
-                <span className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.2em] text-charcoal/55 group-hover:text-brand-red transition-colors">
-                  Open page
-                  <ChevronRight size={14} />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 };
