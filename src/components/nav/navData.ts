@@ -80,7 +80,7 @@ export const NAV_GROUPS: NavGroup[] = [
         feature: {
             eyebrow: 'Now on the lot',
             title: 'Browse live inventory',
-            copy: 'Updated daily from our floor. Filter by brand, category, or price and skip the guesswork.',
+            copy: 'Our showroom and lot change daily. Filter by brand, category, or price and skip the guesswork.',
             ctaLabel: 'Open inventory',
             ctaTo: '/inventory',
             image: '/tractors/12.jpg',

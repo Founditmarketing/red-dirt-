@@ -1,8 +1,36 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { ArrowRight, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import ResponsivePicture from './ResponsivePicture';
+
+/* ── Animated counter hook ─────────────────────────────── */
+const useCounter = (target: number, duration = 2000, start = false) => {
+    const [value, setValue] = useState(0);
+    useEffect(() => {
+        if (!start) return;
+        let raf: number;
+        const t0 = performance.now();
+        const tick = (now: number) => {
+            const progress = Math.min((now - t0) / duration, 1);
+            // ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setValue(Math.round(eased * target));
+            if (progress < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(raf);
+    }, [target, duration, start]);
+    return value;
+};
+
+/* ── Horsepower constants (placeholder — client will provide actuals) ── */
+const TOTAL_HP_SOLD = 962_400;
+const DOORS_OPENED = new Date('2016-01-01');
+const daysSinceOpening = () =>
+    Math.floor((Date.now() - DOORS_OPENED.getTime()) / 86_400_000);
+const HP_PER_DAY = Math.round(TOTAL_HP_SOLD / daysSinceOpening());
 
 const HERO_WIDTHS = [640, 960, 1440, 1920];
 const HERO_SIZES = '100vw';
@@ -94,20 +122,7 @@ const Hero = () => {
                         </div>
                     </motion.div>
 
-                    {/* Right rail: who we are at a glance */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                        className="hidden lg:block lg:col-span-4 lg:pl-10 lg:border-l lg:border-white/10"
-                    >
-                        <dl className="grid grid-cols-2 gap-x-8 gap-y-8 text-white">
-                            <Stat label="Established" value="2014" />
-                            <Stat label="Delivered" value="4,000+" />
-                            <Stat label="Brands" value="Five" />
-                            <Stat label="Service Bays" value="Full" />
-                        </dl>
-                    </motion.div>
+                    <HeroStats />
                 </div>
             </div>
 
@@ -128,15 +143,56 @@ const Hero = () => {
     );
 };
 
-const Stat = ({ label, value }: { label: string; value: string }) => (
-    <div>
-        <dt className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/45 mb-2">
-            {label}
-        </dt>
-        <dd className="font-heading font-black tracking-tighter text-4xl xl:text-5xl leading-none">
-            {value}
-        </dd>
-    </div>
-);
+const HeroStats = () => {
+    const ref = useRef<HTMLDivElement>(null);
+    const inView = useInView(ref, { once: true, margin: '-100px' });
+    const hpTotal = useCounter(TOTAL_HP_SOLD, 2400, inView);
+    const hpDay = useCounter(HP_PER_DAY, 1800, inView);
+
+    return (
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:block lg:col-span-4 lg:pl-10 lg:border-l lg:border-white/10"
+        >
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-8 text-white">
+                <div>
+                    <dt className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/45 mb-2">
+                        Established
+                    </dt>
+                    <dd className="font-heading font-black tracking-tighter text-4xl xl:text-5xl leading-none">
+                        2014
+                    </dd>
+                </div>
+                <div>
+                    <dt className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/45 mb-2">
+                        Delivered
+                    </dt>
+                    <dd className="font-heading font-black tracking-tighter text-4xl xl:text-5xl leading-none">
+                        4,000+
+                    </dd>
+                </div>
+                <div>
+                    <dt className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-red/80 mb-2">
+                        Total HP Sold
+                    </dt>
+                    <dd className="font-heading font-black tracking-tighter text-3xl xl:text-4xl leading-none tabular-nums">
+                        {hpTotal.toLocaleString()}
+                    </dd>
+                </div>
+                <div>
+                    <dt className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-red/80 mb-2">
+                        HP / Day
+                    </dt>
+                    <dd className="font-heading font-black tracking-tighter text-3xl xl:text-4xl leading-none tabular-nums">
+                        {hpDay.toLocaleString()}
+                    </dd>
+                </div>
+            </dl>
+        </motion.div>
+    );
+};
 
 export default Hero;

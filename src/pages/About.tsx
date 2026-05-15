@@ -8,12 +8,12 @@ import PageHero from '../components/PageHero';
 const milestones = [
   { year: '2010s', title: 'One bay, one promise', copy: 'We opened on Hwy 71 with a simple rule: do right by the people who keep Louisiana running.' },
   { year: 'Today', title: 'Full-line dealer', copy: 'TYM, Mahindra, Ferris, Wacker Neuson, and Yanmar, backed by a parts counter and factory-trained techs.' },
-  { year: 'Always', title: 'Field-first support', copy: 'When season hits, you need answers fast. Our crew dispatches field calls and keeps iron turning.' },
+  { year: 'Always', title: 'Field-first support', copy: 'When season hits, you need answers fast. Our crew is determined to keep the iron turning.' },
 ];
 
 const values = [
   'We sell the brands we run on our own land.',
-  'Transparent pricing and financing conversations, no mystery fees.',
+  'Transparent volume pricing and financing conversations, no mystery fees.',
   'Service that stays with you after the keys change hands.',
   'A parts room stocked for real jobs, not showroom props.',
 ];

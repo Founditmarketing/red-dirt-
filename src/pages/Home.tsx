@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Hero from '../components/Hero';
 import BrandLogos from '../components/BrandLogos';
-import Departments from '../components/Departments';
+import FeaturedMarquee from '../components/FeaturedMarquee';
 import TrustMetrics from '../components/TrustMetrics';
 import DealershipStory from '../components/DealershipStory';
 import InventoryGrid from '../components/InventoryGrid';
@@ -21,7 +21,7 @@ const Home = () => {
             </Helmet>
             <Hero />
             <BrandLogos />
-            <Departments />
+            <FeaturedMarquee />
             <TrustMetrics />
             <InventoryGrid />
             <DealershipStory />

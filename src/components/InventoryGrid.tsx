@@ -14,16 +14,18 @@ import {
 } from '../utils/inventoryDerive';
 import SaveButton from './SaveButton';
 
-type ChipKey = 'all' | 'tractor' | 'mower' | 'trailer' | 'new' | 'used' | 'under-30k';
+type ChipKey = 'all' | 'tractor' | 'mower' | 'trailer' | 'used' | 'under-30k' | 'under-20k' | 'construction' | 'packages';
 
 const CHIPS: Array<{ key: ChipKey; label: string }> = [
     { key: 'all', label: 'All' },
     { key: 'tractor', label: 'Tractors' },
     { key: 'mower', label: 'Mowers' },
     { key: 'trailer', label: 'Trailers' },
-    { key: 'new', label: 'New' },
     { key: 'used', label: 'Pre-Owned' },
     { key: 'under-30k', label: 'Under $30K' },
+    { key: 'under-20k', label: 'Under $20K' },
+    { key: 'construction', label: 'Construction' },
+    { key: 'packages', label: 'Packages' },
 ];
 
 const matchesChip = (item: any, chip: ChipKey): boolean => {
@@ -41,12 +43,18 @@ const matchesChip = (item: any, chip: ChipKey): boolean => {
                 /ferris/i.test(String(item.make || ''));
         case 'trailer':
             return /trailer/.test(cat);
-        case 'new':
-            return cond === 'new';
         case 'used':
             return cond === 'used';
         case 'under-30k':
             return price < 30000;
+        case 'under-20k':
+            return price < 20000;
+        case 'construction':
+            return /(construction|wacker|excavat|loader|skid|compact track|dumper)/i.test(cat) ||
+                /wacker/i.test(String(item.make || ''));
+        case 'packages':
+            return /(package|bundle)/i.test(cat) ||
+                /(package|bundle)/i.test(String(item.model || ''));
         default:
             return true;
     }

@@ -244,13 +244,6 @@ const PrimaryNav = () => {
                         </ul>
 
                         <div className="hidden lg:flex items-center gap-3">
-                            <a
-                                href="tel:3184429010"
-                                className="text-white/75 hover:text-white text-[12px] font-bold uppercase tracking-[0.2em] transition-colors hidden xl:inline-flex items-center gap-2"
-                            >
-                                <Phone size={14} />
-                                318.442.9010
-                            </a>
                             <Link
                                 to="/saved"
                                 aria-label={savedCount > 0 ? `${savedCount} saved units` : 'Saved units'}
