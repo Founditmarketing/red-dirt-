@@ -9,7 +9,7 @@ const PartsService = () => {
                 <title>Parts &amp; Service | Red Dirt Tractors in Alexandria, LA</title>
                 <meta
                     name="description"
-                    content="Schedule certified service or order genuine parts for TYM, Mahindra, Ferris, Wacker Neuson, and Yanmar equipment. In-shop repair available from our Hwy 71 South store."
+                    content="Schedule certified service or order genuine parts for TYM, Mahindra, Ferris, and Wacker Neuson equipment. In-shop repair available from our Hwy 71 South store."
                 />
                 <link rel="canonical" href="https://reddirt-tractors.com/parts-service" />
             </Helmet>

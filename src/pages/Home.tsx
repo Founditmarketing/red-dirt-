@@ -16,7 +16,7 @@ const Home = () => {
                 </title>
                 <meta
                     name="description"
-                    content="Red Dirt Tractors is Central Louisiana's heavy iron dealership on Hwy 71 South in Alexandria. Authorized for TYM, Mahindra, Ferris, Wacker Neuson, and Yanmar with full parts, service, and financing."
+                    content="Red Dirt Tractors is Central Louisiana's heavy iron dealership on Hwy 71 South in Alexandria. Authorized for TYM, Mahindra, Ferris, and Wacker Neuson with full parts, service, and financing."
                 />
             </Helmet>
             <Hero />

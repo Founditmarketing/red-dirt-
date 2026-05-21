@@ -37,7 +37,7 @@ const matchesChip = (item: any, chip: ChipKey): boolean => {
     switch (chip) {
         case 'tractor':
             return /(tractor|compact|utility)/i.test(cat) ||
-                /^(tym|mahindra|yanmar)/i.test(String(item.make || ''));
+                /^(tym|mahindra)/i.test(String(item.make || ''));
         case 'mower':
             return /(mow|zero[- ]turn|ferris)/.test(cat) ||
                 /ferris/i.test(String(item.make || ''));

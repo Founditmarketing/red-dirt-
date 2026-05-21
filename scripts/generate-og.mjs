@@ -78,7 +78,7 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
         font-size="22"
         font-weight="600"
         fill="rgba(255,255,255,0.78)">
-    TYM · Mahindra · Ferris · Wacker Neuson · Yanmar
+    TYM · Mahindra · Ferris · Wacker Neuson
   </text>
 
   <!-- Footer -->

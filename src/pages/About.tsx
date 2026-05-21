@@ -7,7 +7,7 @@ import PageHero from '../components/PageHero';
 
 const milestones = [
   { year: '2010s', title: 'One bay, one promise', copy: 'We opened on Hwy 71 with a simple rule: do right by the people who keep Louisiana running.' },
-  { year: 'Today', title: 'Full-line dealer', copy: 'TYM, Mahindra, Ferris, Wacker Neuson, and Yanmar, backed by a parts counter and factory-trained techs.' },
+  { year: 'Today', title: 'Full-line dealer', copy: 'TYM, Mahindra, Ferris, and Wacker Neuson, backed by a parts counter and factory-trained techs.' },
   { year: 'Always', title: 'Field-first support', copy: 'When season hits, you need answers fast. Our crew is determined to keep the iron turning.' },
 ];
 

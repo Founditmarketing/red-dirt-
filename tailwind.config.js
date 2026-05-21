@@ -16,7 +16,6 @@ export default {
                     light: '#2A2A2A',
                 },
                 'accent': {
-                    blue: '#004B8D', // Yanmar
                     yellow: '#FFCD00', // Wacker Neuson
                 },
                 'off-white': '#F5F5F7',

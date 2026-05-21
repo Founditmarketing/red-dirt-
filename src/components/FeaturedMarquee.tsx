@@ -135,7 +135,7 @@ function pickDiverseMix(inventory: any[], count: number) {
     for (const item of inventory) {
         const cat = String(item.category || '').toLowerCase();
         const make = String(item.make || '').toLowerCase();
-        if (/(tractor|compact|utility)/i.test(cat) || /^(tym|mahindra|yanmar)/i.test(make)) {
+        if (/(tractor|compact|utility)/i.test(cat) || /^(tym|mahindra)/i.test(make)) {
             buckets.tractor.push(item);
         } else if (/(mow|zero[- ]turn|ferris)/i.test(cat) || /ferris/i.test(make)) {
             buckets.mower.push(item);

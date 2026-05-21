@@ -4,8 +4,7 @@ const BrandLogos = () => {
         { name: "Mahindra", url: "/brands/mahindralogo.webp" },
         { name: "Ferris", url: "/brands/ferrislogo.webp" },
         { name: "TYM Tractors", url: "/brands/tymlogo.png" },
-        { name: "Wacker Neuson", url: "/brands/Wacker_Neuson_Logo.png" },
-        { name: "Yanmar", url: "/brands/yanmarlogo.png" }
+        { name: "Wacker Neuson", url: "/brands/Wacker_Neuson_Logo.png" }
     ];
 
     return (
