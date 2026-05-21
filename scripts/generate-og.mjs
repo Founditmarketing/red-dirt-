@@ -73,12 +73,19 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
   </text>
 
   <!-- Brand strip -->
-  <text x="80" y="475"
+  <text x="80" y="465"
         font-family="Helvetica, Arial, sans-serif"
-        font-size="22"
+        font-size="18"
         font-weight="600"
         fill="rgba(255,255,255,0.78)">
-    TYM · Mahindra · Ferris · Wacker Neuson
+    TYM · Mahindra · Ferris · Wacker Neuson · Load Trail
+  </text>
+  <text x="80" y="490"
+        font-family="Helvetica, Arial, sans-serif"
+        font-size="18"
+        font-weight="600"
+        fill="rgba(255,255,255,0.78)">
+    East Texas · Woods · Premier · Baumalight · Sidewinder
   </text>
 
   <!-- Footer -->

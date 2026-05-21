@@ -14,7 +14,7 @@ const DealerCity = () => {
     }
 
     const title = `Tractor Dealer in ${city.name}, ${city.state} | Red Dirt Tractors`;
-    const description = `Authorized TYM, Mahindra, Ferris, and Wacker Neuson dealer serving ${city.name}, ${city.state} from our Alexandria, LA store. Sales, parts, service, financing, and trade-ins.`;
+    const description = `Authorized TYM, Mahindra, Ferris, Wacker Neuson, Load Trail, East Texas, Woods, Premier, Baumalight, and Sidewinder dealer serving ${city.name}, ${city.state} from our Alexandria, LA store. Sales, parts, service, financing, and trade-ins.`;
 
     const breadcrumbs = {
         '@context': 'https://schema.org',
@@ -69,7 +69,7 @@ const DealerCity = () => {
                         </h2>
                         <div className="space-y-5 text-charcoal/70 font-medium leading-relaxed text-base md:text-lg max-w-2xl">
                             <p>
-                                Red Dirt Tractors carries TYM, Mahindra, Ferris, and Wacker Neuson
+                                Red Dirt Tractors carries TYM, Mahindra, Ferris, Wacker Neuson, Load Trail, East Texas, Woods, Premier, Baumalight, and Sidewinder
                                 at our Alexandria store. Customers from {city.name} regularly
                                 drive in for sales and trade-ins, and we keep the parts counter and
                                 service bays running for ongoing support.

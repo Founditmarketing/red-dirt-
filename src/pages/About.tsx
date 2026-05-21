@@ -7,7 +7,7 @@ import PageHero from '../components/PageHero';
 
 const milestones = [
   { year: '2010s', title: 'One bay, one promise', copy: 'We opened on Hwy 71 with a simple rule: do right by the people who keep Louisiana running.' },
-  { year: 'Today', title: 'Full-line dealer', copy: 'TYM, Mahindra, Ferris, and Wacker Neuson, backed by a parts counter and factory-trained techs.' },
+  { year: 'Today', title: 'Full-line dealer', copy: 'TYM, Mahindra, Ferris, Wacker Neuson, Load Trail, East Texas, Woods, Premier, Baumalight, and Sidewinder, backed by a parts counter and factory-trained techs.' },
   { year: 'Always', title: 'Field-first support', copy: 'When season hits, you need answers fast. Our crew is determined to keep the iron turning.' },
 ];
 
@@ -25,7 +25,7 @@ const About = () => {
         <title>About Us | Red Dirt Tractors &amp; Construction Equipment</title>
         <meta
           name="description"
-          content="Family-owned TYM, Mahindra, Ferris, and Wacker Neuson dealer in Alexandria, LA. Our story, values, and why Central Louisiana trusts Red Dirt for iron and service."
+          content="Family-owned TYM, Mahindra, Ferris, Wacker Neuson, Load Trail, East Texas, Woods, Premier, Baumalight, and Sidewinder dealer in Alexandria, LA. Our story, values, and why Central Louisiana trusts Red Dirt for iron and service."
         />
         <link rel="canonical" href="https://reddirt-tractors.com/about" />
       </Helmet>

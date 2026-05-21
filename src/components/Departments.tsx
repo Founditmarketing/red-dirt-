@@ -16,7 +16,7 @@ const featured: Tile = {
     to: '/inventory',
     eyebrow: 'Live inventory',
     title: 'On the lot.',
-    body: 'TYM, Mahindra, Ferris. Compact utility through 100+ HP. Updated daily from our floor.',
+    body: 'TYM, Mahindra, Ferris, Wacker Neuson, Load Trail, East Texas, Woods, Premier, Baumalight, and Sidewinder. Updated daily from our floor.',
     image: '/tractors/12.jpg',
 };
 
