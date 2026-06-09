@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  :root {
+    --color-brand-red: 227 24 55;
+    --color-charcoal: 26 26 26;
+    /* Driven by JS for sticky-below-nav offsets */
+    --nav-height: 80px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-off-white text-charcoal font-body antialiased;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold uppercase tracking-tight;
+  }
+
+  /* Prevent iOS form-zoom by guaranteeing 16px+ font on inputs */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    input,
+    select,
+    textarea {
+      font-size: inherit;
+    }
+  }
+
+  /* Buttons stay tappable: minimum 44x44 hit area */
+  button,
+  [role="button"],
+  a {
+    -webkit-touch-callout: none;
+  }
+
+  /* Tactile press: any button/link visibly responds to taps */
+  @media (hover: none) {
+    button:active,
+    a:active,
+    [role="button"]:active {
+      transform: scale(0.985);
+      transition: transform 60ms ease;
+    }
+  }
+
+  /* Better focus visibility, only when keyboard-driven */
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-brand-red));
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+
+  .pt-safe {
+    padding-top: max(env(safe-area-inset-top), 0px);
+  }
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+  .pl-safe {
+    padding-left: max(env(safe-area-inset-left), 0px);
+  }
+  .pr-safe {
+    padding-right: max(env(safe-area-inset-right), 0px);
+  }
+  .top-safe {
+    top: max(env(safe-area-inset-top), 0px);
+  }
+  .bottom-safe {
+    bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+}
