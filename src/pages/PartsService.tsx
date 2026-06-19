@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { Wrench, Settings, ShieldCheck, Phone, ChevronRight, ExternalLink, MessageSquare } from 'lucide-react';
+import { Wrench, Settings, Phone, ChevronRight } from 'lucide-react';
 
 const PartsService = () => {
     return (
@@ -102,78 +102,7 @@ const PartsService = () => {
                             </a>
                         </div>
 
-                        {/* Preventative Maintenance */}
-                        <div className="bg-white border border-charcoal/10 p-6 md:p-8 shadow-sm">
-                            <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                                <ShieldCheck className="text-brand-red w-6 h-6 md:w-7 md:h-7" />
-                                <h3 className="text-lg md:text-xl font-black uppercase tracking-tight">Maintenance Plans</h3>
-                            </div>
-                            <ul className="space-y-3 md:space-y-4 opacity-70 font-medium text-xs md:text-sm">
-                                <li className="flex items-center justify-between border-b border-charcoal/10 pb-2 gap-2">
-                                    <span className="truncate">Full Service & Inspection</span>
-                                    <span className="text-brand-red font-bold shrink-0">Recommended</span>
-                                </li>
-                                <li className="flex items-center justify-between border-b border-charcoal/10 pb-2 gap-2">
-                                    <span className="truncate">Winterization Service</span>
-                                    <span className="font-bold shrink-0">Available</span>
-                                </li>
-                                <li className="flex items-center justify-between border-b border-charcoal/10 pb-2 gap-2">
-                                    <span className="truncate">Hydraulic Flush</span>
-                                    <span className="font-bold shrink-0">Available</span>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
-
-                        {/* Warranty Info */}
-                        <div className="bg-white border border-charcoal/10 p-6 md:p-8 shadow-sm">
-                            <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                                <ShieldCheck className="text-brand-red w-6 h-6 md:w-7 md:h-7" />
-                                <h3 className="text-lg md:text-xl font-black uppercase tracking-tight">Warranty Info</h3>
-                            </div>
-                            <p className="text-charcoal/65 font-medium text-sm leading-relaxed mb-5">
-                                Each brand handles warranty claims differently. Use the links below to check coverage, register equipment, or start a claim.
-                            </p>
-                            <ul className="space-y-3">
-                                <li>
-                                    <a href="https://www.tymsales.com/warranty" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-sm font-bold text-charcoal hover:text-brand-red transition-colors group">
-                                        <span>TYM Warranty</span>
-                                        <ExternalLink size={14} className="text-charcoal/40 group-hover:text-brand-red transition-colors" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.mahindrausa.com/warranty" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-sm font-bold text-charcoal hover:text-brand-red transition-colors group">
-                                        <span>Mahindra Warranty</span>
-                                        <ExternalLink size={14} className="text-charcoal/40 group-hover:text-brand-red transition-colors" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.ferrismowers.com/na/en_US/support/warranty.html" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-sm font-bold text-charcoal hover:text-brand-red transition-colors group">
-                                        <span>Ferris Warranty</span>
-                                        <ExternalLink size={14} className="text-charcoal/40 group-hover:text-brand-red transition-colors" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.wackerneuson.us/en-us/support/warranty/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-sm font-bold text-charcoal hover:text-brand-red transition-colors group">
-                                        <span>Wacker Neuson Warranty</span>
-                                        <ExternalLink size={14} className="text-charcoal/40 group-hover:text-brand-red transition-colors" />
-                                    </a>
-                                </li>
-                            </ul>
-                            <div className="mt-5 pt-4 border-t border-charcoal/10">
-                                <p className="text-xs text-charcoal/50 font-medium">Questions about your coverage? Call or text us — we handle the paperwork.</p>
-                                <div className="flex flex-wrap gap-3 mt-3">
-                                    <a href="tel:3184429010" className="inline-flex items-center gap-2 text-xs font-bold text-charcoal hover:text-brand-red transition-colors">
-                                        <Phone size={12} />
-                                        Call
-                                    </a>
-                                    <a href="sms://+13184429010" className="inline-flex items-center gap-2 text-xs font-bold text-charcoal hover:text-brand-red transition-colors">
-                                        <MessageSquare size={12} />
-                                        Text
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
 
                 </div>
             </section>
