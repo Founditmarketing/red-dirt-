@@ -63,7 +63,7 @@ const TrustMetrics = () => {
                         <div className="text-4xl sm:text-5xl md:text-[64px] font-black tracking-tighter mb-1 md:mb-2 tabular-nums">
                             {implements_.toLocaleString()}
                         </div>
-                        <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Implements & Attachments</div>
+                        <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Implements & Attachments Sold</div>
                     </motion.div>
 
                 </div>
