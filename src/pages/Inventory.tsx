@@ -14,8 +14,10 @@ import {
     getCondition,
     getHorsepower,
     getYear,
+    matchesEquipmentType,
     parsePriceNumber,
     type Condition,
+    type EquipmentType,
 } from '../utils/inventoryDerive';
 import InventoryFilters, {
     type ConditionFilter,
@@ -25,13 +27,37 @@ type SortKey = 'featured' | 'price-asc' | 'price-desc' | 'make-asc' | 'hp-desc';
 
 const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
 
+// Maps the ?category= deep-link value (from the Shop nav) to an equipment type.
+const CATEGORY_PARAM_TO_TYPE: Record<string, EquipmentType> = {
+    tractor: 'tractor',
+    tractors: 'tractor',
+    zero: 'zero-turn',
+    'zero-turn': 'zero-turn',
+    'zero-turns': 'zero-turn',
+    mower: 'zero-turn',
+    mowers: 'zero-turn',
+    construction: 'construction',
+    implement: 'implement',
+    implements: 'implement',
+    trailer: 'trailer',
+    trailers: 'trailer',
+};
+
+const TYPE_LABELS: Record<EquipmentType, string> = {
+    tractor: 'Tractors',
+    'zero-turn': 'Zero Turns',
+    construction: 'Construction Equipment',
+    implement: 'Implements & Attachments',
+    trailer: 'Trailers',
+};
+
 const Inventory = () => {
     const { inventory, loading, isFallbackInventory } = useInventory();
     const { ids: compareIds, canAdd, toggle: toggleCompare } = useCompare();
 
     const [searchParams] = useSearchParams();
     const [query, setQuery] = useState('');
-    const [categoryFilter, setCategoryFilter] = useState('');
+    const [typeFilter, setTypeFilter] = useState<EquipmentType | ''>('');
     const [activeMakes, setActiveMakes] = useState<Set<string>>(new Set());
     const [activeCategories, setActiveCategories] = useState<Set<string>>(new Set());
     const [conditionFilter, setConditionFilter] = useState<ConditionFilter>('all');
@@ -39,9 +65,9 @@ const Inventory = () => {
     // Deep links from the Shop nav (e.g. /inventory?category=tractor,
     // /inventory?condition=used) preset the matching filter.
     useEffect(() => {
-        const cat = (searchParams.get('category') || '').trim();
+        const cat = (searchParams.get('category') || '').trim().toLowerCase();
         const cond = searchParams.get('condition');
-        setCategoryFilter(cat);
+        setTypeFilter(CATEGORY_PARAM_TO_TYPE[cat] ?? '');
         setConditionFilter(cond === 'new' || cond === 'used' ? cond : 'all');
     }, [searchParams]);
     const [sortKey, setSortKey] = useState<SortKey>('featured');
@@ -120,8 +146,6 @@ const Inventory = () => {
 
     const filtered = useMemo(() => {
         const q = query.trim().toLowerCase();
-        const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '');
-        const catTarget = normalize(categoryFilter);
         const list = inventory.filter((t) => {
             if (activeMakes.size > 0 && !activeMakes.has((t.make || '').trim())) return false;
             if (
@@ -130,7 +154,7 @@ const Inventory = () => {
             ) {
                 return false;
             }
-            if (catTarget && !normalize(String(t.category || '')).includes(catTarget)) {
+            if (typeFilter && !matchesEquipmentType(t, typeFilter)) {
                 return false;
             }
             if (conditionFilter !== 'all') {
@@ -184,7 +208,7 @@ const Inventory = () => {
     }, [
         inventory,
         query,
-        categoryFilter,
+        typeFilter,
         activeMakes,
         activeCategories,
         conditionFilter,
@@ -219,7 +243,7 @@ const Inventory = () => {
 
     const clearAll = () => {
         setQuery('');
-        setCategoryFilter('');
+        setTypeFilter('');
         setActiveMakes(new Set());
         setActiveCategories(new Set());
         setConditionFilter('all');
@@ -231,7 +255,7 @@ const Inventory = () => {
 
     const activeCount =
         (query ? 1 : 0) +
-        (categoryFilter ? 1 : 0) +
+        (typeFilter ? 1 : 0) +
         activeMakes.size +
         activeCategories.size +
         (conditionFilter !== 'all' ? 1 : 0) +
@@ -418,16 +442,16 @@ const Inventory = () => {
                     </div>
 
                     {/* Active category deep-link indicator */}
-                    {categoryFilter ? (
+                    {typeFilter ? (
                         <div className="mt-3 flex items-center gap-2 flex-wrap">
                             <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-white/45">
                                 Filtered by
                             </span>
                             <span className="inline-flex items-center gap-2 bg-brand-red text-white text-[11px] font-bold uppercase tracking-[0.2em] pl-3 pr-2 py-1.5 rounded-sm">
-                                {categoryFilter}
+                                {TYPE_LABELS[typeFilter]}
                                 <button
                                     type="button"
-                                    onClick={() => setCategoryFilter('')}
+                                    onClick={() => setTypeFilter('')}
                                     aria-label="Clear category filter"
                                     className="inline-flex items-center justify-center min-w-5 min-h-5 hover:text-white/80"
                                 >
