@@ -13,6 +13,7 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
     const [email, setEmail] = useState('');
     const [wantsFinancing, setWantsFinancing] = useState(false);
     const [hasTrade, setHasTrade] = useState(false);
+    const [wantsCash, setWantsCash] = useState(false);
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
     const [error, setError] = useState('');
 
@@ -35,6 +36,7 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
                 model: modelName,
                 wantsFinancing,
                 hasTrade,
+                wantsCash,
             },
         });
 
@@ -45,6 +47,7 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
             setEmail('');
             setWantsFinancing(false);
             setHasTrade(false);
+            setWantsCash(false);
         } else {
             setStatus('error');
             setError(result.error);
@@ -149,6 +152,17 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
                         className="w-4 h-4 md:w-5 md:h-5 accent-brand-red cursor-pointer"
                     />
                     <label htmlFor="trade" className="text-xs md:text-sm font-bold uppercase tracking-wide text-charcoal/70 cursor-pointer">I have a trade-in</label>
+                </div>
+
+                <div className="flex items-center gap-3">
+                    <input
+                        type="checkbox"
+                        id="cash"
+                        checked={wantsCash}
+                        onChange={(e) => setWantsCash(e.target.checked)}
+                        className="w-4 h-4 md:w-5 md:h-5 accent-brand-red cursor-pointer"
+                    />
+                    <label htmlFor="cash" className="text-xs md:text-sm font-bold uppercase tracking-wide text-charcoal/70 cursor-pointer">Cash Pricing</label>
                 </div>
 
                 {status === 'error' ? (

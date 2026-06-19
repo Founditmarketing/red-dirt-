@@ -267,11 +267,11 @@ const Inventory = () => {
 
     const hasFilters = activeCount > 0;
 
-    const pageTitle = isFallbackInventory ? 'Top requested equipment.' : `${inventory.length} machines.`;
-    const pageSubtitle = isFallbackInventory ? 'Quote ready.' : 'One yard.';
+    const pageTitle = isFallbackInventory ? 'Top requested equipment.' : `${inventory.length} Models`;
+    const pageSubtitle = isFallbackInventory ? 'Quote ready.' : 'to choose from in one yard.';
     const metaDescription = isFallbackInventory
         ? 'Explore top-requested tractors, mowers, and equipment Red Dirt Tractors can quote, source, finance, and configure for Central Louisiana buyers.'
-        : `Browse ${inventory.length} new and pre-owned tractors and equipment in stock at Red Dirt Tractors on Hwy 71 South in Alexandria, Louisiana.`;
+        : `Browse ${inventory.length} models of new and pre-owned tractors and equipment in stock at Red Dirt Tractors on Hwy 71 South in Alexandria, Louisiana.`;
 
     const inventorySchema = {
         '@context': 'https://schema.org',
