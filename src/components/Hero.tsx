@@ -174,7 +174,7 @@ const HeroStats = () => {
                 </div>
                 <div>
                     <dt className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-red/80 mb-2">
-                        Total HP Sold
+                        Total Tractor HP Sold
                     </dt>
                     <dd className="font-heading font-black tracking-tighter text-3xl xl:text-4xl leading-none tabular-nums">
                         {hpTotal.toLocaleString()}
@@ -182,7 +182,7 @@ const HeroStats = () => {
                 </div>
                 <div>
                     <dt className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-red/80 mb-2">
-                        Mowers Sold
+                        Zero-Turn & Stand-On Mowers Sold
                     </dt>
                     <dd className="font-heading font-black tracking-tighter text-3xl xl:text-4xl leading-none tabular-nums">
                         {mowers.toLocaleString()}

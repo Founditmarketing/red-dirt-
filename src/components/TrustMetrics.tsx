@@ -56,14 +56,14 @@ const TrustMetrics = () => {
                         <div className="text-4xl sm:text-5xl md:text-[64px] font-black tracking-tighter mb-1 md:mb-2 tabular-nums">
                             {hpTotal.toLocaleString()}
                         </div>
-                        <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Total HP Sold</div>
+                        <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Total Tractor HP Sold</div>
                     </motion.div>
 
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} className="pt-8 md:pt-0 md:border-none border-white/20">
                         <div className="text-4xl sm:text-5xl md:text-[64px] font-black tracking-tighter mb-1 md:mb-2 tabular-nums">
                             {implements_.toLocaleString()}
                         </div>
-                        <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Implements & Attachments Sold</div>
+                        <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Implements, Attachments & Trailers Sold</div>
                     </motion.div>
 
                 </div>

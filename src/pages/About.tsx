@@ -151,9 +151,9 @@ const About = () => {
             {[
               { value: '282,889', label: 'Total Tractor HP Sold' },
               { value: '4,178', label: 'New Tractors Sold' },
-              { value: '1,262', label: 'Pre-Owned Traded Tractors' },
-              { value: '15,692', label: 'Implements, Attachments & Trailers' },
-              { value: '1,683', label: 'Zero-Turn & Stand-On Mowers' },
+              { value: '1,262', label: 'Pre-Owned Traded Tractors Sold' },
+              { value: '15,692', label: 'Implements, Attachments & Trailers Sold' },
+              { value: '1,683', label: 'Zero-Turn & Stand-On Mowers Sold' },
             ].map((stat) => (
               <motion.div
                 key={stat.label}
