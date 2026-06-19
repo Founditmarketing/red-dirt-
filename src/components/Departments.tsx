@@ -32,7 +32,7 @@ const secondary: Tile[] = [
         to: '/financing',
         eyebrow: 'Finance',
         title: 'Financing',
-        body: 'Mahindra Finance, DLL, Sheffield, Synchrony, Vibrant. Apply in five minutes.',
+        body: 'Mahindra Finance, DLL, Sheffield, Vibrant. Apply in five minutes.',
         image: '/tractors/7.jpg',
     },
     {

@@ -24,8 +24,7 @@ const getFinanceLinks = (make: string) => {
     }
     if (makeLower.includes('ferris')) {
         return [
-            { name: "Apply with Sheffield", url: "https://prequalify.sheffieldfinancial.com/Apply/Dealer/48349?source=web" },
-            { name: "Apply with Synchrony", url: "https://www.mysynchrony.com/mmc/PC239787290" }
+            { name: "Apply with Sheffield", url: "https://prequalify.sheffieldfinancial.com/Apply/Dealer/48349?source=web" }
         ];
     }
     if (makeLower.includes('wacker')) {

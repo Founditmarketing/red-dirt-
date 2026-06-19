@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { ChevronRight, Plus, Scale, Search, Settings, SlidersHorizontal, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import { useInventory } from '../context/InventoryContext';
 import { useCompare } from '../context/CompareContext';
@@ -29,10 +29,21 @@ const Inventory = () => {
     const { inventory, loading, isFallbackInventory } = useInventory();
     const { ids: compareIds, canAdd, toggle: toggleCompare } = useCompare();
 
+    const [searchParams] = useSearchParams();
     const [query, setQuery] = useState('');
+    const [categoryFilter, setCategoryFilter] = useState('');
     const [activeMakes, setActiveMakes] = useState<Set<string>>(new Set());
     const [activeCategories, setActiveCategories] = useState<Set<string>>(new Set());
     const [conditionFilter, setConditionFilter] = useState<ConditionFilter>('all');
+
+    // Deep links from the Shop nav (e.g. /inventory?category=tractor,
+    // /inventory?condition=used) preset the matching filter.
+    useEffect(() => {
+        const cat = (searchParams.get('category') || '').trim();
+        const cond = searchParams.get('condition');
+        setCategoryFilter(cat);
+        setConditionFilter(cond === 'new' || cond === 'used' ? cond : 'all');
+    }, [searchParams]);
     const [sortKey, setSortKey] = useState<SortKey>('featured');
     const [desktopAdvancedOpen, setDesktopAdvancedOpen] = useState(false);
     const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
@@ -109,12 +120,17 @@ const Inventory = () => {
 
     const filtered = useMemo(() => {
         const q = query.trim().toLowerCase();
+        const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '');
+        const catTarget = normalize(categoryFilter);
         const list = inventory.filter((t) => {
             if (activeMakes.size > 0 && !activeMakes.has((t.make || '').trim())) return false;
             if (
                 activeCategories.size > 0 &&
                 !activeCategories.has((t.category || '').trim())
             ) {
+                return false;
+            }
+            if (catTarget && !normalize(String(t.category || '')).includes(catTarget)) {
                 return false;
             }
             if (conditionFilter !== 'all') {
@@ -168,6 +184,7 @@ const Inventory = () => {
     }, [
         inventory,
         query,
+        categoryFilter,
         activeMakes,
         activeCategories,
         conditionFilter,
@@ -202,6 +219,7 @@ const Inventory = () => {
 
     const clearAll = () => {
         setQuery('');
+        setCategoryFilter('');
         setActiveMakes(new Set());
         setActiveCategories(new Set());
         setConditionFilter('all');
@@ -213,6 +231,7 @@ const Inventory = () => {
 
     const activeCount =
         (query ? 1 : 0) +
+        (categoryFilter ? 1 : 0) +
         activeMakes.size +
         activeCategories.size +
         (conditionFilter !== 'all' ? 1 : 0) +
@@ -397,6 +416,26 @@ const Inventory = () => {
                                 : `${filtered.length} of ${inventory.length}`}
                         </p>
                     </div>
+
+                    {/* Active category deep-link indicator */}
+                    {categoryFilter ? (
+                        <div className="mt-3 flex items-center gap-2 flex-wrap">
+                            <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-white/45">
+                                Filtered by
+                            </span>
+                            <span className="inline-flex items-center gap-2 bg-brand-red text-white text-[11px] font-bold uppercase tracking-[0.2em] pl-3 pr-2 py-1.5 rounded-sm">
+                                {categoryFilter}
+                                <button
+                                    type="button"
+                                    onClick={() => setCategoryFilter('')}
+                                    aria-label="Clear category filter"
+                                    className="inline-flex items-center justify-center min-w-5 min-h-5 hover:text-white/80"
+                                >
+                                    <X size={12} />
+                                </button>
+                            </span>
+                        </div>
+                    ) : null}
 
                     {/* Mobile: small inline sort + count row, no chips here */}
                     <div className="md:hidden mt-3 flex items-center justify-between gap-3">

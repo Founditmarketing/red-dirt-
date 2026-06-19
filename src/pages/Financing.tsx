@@ -20,13 +20,12 @@ const Financing = () => {
             applyLinks: [{ name: "Apply Now", url: "https://applynow-cica-prd.dllgroup.com/?entityid=2&dealerCode=013276" }],
         },
         {
-            providerName: "Sheffield & Synchrony",
+            providerName: "Sheffield Financial",
             brandName: "Ferris",
             logoUrl: "/brands/ferrislogo.webp",
-            description: "Quick approval processes and multiple options available for Ferris mowers.",
+            description: "Quick approval process and competitive terms for Ferris mowers.",
             applyLinks: [
-                { name: "Apply with Sheffield", url: "https://prequalify.sheffieldfinancial.com/Apply/Dealer/48349?source=web" },
-                { name: "Apply with Synchrony", url: "https://www.mysynchrony.com/mmc/PC239787290" }
+                { name: "Apply with Sheffield", url: "https://prequalify.sheffieldfinancial.com/Apply/Dealer/48349?source=web" }
             ],
         },
         {

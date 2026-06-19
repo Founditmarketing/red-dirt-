@@ -118,6 +118,14 @@ const normalizeHeader = (h: string) =>
         .toLowerCase()
         .replace(/ /g, '_');
 
+// Hide any unit whose Availability column (e.g. column O) reads "Sold".
+// \bsold\b avoids matching words like "unsold" while catching "SOLD",
+// "Sold - Pending", etc.
+const isSold = (item: Record<string, unknown>): boolean => {
+    const raw = item.availability ?? item.status;
+    return typeof raw === 'string' && /\bsold\b/i.test(raw);
+};
+
 function rowsToItems(rows: SheetRow[]): Record<string, unknown>[] {
     if (!rows || rows.length === 0) return [];
 
@@ -195,7 +203,7 @@ export default async function handler(req: any, res: any) {
 
         const accessToken = await getAccessToken(clientEmail, privateKey);
         const rows = await fetchSheetRows(sheetId, accessToken);
-        const items = rowsToItems(rows);
+        const items = rowsToItems(rows).filter((item) => !isSold(item));
 
         inventoryCache = {
             value: items,

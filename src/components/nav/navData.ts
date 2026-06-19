@@ -5,14 +5,17 @@ import {
     CalendarCheck,
     ClipboardCheck,
     Coins,
+    Construction,
     HandshakeIcon,
     type LucideIcon,
     MapPin,
     MessageCircle,
     Package,
     PenLine,
+    Scissors,
     Star,
     Sparkles,
+    Tag,
     Tractor,
     Truck,
     Wrench,
@@ -46,10 +49,28 @@ export const NAV_GROUPS: NavGroup[] = [
         label: 'Shop',
         items: [
             {
-                to: '/inventory',
-                label: 'Equipment Inventory',
-                description: 'Live stock filtered by brand, category, or price.',
+                to: '/inventory?category=tractor',
+                label: 'Tractors',
+                description: 'Compact, utility, and cab tractors from TYM and Mahindra.',
                 icon: Tractor,
+            },
+            {
+                to: '/inventory?category=zero-turn',
+                label: 'Zero Turns',
+                description: 'Ferris commercial and residential zero-turn mowers.',
+                icon: Scissors,
+            },
+            {
+                to: '/inventory?category=construction',
+                label: 'Construction Equipment',
+                description: 'Wacker Neuson excavators, loaders, and compaction.',
+                icon: Construction,
+            },
+            {
+                to: '/inventory?condition=used',
+                label: 'Pre-Owned Equipment',
+                description: 'Inspected used tractors and equipment on the lot.',
+                icon: Tag,
             },
             {
                 to: '/implements',
@@ -62,19 +83,6 @@ export const NAV_GROUPS: NavGroup[] = [
                 label: 'Trailers',
                 description: 'Load Trail and East Texas dealer.',
                 icon: Truck,
-            },
-            {
-                to: '/find-my-tractor',
-                label: 'Find My Tractor',
-                description: 'Six questions, two real recommendations.',
-                icon: Sparkles,
-                badge: 'Quiz',
-            },
-            {
-                to: '/trade-in',
-                label: 'Trade-In Valuation',
-                description: 'Send the basics, get a real number.',
-                icon: ClipboardCheck,
             },
         ],
         feature: {
@@ -93,7 +101,7 @@ export const NAV_GROUPS: NavGroup[] = [
             {
                 to: '/financing',
                 label: 'Financing Options',
-                description: 'Mahindra Finance, DLL, Sheffield, Synchrony, Vibrant.',
+                description: 'Mahindra Finance, DLL, Sheffield, Vibrant.',
                 icon: Banknote,
             },
             {
@@ -101,12 +109,6 @@ export const NAV_GROUPS: NavGroup[] = [
                 label: 'Pre-Qualify',
                 description: 'Check available rates and apply with our lending partners.',
                 icon: Coins,
-            },
-            {
-                to: '/trade-in',
-                label: 'Trade-In Valuation',
-                description: 'Lower the cash gap with your existing iron.',
-                icon: ClipboardCheck,
             },
         ],
         feature: {

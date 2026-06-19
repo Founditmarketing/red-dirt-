@@ -150,7 +150,7 @@ const PaymentEstimator = ({ price, modelLabel }: PaymentEstimatorProps) => {
 
             <p className="text-[11px] text-charcoal/45 font-medium leading-relaxed">
                 Estimate only. Real rate, term, and down depend on your credit and the lender. Final
-                terms come from Mahindra Finance, DLL, Sheffield, Synchrony, or Vibrant.
+                terms come from Mahindra Finance, DLL, Sheffield, or Vibrant.
             </p>
         </div>
     );
