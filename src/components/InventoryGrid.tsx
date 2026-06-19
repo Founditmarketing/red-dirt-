@@ -11,6 +11,7 @@ import {
     getCondition,
     getHorsepower,
     isDemo,
+    matchesEquipmentType,
     parsePriceNumber,
 } from '../utils/inventoryDerive';
 import SaveButton from './SaveButton';
@@ -31,30 +32,27 @@ const CHIPS: Array<{ key: ChipKey; label: string }> = [
 
 const matchesChip = (item: any, chip: ChipKey): boolean => {
     if (chip === 'all') return true;
-    const cat = String(item.category || '').toLowerCase();
-    const cond = getCondition(item);
     const price = parsePriceNumber(item.price) ?? Infinity;
 
     switch (chip) {
+        // Type chips share the inventory page's classifier so the home page and
+        // /inventory stay perfectly in sync (reads make/model/title/description).
         case 'tractor':
-            return /(tractor|compact|utility)/i.test(cat) ||
-                /^(tym|mahindra)/i.test(String(item.make || ''));
+            return matchesEquipmentType(item, 'tractor');
         case 'mower':
-            return /(mow|zero[- ]turn|ferris)/.test(cat) ||
-                /ferris/i.test(String(item.make || ''));
+            return matchesEquipmentType(item, 'zero-turn');
         case 'trailer':
-            return /trailer/.test(cat);
+            return matchesEquipmentType(item, 'trailer');
+        case 'construction':
+            return matchesEquipmentType(item, 'construction');
         case 'used':
-            return cond === 'used';
+            return getCondition(item) === 'used';
         case 'under-30k':
             return price < 30000;
         case 'under-20k':
             return price < 20000;
-        case 'construction':
-            return /(construction|wacker|excavat|loader|skid|compact track|dumper)/i.test(cat) ||
-                /wacker/i.test(String(item.make || ''));
         case 'packages':
-            return /(package|bundle)/i.test(cat) ||
+            return /(package|bundle)/i.test(String(item.category || '')) ||
                 /(package|bundle)/i.test(String(item.model || ''));
         default:
             return true;
