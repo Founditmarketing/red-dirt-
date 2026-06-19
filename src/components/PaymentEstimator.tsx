@@ -19,7 +19,7 @@ const PaymentEstimator = ({ price, modelLabel }: PaymentEstimatorProps) => {
     const numericPrice = parsePriceNumber(price);
     const [term, setTerm] = useState(84);
     const [downPercent, setDownPercent] = useState(10);
-    const [apr, setApr] = useState(7.99);
+    const [apr, setApr] = useState(7.10);
 
     const result = useMemo(() => {
         if (!numericPrice) return null;
@@ -141,7 +141,7 @@ const PaymentEstimator = ({ price, modelLabel }: PaymentEstimatorProps) => {
                     type="range"
                     min={4}
                     max={15}
-                    step={0.25}
+                    step={0.1}
                     value={apr}
                     onChange={(e) => setApr(parseFloat(e.target.value))}
                     className="w-full accent-brand-red"

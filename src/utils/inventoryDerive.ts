@@ -76,7 +76,7 @@ export type PaymentEstimate = {
 export const estimateMonthlyPayment = (
     price: number,
     {
-        apr = 7.99,
+        apr = 7.10,
         termMonths = 84,
         downPayment = 0,
     }: { apr?: number; termMonths?: number; downPayment?: number } = {},
