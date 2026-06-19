@@ -42,9 +42,19 @@ export const getCondition = (item: LiveInventoryItem): Condition => {
         PICK(item, 'category', 'Category') ||
         '';
     const value = raw.toLowerCase();
-    if (/(used|pre-owned|preowned|second\s*hand)/.test(value)) return 'used';
+    // Demo / demonstrator units are grouped with pre-owned ("used").
+    if (/(used|pre-owned|preowned|second\s*hand|demo)/.test(value)) return 'used';
     if (/(new|brand new)/.test(value)) return 'new';
     return 'unknown';
+};
+
+/**
+ * True when the Condition column marks the unit as a demo / demonstrator.
+ * Demos sit under Pre-Owned but get a distinct "Demo" badge on site.
+ */
+export const isDemo = (item: LiveInventoryItem): boolean => {
+    const raw = PICK(item, 'condition', 'Condition', 'status', 'Status') || '';
+    return /demo/i.test(raw);
 };
 
 export const getHours = (item: LiveInventoryItem): number | null => {

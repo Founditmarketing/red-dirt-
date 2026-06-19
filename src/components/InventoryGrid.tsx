@@ -10,6 +10,7 @@ import {
     formatMoney,
     getCondition,
     getHorsepower,
+    isDemo,
     parsePriceNumber,
 } from '../utils/inventoryDerive';
 import SaveButton from './SaveButton';
@@ -188,6 +189,7 @@ const InventoryGrid = () => {
                             const price = parsePriceNumber(tractor.price);
                             const monthly = price ? estimateMonthlyPayment(price).monthly : null;
                             const cond = getCondition(tractor);
+                            const demo = isDemo(tractor);
                             const hp = getHorsepower(tractor);
 
                             return (
@@ -221,6 +223,11 @@ const InventoryGrid = () => {
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent z-20 pointer-events-none" />
 
                                                 <div className="absolute top-3 left-3 z-30 flex flex-col gap-1.5 items-start">
+                                                    {demo ? (
+                                                        <span className="bg-amber-400 text-charcoal text-[10px] font-black uppercase tracking-[0.25em] px-2.5 py-1 shadow-md">
+                                                            Demo
+                                                        </span>
+                                                    ) : null}
                                                     <span className="bg-brand-red text-white text-[10px] font-bold uppercase tracking-[0.25em] px-2.5 py-1 shadow-md">
                                                         {tractor.availability ||
                                                             (cond === 'used' ? 'Pre-Owned' : 'In Stock')}

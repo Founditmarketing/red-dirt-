@@ -13,6 +13,7 @@ import SaveButton from '../components/SaveButton';
 
 import { useInventory } from '../context/InventoryContext';
 import { processGoogleDriveUrl } from '../utils/imageFormat';
+import { isDemo } from '../utils/inventoryDerive';
 
 const getFinanceLinks = (make: string) => {
     const makeLower = make?.toLowerCase() || '';
@@ -128,6 +129,9 @@ const EquipmentDetail = () => {
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
                         <div className="flex-1 min-w-0">
                             <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                                {isDemo(data) ? (
+                                    <span className="bg-amber-400 text-charcoal px-2 py-1 md:px-3 text-[10px] md:text-xs font-black uppercase tracking-widest">Demo</span>
+                                ) : null}
                                 <span className="bg-charcoal text-white px-2 py-1 md:px-3 text-[10px] md:text-xs font-bold uppercase tracking-widest">{data.category}</span>
                                 <span className="bg-brand-red text-white px-2 py-1 md:px-3 text-[10px] md:text-xs font-bold uppercase tracking-widest flex items-center gap-1">
                                     <Shield size={10} className="md:w-3 md:h-3" /> 6-Year Warranty

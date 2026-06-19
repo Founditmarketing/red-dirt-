@@ -14,6 +14,7 @@ import {
     getCondition,
     getHorsepower,
     getYear,
+    isDemo,
     matchesEquipmentType,
     parsePriceNumber,
     type Condition,
@@ -657,6 +658,7 @@ const Inventory = () => {
                             const price = parsePriceNumber(tractor.price);
                             const monthly = price ? estimateMonthlyPayment(price).monthly : null;
                             const cond = getCondition(tractor);
+                            const demo = isDemo(tractor);
                             const hp = getHorsepower(tractor);
                             const inCompare = compareIds.has(String(tractor.id));
 
@@ -691,6 +693,11 @@ const Inventory = () => {
                                                     />
                                                 ) : null}
                                                 <div className="absolute top-3 left-3 flex flex-col gap-1.5 items-start">
+                                                    {demo ? (
+                                                        <span className="bg-amber-400 text-charcoal text-[10px] font-black uppercase tracking-[0.25em] px-2.5 py-1">
+                                                            Demo
+                                                        </span>
+                                                    ) : null}
                                                     <span className="bg-brand-red text-white text-[10px] font-bold uppercase tracking-[0.25em] px-2.5 py-1">
                                                         {tractor.availability ||
                                                             (cond === 'used' ? 'Pre-Owned' : 'In Stock')}
