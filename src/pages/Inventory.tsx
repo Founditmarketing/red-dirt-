@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { ChevronRight, Plus, Scale, Search, Settings, SlidersHorizontal, X } from 'lucide-react';
+import { ChevronRight, Search, Settings, SlidersHorizontal, X } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { useInventory } from '../context/InventoryContext';
-import { useCompare } from '../context/CompareContext';
 import SaveButton from '../components/SaveButton';
 import { processGoogleDriveUrl } from '../utils/imageFormat';
 import {
@@ -13,6 +12,7 @@ import {
     formatMoney,
     getCondition,
     getHorsepower,
+    getProvidedMonthlyPayment,
     getYear,
     isDemo,
     matchesEquipmentType,
@@ -54,7 +54,6 @@ const TYPE_LABELS: Record<EquipmentType, string> = {
 
 const Inventory = () => {
     const { inventory, loading, isFallbackInventory } = useInventory();
-    const { ids: compareIds, canAdd, toggle: toggleCompare } = useCompare();
 
     const [searchParams] = useSearchParams();
     const [query, setQuery] = useState('');
@@ -656,11 +655,12 @@ const Inventory = () => {
                             }
 
                             const price = parsePriceNumber(tractor.price);
-                            const monthly = price ? estimateMonthlyPayment(price).monthly : null;
+                            const monthly =
+                                getProvidedMonthlyPayment(tractor) ??
+                                (price ? estimateMonthlyPayment(price).monthly : null);
                             const cond = getCondition(tractor);
                             const demo = isDemo(tractor);
                             const hp = getHorsepower(tractor);
-                            const inCompare = compareIds.has(String(tractor.id));
 
                             return (
                                 <motion.div
@@ -731,9 +731,23 @@ const Inventory = () => {
                                                 <p className="text-[11px] font-bold text-charcoal/50 uppercase tracking-[0.25em] mb-1">
                                                     {tractor.make}
                                                 </p>
-                                                <h3 className="font-heading font-black text-charcoal uppercase tracking-tight text-2xl md:text-[26px] leading-tight mb-4 group-hover:text-brand-red transition-colors">
+                                                <h3 className="font-heading font-black text-charcoal uppercase tracking-tight text-2xl md:text-[26px] leading-tight mb-2 group-hover:text-brand-red transition-colors">
                                                     {tractor.model}
                                                 </h3>
+
+                                                {/* HP shown below the image too, consistent with the on-image badge */}
+                                                {hp ? (
+                                                    <p className="text-xs font-bold text-charcoal/55 uppercase tracking-[0.2em] mb-3">
+                                                        {hp} HP
+                                                        {tractor.drive ? ` · ${tractor.drive}` : ''}
+                                                    </p>
+                                                ) : null}
+
+                                                {tractor.description ? (
+                                                    <p className="text-sm text-charcoal/65 font-medium leading-relaxed line-clamp-3 mb-2">
+                                                        {tractor.description}
+                                                    </p>
+                                                ) : null}
 
                                                 <div className="mt-auto pt-5 border-t border-charcoal/10 flex items-end justify-between gap-3">
                                                     <div>
@@ -754,26 +768,6 @@ const Inventory = () => {
                                                 </div>
                                             </div>
                                         </Link>
-
-                                        <button
-                                            type="button"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                e.stopPropagation();
-                                                if (!inCompare && !canAdd) return;
-                                                toggleCompare(tractor);
-                                            }}
-                                            aria-pressed={inCompare}
-                                            disabled={!inCompare && !canAdd}
-                                            className={`absolute bottom-3 right-3 inline-flex items-center gap-1.5 px-3 py-2 min-h-10 text-[11px] font-bold uppercase tracking-[0.2em] border transition-colors ${
-                                                inCompare
-                                                    ? 'bg-brand-red text-white border-brand-red'
-                                                    : 'bg-white text-charcoal border-charcoal/15 hover:border-brand-red hover:text-brand-red disabled:opacity-50 disabled:cursor-not-allowed'
-                                            }`}
-                                        >
-                                            {inCompare ? <Scale size={12} /> : <Plus size={12} />}
-                                            {inCompare ? 'Comparing' : 'Compare'}
-                                        </button>
 
                                         <SaveButton item={tractor} />
                                     </div>

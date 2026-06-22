@@ -26,12 +26,33 @@ export const getYear = (item: LiveInventoryItem): number | null => {
 };
 
 export const getHorsepower = (item: LiveInventoryItem): number | null => {
+    // 1. Dedicated HP column (e.g. "24", "55+ HP class").
     const raw = PICK(item, 'horsepower', 'hp', 'HP', 'Horsepower');
-    if (!raw) return null;
-    const match = raw.match(/(\d+(?:\.\d+)?)/);
-    if (!match) return null;
-    const n = parseFloat(match[1]);
-    return Number.isFinite(n) ? n : null;
+    if (raw) {
+        const match = raw.match(/(\d+(?:\.\d+)?)/);
+        if (match) {
+            const n = parseFloat(match[1]);
+            if (Number.isFinite(n)) return n;
+        }
+    }
+
+    // 2. Fallback: many rows leave the HP column blank but state it in the
+    // title/model (e.g. "2021 Yanmar 424 (24HP) HST"). Parse only a number that
+    // is explicitly tagged "HP" so the badge stays consistent with the title and
+    // we never mistake a year ("2021") or model number ("424") for horsepower.
+    const text = PICK(
+        item,
+        'model', 'Model', 'item_name', 'name', 'title', 'description', 'Description',
+    );
+    if (text) {
+        const match = text.match(/(\d+(?:\.\d+)?)\s*HP\b/i);
+        if (match) {
+            const n = parseFloat(match[1]);
+            if (Number.isFinite(n)) return n;
+        }
+    }
+
+    return null;
 };
 
 export type Condition = 'new' | 'used' | 'unknown';
@@ -97,6 +118,27 @@ export const estimateMonthlyPayment = (
         termMonths,
         downPayment,
     };
+};
+
+/**
+ * Monthly payment supplied directly in the sheet — i.e. the figure the dealer's
+ * finance partner actually quotes for that unit. When a row fills one of these
+ * columns we show it verbatim instead of the generic on-site estimate, so the
+ * listed note matches what the finance office gave the customer. Returns null
+ * when no such column is filled (caller falls back to estimateMonthlyPayment).
+ */
+export const getProvidedMonthlyPayment = (item: LiveInventoryItem): number | null => {
+    const raw = PICK(
+        item,
+        'monthly_payment', 'Monthly Payment', 'monthlyPayment',
+        'monthly_note', 'Monthly Note', 'monthly_notes',
+        'est_payment', 'estimated_payment', 'est_monthly', 'estimated_monthly',
+        'payment', 'Payment',
+        'monthly', 'Monthly',
+    );
+    if (!raw) return null;
+    const n = parsePriceNumber(raw);
+    return n !== null && n > 0 ? n : null;
 };
 
 export const formatMoney = (n: number) =>

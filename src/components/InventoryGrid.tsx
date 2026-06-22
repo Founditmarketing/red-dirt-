@@ -10,6 +10,7 @@ import {
     formatMoney,
     getCondition,
     getHorsepower,
+    getProvidedMonthlyPayment,
     isDemo,
     matchesEquipmentType,
     parsePriceNumber,
@@ -185,7 +186,9 @@ const InventoryGrid = () => {
                             }
 
                             const price = parsePriceNumber(tractor.price);
-                            const monthly = price ? estimateMonthlyPayment(price).monthly : null;
+                            const monthly =
+                                getProvidedMonthlyPayment(tractor) ??
+                                (price ? estimateMonthlyPayment(price).monthly : null);
                             const cond = getCondition(tractor);
                             const demo = isDemo(tractor);
                             const hp = getHorsepower(tractor);
@@ -259,13 +262,25 @@ const InventoryGrid = () => {
                                                 <p className="text-[11px] font-bold text-charcoal/50 uppercase tracking-[0.25em] mb-1">
                                                     {tractor.make}
                                                 </p>
-                                                <h3 className="font-heading font-black text-charcoal uppercase tracking-tight text-xl md:text-2xl leading-tight mb-3 group-hover:text-brand-red transition-colors line-clamp-2">
+                                                <h3 className="font-heading font-black text-charcoal uppercase tracking-tight text-xl md:text-2xl leading-tight mb-2 group-hover:text-brand-red transition-colors line-clamp-2">
                                                     {tractor.model}
                                                 </h3>
 
-                                                {tractor.category ? (
-                                                    <p className="text-[11px] text-charcoal/55 font-medium mb-4">
+                                                {/* HP below the image, consistent with the on-image badge */}
+                                                {hp ? (
+                                                    <p className="text-[11px] font-bold text-charcoal/55 uppercase tracking-[0.2em] mb-2">
+                                                        {hp} HP
+                                                        {tractor.category ? ` · ${tractor.category}` : ''}
+                                                    </p>
+                                                ) : tractor.category ? (
+                                                    <p className="text-[11px] text-charcoal/55 font-medium mb-2">
                                                         {tractor.category}
+                                                    </p>
+                                                ) : null}
+
+                                                {tractor.description ? (
+                                                    <p className="text-sm text-charcoal/65 font-medium leading-relaxed line-clamp-2 mb-4">
+                                                        {tractor.description}
                                                     </p>
                                                 ) : null}
 

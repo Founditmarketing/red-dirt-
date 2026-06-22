@@ -6,9 +6,7 @@ import { MotionConfig } from 'framer-motion';
 import Layout from './Layout';
 import Home from './pages/Home';
 import ScrollToAnchor from './components/ScrollToAnchor';
-import CompareTray from './components/CompareTray';
 import { InventoryProvider } from './context/InventoryContext';
-import { CompareProvider } from './context/CompareContext';
 import { SavedProvider } from './context/SavedContext';
 
 const EquipmentDetail = lazy(() => import('./pages/EquipmentDetail'));
@@ -27,7 +25,6 @@ const Resources = lazy(() => import('./pages/Resources'));
 const ResourceArticle = lazy(() => import('./pages/ResourceArticle'));
 const FindMyTractor = lazy(() => import('./pages/FindMyTractor'));
 const DealerCity = lazy(() => import('./pages/DealerCity'));
-const Compare = lazy(() => import('./pages/Compare'));
 const Saved = lazy(() => import('./pages/Saved'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
@@ -89,7 +86,6 @@ function App() {
     <MotionConfig reducedMotion="user">
     <InventoryProvider>
       <SavedProvider>
-      <CompareProvider>
         <Helmet>
           <script type="application/ld+json">{JSON.stringify(schemaMarkup)}</script>
         </Helmet>
@@ -102,7 +98,6 @@ function App() {
                 <Route path="/equipment/:id" element={<EquipmentDetail />} />
                 <Route path="/parts-service" element={<PartsService />} />
                 <Route path="/inventory" element={<Inventory />} />
-                <Route path="/compare" element={<Compare />} />
                 <Route path="/saved" element={<Saved />} />
                 <Route path="/financing" element={<Financing />} />
                 <Route path="/implements" element={<Implements />} />
@@ -121,9 +116,7 @@ function App() {
               </Routes>
             </Suspense>
           </Layout>
-          <CompareTray />
         </Router>
-      </CompareProvider>
       </SavedProvider>
     </InventoryProvider>
     </MotionConfig>

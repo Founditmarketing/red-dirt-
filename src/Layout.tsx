@@ -12,16 +12,12 @@ import {
 } from 'lucide-react';
 
 import PrimaryNav from './components/nav/PrimaryNav';
-import { useCompare } from './context/CompareContext';
 
 interface LayoutProps {
     children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-    const { items: compareItems } = useCompare();
-    const trayActive = compareItems.length > 0;
-
     return (
         <div className="min-h-screen flex flex-col font-sans text-charcoal bg-off-white">
             <PrimaryNav />
@@ -242,13 +238,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </div>
             </footer>
 
-            {/* Floating Text-Us FAB - hidden on mobile when CompareTray is open */}
+            {/* Floating Text-Us FAB */}
             <a
                 href="sms://+13184429010"
                 aria-label="Text Red Dirt Tractors at 318-442-9010"
-                className={`fixed right-4 md:right-6 z-50 bg-brand-red text-white p-4 md:px-5 md:py-4 rounded-full md:rounded-none shadow-2xl hover:bg-brand-red-dark transition-all flex items-center gap-3 font-bold uppercase tracking-[0.2em] text-xs md:text-sm ${
-                    trayActive ? 'hidden md:flex' : 'flex'
-                }`}
+                className="fixed right-4 md:right-6 z-50 bg-brand-red text-white p-4 md:px-5 md:py-4 rounded-full md:rounded-none shadow-2xl hover:bg-brand-red-dark transition-all flex items-center gap-3 font-bold uppercase tracking-[0.2em] text-xs md:text-sm"
                 style={{
                     bottom: 'calc(env(safe-area-inset-bottom, 0px) + 1rem)',
                 }}
