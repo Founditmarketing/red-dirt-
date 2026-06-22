@@ -120,14 +120,45 @@ export const estimateMonthlyPayment = (
     };
 };
 
+// ---------------------------------------------------------------------------
+// Finance-office monthly notes
+//
+// The dealer's finance partner quotes an approximate monthly payment per used /
+// demo unit. Until those figures live in the sheet, we keep them here keyed by
+// the model number that appears in each listing's title. Word-boundary matches
+// keep "424" off "T474" and "3025" off TYM's "T3025"; the price + condition
+// guards in getProvidedMonthlyPayment keep them off unpriced new units that
+// share a model number (e.g. the new "6065 PST/C" vs the used "6065 PST").
+//
+// Update these when the used units sell or new ones arrive — or move them into a
+// "Monthly Payment" column in the sheet, which takes priority over this list.
+// ---------------------------------------------------------------------------
+const FINANCE_MONTHLY: Array<{ test: RegExp; monthly: number }> = [
+    { test: /\b3650\b/i, monthly: 469.39 },   // 2022 Mahindra 3650 PST
+    { test: /\b3025\b/i, monthly: 290.47 },   // 2022 John Deere 3025 Shuttle
+    { test: /\b6065\b/i, monthly: 480.96 },   // 2023 Mahindra 6065 PST
+    { test: /\b424\b/i, monthly: 266.0 },     // 2021 Yanmar 424 HST
+    { test: /\b1635\b/i, monthly: 440.62 },   // 2024 Mahindra 1635 Cab Demo
+    { test: /\b2850/i, monthly: 450.55 },     // 2024 Massey Ferguson 2850E Demo
+    { test: /\b2655\b/i, monthly: 390.35 },   // 2019 Mahindra 2655 HST
+    { test: /\b2660\b/i, monthly: 560.0 },    // 2023 Mahindra 2660 Cab Demo
+    { test: /\b6075\b/i, monthly: 640.0 },    // 2022 Mahindra 6075 Cab
+    { test: /1000s/i, monthly: 210.0 },       // 2018 Mahindra SxS XTV 1000S
+    { test: /big\s*tex/i, monthly: 280.0 },   // 2022 Big Tex Gooseneck
+    { test: /tiger\s*tex/i, monthly: 260.0 }, // 2022 Tiger Tex Gooseneck
+];
+
 /**
- * Monthly payment supplied directly in the sheet — i.e. the figure the dealer's
- * finance partner actually quotes for that unit. When a row fills one of these
- * columns we show it verbatim instead of the generic on-site estimate, so the
- * listed note matches what the finance office gave the customer. Returns null
- * when no such column is filled (caller falls back to estimateMonthlyPayment).
+ * Approximate monthly payment to display for a unit, preferring real numbers
+ * over the generic on-site estimate:
+ *   1. An explicit per-row column from the sheet (if ever populated).
+ *   2. The finance office's figures in FINANCE_MONTHLY, matched by model.
+ * Both are limited to priced, non-new listings so a quoted note never appears
+ * on a "Request Quote" new unit. Returns null when neither applies (the caller
+ * then falls back to estimateMonthlyPayment).
  */
 export const getProvidedMonthlyPayment = (item: LiveInventoryItem): number | null => {
+    // 1. Explicit per-row column from the sheet always wins if populated.
     const raw = PICK(
         item,
         'monthly_payment', 'Monthly Payment', 'monthlyPayment',
@@ -136,9 +167,23 @@ export const getProvidedMonthlyPayment = (item: LiveInventoryItem): number | nul
         'payment', 'Payment',
         'monthly', 'Monthly',
     );
-    if (!raw) return null;
-    const n = parsePriceNumber(raw);
-    return n !== null && n > 0 ? n : null;
+    if (raw) {
+        const n = parsePriceNumber(raw);
+        if (n !== null && n > 0) return n;
+    }
+
+    // 2. Finance-office figures keyed by model. Skip unpriced ("quote-only") and
+    // new units so the numbers only land on the used/demo listings they describe.
+    if (parsePriceNumber(item.price) === null) return null;
+    if (getCondition(item) === 'new') return null;
+    const text = [item.make, item.model, item.Model, item.item_name, item.name, item.title]
+        .filter((v): v is string => typeof v === 'string' && v.trim() !== '')
+        .join(' ');
+    for (const { test, monthly } of FINANCE_MONTHLY) {
+        if (test.test(text)) return monthly;
+    }
+
+    return null;
 };
 
 export const formatMoney = (n: number) =>
