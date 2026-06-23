@@ -5,12 +5,12 @@ const BrandLogos = () => {
         { name: "Ferris", url: "/brands/ferrislogo.webp" },
         { name: "TYM Tractors", url: "/brands/tymlogo.png" },
         { name: "Wacker Neuson", url: "/brands/Wacker_Neuson_Logo.png" },
-        { name: "Load Trail", isText: true },
-        { name: "East Texas", isText: true },
-        { name: "Woods", isText: true },
-        { name: "Premier", isText: true },
-        { name: "Baumalight", isText: true },
-        { name: "Sidewinder", isText: true }
+        { name: "Load Trail", url: "/brands/load-trail.svg" },
+        { name: "East Texas", url: "/brands/east-texas.avif" },
+        { name: "Woods", url: "/brands/woods.webp" },
+        { name: "Premier", url: "/brands/premier.png" },
+        { name: "Baumalight", url: "/brands/baumalight.png" },
+        { name: "Sidewinder", url: "/brands/sidewinder.png" }
     ];
 
     return (

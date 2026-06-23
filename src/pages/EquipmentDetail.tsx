@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ChevronRight, ArrowLeft, Shield } from 'lucide-react';
+import { ChevronRight, ArrowLeft } from 'lucide-react';
 import Gallery from '../components/equipment/Gallery';
 import SpecsTable from '../components/equipment/SpecsTable';
 import QuoteForm from '../components/equipment/QuoteForm';
@@ -133,10 +133,7 @@ const EquipmentDetail = () => {
                                     <span className="bg-amber-400 text-charcoal px-2 py-1 md:px-3 text-[10px] md:text-xs font-black uppercase tracking-widest">Demo</span>
                                 ) : null}
                                 <span className="bg-charcoal text-white px-2 py-1 md:px-3 text-[10px] md:text-xs font-bold uppercase tracking-widest">{data.category}</span>
-                                <span className="bg-brand-red text-white px-2 py-1 md:px-3 text-[10px] md:text-xs font-bold uppercase tracking-widest flex items-center gap-1">
-                                    <Shield size={10} className="md:w-3 md:h-3" /> 6-Year Warranty
-                                </span>
-                                <span className="bg-white border border-charcoal/15 text-charcoal/65 px-2 py-1 md:px-3 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+<span className="bg-white border border-charcoal/15 text-charcoal/65 px-2 py-1 md:px-3 text-[10px] md:text-xs font-bold uppercase tracking-widest">
                                     Stock #{String(data.id).slice(-5).padStart(5, '0')}
                                 </span>
                             </div>
