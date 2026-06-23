@@ -30,17 +30,11 @@ const BrandLogos = () => {
                                     key={index}
                                     className="shrink-0 snap-center w-28 sm:w-36 md:w-48 lg:w-56 xl:w-72 transition-transform duration-300 hover:-translate-y-1 hover:drop-shadow-md flex justify-center items-center"
                                 >
-                                    {brand.isText ? (
-                                        <span className="font-heading font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-charcoal/80 uppercase tracking-tight text-center whitespace-nowrap">
-                                            {brand.name}
-                                        </span>
-                                    ) : (
-                                        <img 
-                                            src={brand.url} 
-                                            alt={`${brand.name} Logo`} 
-                                            className={`w-full h-auto object-contain ${isTYM ? 'max-h-16 sm:max-h-20 md:max-h-32 lg:max-h-40' : 'max-h-12 sm:max-h-16 md:max-h-28 lg:max-h-36'}`}
-                                        />
-                                    )}
+                                    <img
+                                        src={brand.url}
+                                        alt={`${brand.name} Logo`}
+                                        className={`w-full h-auto object-contain ${isTYM ? 'max-h-16 sm:max-h-20 md:max-h-32 lg:max-h-40' : 'max-h-12 sm:max-h-16 md:max-h-28 lg:max-h-36'}`}
+                                    />
                                 </div>
                             );
                         })}
