@@ -34,7 +34,7 @@ const BrandLogos = () => {
                                     <img
                                         src={brand.url}
                                         alt={`${brand.name} Logo`}
-                                        className={`w-full h-auto object-contain ${isTYM ? 'max-h-16 sm:max-h-20 md:max-h-32 lg:max-h-40' : 'max-h-12 sm:max-h-16 md:max-h-28 lg:max-h-36'}`}
+                                        className={`w-full h-auto object-contain ${isTYM ? 'max-h-16 sm:max-h-20 md:max-h-32 lg:max-h-40' : 'max-h-12 sm:max-h-16 md:max-h-28 lg:max-h-36'} ${isWoods ? 'rounded p-2 bg-gray-800' : ''}`}
                                     />
                                 </div>
                             );
