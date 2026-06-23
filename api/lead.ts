@@ -93,7 +93,7 @@ export default async function handler(req: any, res: any) {
     try {
         const { error } = await resend.emails.send({
             from: 'Red Dirt Tractors <hello@reddirttractors.com>',
-            to: 'jason@founditmarketing.com',
+            to: 'Reddirttractors@gmail.com',
             replyTo: email || undefined,
             subject,
             html: buildEmailHtml(body),
