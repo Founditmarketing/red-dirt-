@@ -340,7 +340,7 @@ const Inventory = () => {
                         <p className="text-charcoal/70 leading-relaxed font-medium max-w-md lg:ml-auto">
                             {isFallbackInventory
                                 ? 'Our live sheet is unavailable right now, so we are showing high-demand models our team can quote, source, finance, and configure fast.'
-                                : 'Live from our Google Sheet. If it is on this page, it is on our lot or on the way. Filter by brand, category, price, HP, year, or condition.'}
+                                : 'If it is on this page, it is on our lot or on the way. Filter by brand, category, price, HP, year, or condition.'}
                         </p>
                     </div>
                 </div>
