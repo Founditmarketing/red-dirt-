@@ -101,7 +101,7 @@ export default async function handler(req: any, res: any) {
 
         if (error) {
             console.error('[lead] resend error', error);
-            return res.status(502).json({ error: 'Failed to send email. Please call 318-442-9010.' });
+            return res.status(502).json({ error: `Resend: ${error.name} — ${error.message}` });
         }
 
         return res.status(200).json({ ok: true });
