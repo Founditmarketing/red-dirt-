@@ -25,10 +25,11 @@ const BrandLogos = () => {
                     <div className="flex gap-8 md:gap-12 lg:gap-16 items-center justify-start md:justify-between overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2 md:pb-0">
                         {brands.map((brand, index) => {
                             const isTYM = brand.name === "TYM Tractors";
+                            const isWoods = brand.name === "Woods";
                             return (
                                 <div
                                     key={index}
-                                    className="shrink-0 snap-center w-28 sm:w-36 md:w-48 lg:w-56 xl:w-72 transition-transform duration-300 hover:-translate-y-1 hover:drop-shadow-md flex justify-center items-center"
+                                    className={`shrink-0 snap-center w-28 sm:w-36 md:w-48 lg:w-56 xl:w-72 flex justify-center items-center${isWoods ? '' : ' transition-transform duration-300 hover:-translate-y-1 hover:drop-shadow-md'}`}
                                 >
                                     <img
                                         src={brand.url}
