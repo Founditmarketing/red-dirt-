@@ -266,7 +266,7 @@ const Inventory = () => {
 
     const hasFilters = activeCount > 0;
 
-    const pageTitle = isFallbackInventory ? 'Top requested equipment.' : `${inventory.length} Models`;
+    const pageTitle = isFallbackInventory ? 'Top requested equipment.' : `${inventory.length} New Models`;
     const pageSubtitle = isFallbackInventory ? 'Quote ready.' : 'to choose from in one yard.';
     const metaDescription = isFallbackInventory
         ? 'Explore top-requested tractors, mowers, and equipment Red Dirt Tractors can quote, source, finance, and configure for Central Louisiana buyers.'
