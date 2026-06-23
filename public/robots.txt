@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /saved
 
-Sitemap: https://reddirt-tractors.com/sitemap.xml
+Sitemap: https://reddirttractors.com/sitemap.xml
