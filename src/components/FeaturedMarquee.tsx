@@ -113,7 +113,7 @@ const MarqueeCard = ({ item }: { item: any }) => {
                     {item.model}
                 </h4>
                 <p className="font-heading font-black text-charcoal text-sm tracking-tight">
-                    {price ? formatMoney(price) : 'Contact for pricing'}
+                    {price ? formatMoney(price) : 'Volume Pricing Request'}
                 </p>
             </div>
         </Link>

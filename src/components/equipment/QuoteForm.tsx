@@ -80,7 +80,7 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
         <div className="bg-white p-6 md:p-8 border-t-4 border-brand-red shadow-2xl relative lg:sticky lg:top-32">
             <div className="mb-6 md:mb-8">
                 <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight">Request a Quote</h3>
-                <p className="text-charcoal/60 font-medium text-xs md:text-sm mt-1">Get custom pricing for the {modelName}</p>
+                <p className="text-charcoal/60 font-medium text-xs md:text-sm mt-1">Get your volume discount price for the {modelName}</p>
             </div>
 
             <form className="space-y-6" onSubmit={onSubmit}>
@@ -94,10 +94,12 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
                         autoCapitalize="words"
                         enterKeyHint="next"
                         className="peer w-full border-b-2 border-charcoal/20 bg-transparent pt-4 pb-2 text-charcoal focus:outline-none focus:border-brand-red transition-colors placeholder-transparent"
-                        placeholder="Full Name"
+                        placeholder="Name"
                     />
-                    <label htmlFor="quote-name" className="absolute left-0 -top-3.5 text-xs font-bold text-charcoal/40 uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 hover:cursor-text peer-focus:-top-3.5 peer-focus:text-brand-red peer-focus:text-xs">Full Name</label>
+                    <label htmlFor="quote-name" className="absolute left-0 -top-3.5 text-xs font-bold text-charcoal/40 uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 hover:cursor-text peer-focus:-top-3.5 peer-focus:text-brand-red peer-focus:text-xs">Name</label>
                 </div>
+
+                <p className="text-[11px] font-bold uppercase tracking-widest text-charcoal/40 -mb-3">Phone or Email (either is fine)</p>
 
                 <div className="relative">
                     <input
@@ -162,7 +164,7 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
                         onChange={(e) => setWantsCash(e.target.checked)}
                         className="w-4 h-4 md:w-5 md:h-5 accent-brand-red cursor-pointer"
                     />
-                    <label htmlFor="cash" className="text-xs md:text-sm font-bold uppercase tracking-wide text-charcoal/70 cursor-pointer">Cash Pricing</label>
+                    <label htmlFor="cash" className="text-xs md:text-sm font-bold uppercase tracking-wide text-charcoal/70 cursor-pointer">Cash Price</label>
                 </div>
 
                 {status === 'error' ? (

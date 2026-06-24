@@ -755,7 +755,7 @@ const Inventory = () => {
                                                             {price ? (isFallbackInventory ? 'Pricing' : 'Starting at') : 'Pricing'}
                                                         </p>
                                                         <p className="font-heading font-black text-charcoal text-lg md:text-xl tracking-tight">
-                                                            {price ? formatMoney(price) : 'Contact for pricing'}
+                                                            {price ? formatMoney(price) : 'Volume Pricing Request'}
                                                         </p>
                                                     </div>
                                                     <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.25em] text-charcoal group-hover:text-brand-red transition-colors">

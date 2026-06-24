@@ -14,6 +14,6 @@ export const processGoogleDriveUrl = (url: string): string => {
         return `/tractors/${fileMatch[1]}.jpg`;
     }
     
-    // Fallback: If it's already an http link, return it. Otherwise, assume it's a local filename.
-    return url.startsWith('http') ? url : `/tractors/${url}`;
+    // Fallback: If it's already an http or absolute path, return it. Otherwise, assume it's a local filename.
+    return (url.startsWith('http') || url.startsWith('/')) ? url : `/tractors/${url}`;
 };
