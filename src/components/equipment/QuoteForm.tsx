@@ -19,9 +19,9 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
 
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!name && !phone && !email) {
+        if (!phone || !email) {
             setStatus('error');
-            setError('Add a name, phone, or email so we can reply.');
+            setError('Please provide both a phone number and email address.');
             return;
         }
 
@@ -99,14 +99,13 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
                     <label htmlFor="quote-name" className="absolute left-0 -top-3.5 text-xs font-bold text-charcoal/40 uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 hover:cursor-text peer-focus:-top-3.5 peer-focus:text-brand-red peer-focus:text-xs">Name</label>
                 </div>
 
-                <p className="text-[11px] font-bold uppercase tracking-widest text-charcoal/40 -mb-3">Phone or Email (either is fine)</p>
-
                 <div className="relative">
                     <input
                         type="tel"
                         id="quote-phone"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
+                        required
                         autoComplete="tel"
                         inputMode="tel"
                         enterKeyHint="next"
@@ -122,6 +121,7 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
                         id="quote-email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
                         autoComplete="email"
                         autoCapitalize="off"
                         autoCorrect="off"
