@@ -10,7 +10,8 @@ const BrandLogos = () => {
         { name: "Woods", url: "/brands/woods.webp" },
         { name: "Premier", url: "/brands/premier.png" },
         { name: "Baumalight", url: "/brands/baumalight.png" },
-        { name: "Sidewinder", url: "/brands/sidewinder.png" }
+        { name: "Sidewinder", url: "/brands/Sidewinder.png" },
+        { name: "Hercules", url: "/brands/Hercules.png" }
     ];
 
     return (
