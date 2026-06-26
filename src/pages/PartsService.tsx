@@ -1,8 +1,54 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { Wrench, Settings, Phone, ChevronRight } from 'lucide-react';
+import { submitLead } from '../utils/submitLead';
+
+type FormState = {
+    name: string;
+    phone: string;
+    equipment: string;
+    issue: string;
+};
+
+const initialForm: FormState = { name: '', phone: '', equipment: '', issue: '' };
 
 const PartsService = () => {
+    const [form, setForm] = useState<FormState>(initialForm);
+    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const [error, setError] = useState('');
+
+    const update = (key: keyof FormState) => (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => setForm((prev) => ({ ...prev, [key]: e.target.value }));
+
+    const onSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!form.name && !form.phone) {
+            setStatus('error');
+            setError('Please provide your name and phone number so we can reach you.');
+            return;
+        }
+        setStatus('submitting');
+        setError('');
+        const result = await submitLead({
+            source: 'parts-service',
+            name: form.name,
+            phone: form.phone,
+            message: form.issue || `Service request for ${form.equipment}`.trim(),
+            payload: { equipment: form.equipment, issue: form.issue },
+        });
+        if (result.ok) {
+            (window as any).dataLayer = (window as any).dataLayer || [];
+            (window as any).dataLayer.push({ event: 'lead_submitted', form_source: 'parts-service' });
+            setStatus('success');
+            setForm(initialForm);
+        } else {
+            setStatus('error');
+            setError(result.error);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-off-white">
             <Helmet>
@@ -58,31 +104,42 @@ const PartsService = () => {
                                 </div>
                             </div>
 
-                            <form className="space-y-6 md:space-y-8">
+                            {status === 'success' ? (
+                                <div className="py-12 text-center">
+                                    <p className="text-2xl font-black uppercase tracking-tight text-charcoal mb-3">Request received.</p>
+                                    <p className="text-charcoal/60 font-medium mb-6">We will be in touch during business hours.</p>
+                                    <button type="button" onClick={() => setStatus('idle')} className="text-xs font-bold uppercase tracking-[0.25em] text-brand-red hover:underline">Submit another request</button>
+                                </div>
+                            ) : (
+                            <form onSubmit={onSubmit} className="space-y-6 md:space-y-8">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                                     {/* Floating Label Style Inputs */}
                                     <div className="relative pt-2">
-                                        <input type="text" id="name" className="peer w-full border-b-2 border-charcoal/20 bg-transparent pt-4 pb-2 text-charcoal focus:outline-none focus:border-brand-red transition-colors placeholder-transparent" placeholder="Full Name" />
+                                        <input type="text" id="name" value={form.name} onChange={update('name')} autoComplete="name" autoCapitalize="words" className="peer w-full border-b-2 border-charcoal/20 bg-transparent pt-4 pb-2 text-charcoal focus:outline-none focus:border-brand-red transition-colors placeholder-transparent" placeholder="Full Name" />
                                         <label htmlFor="name" className="absolute left-0 -top-1.5 text-xs md:text-sm font-bold text-charcoal/40 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:top-4 hover:cursor-text peer-focus:-top-1.5 peer-focus:text-brand-red peer-focus:text-xs">Full Name</label>
                                     </div>
                                     <div className="relative pt-2">
-                                        <input type="tel" id="phone" className="peer w-full border-b-2 border-charcoal/20 bg-transparent pt-4 pb-2 text-charcoal focus:outline-none focus:border-brand-red transition-colors placeholder-transparent" placeholder="Phone Number" />
+                                        <input type="tel" id="phone" value={form.phone} onChange={update('phone')} autoComplete="tel" inputMode="tel" className="peer w-full border-b-2 border-charcoal/20 bg-transparent pt-4 pb-2 text-charcoal focus:outline-none focus:border-brand-red transition-colors placeholder-transparent" placeholder="Phone Number" />
                                         <label htmlFor="phone" className="absolute left-0 -top-1.5 text-xs md:text-sm font-bold text-charcoal/40 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:top-4 hover:cursor-text peer-focus:-top-1.5 peer-focus:text-brand-red peer-focus:text-xs">Phone Number</label>
                                     </div>
                                     <div className="relative md:col-span-2 pt-2">
-                                        <input type="text" id="equipment" className="peer w-full border-b-2 border-charcoal/20 bg-transparent pt-4 pb-2 text-charcoal focus:outline-none focus:border-brand-red transition-colors placeholder-transparent" placeholder="Equipment Make & Model" />
+                                        <input type="text" id="equipment" value={form.equipment} onChange={update('equipment')} className="peer w-full border-b-2 border-charcoal/20 bg-transparent pt-4 pb-2 text-charcoal focus:outline-none focus:border-brand-red transition-colors placeholder-transparent" placeholder="Equipment Make & Model" />
                                         <label htmlFor="equipment" className="absolute left-0 -top-1.5 text-xs md:text-sm font-bold text-charcoal/40 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:top-4 hover:cursor-text peer-focus:-top-1.5 peer-focus:text-brand-red peer-focus:text-xs">Equipment Make & Model</label>
                                     </div>
                                     <div className="relative md:col-span-2 pt-2">
-                                        <textarea id="issue" rows={4} className="peer w-full border-2 border-charcoal/10 rounded-sm bg-off-white p-4 text-charcoal focus:outline-none focus:border-brand-red focus:bg-white transition-colors placeholder-transparent resize-none mt-2" placeholder="Describe the Issue"></textarea>
+                                        <textarea id="issue" rows={4} value={form.issue} onChange={update('issue')} className="peer w-full border-2 border-charcoal/10 rounded-sm bg-off-white p-4 text-charcoal focus:outline-none focus:border-brand-red focus:bg-white transition-colors placeholder-transparent resize-none mt-2" placeholder="Describe the Issue"></textarea>
                                         <label htmlFor="issue" className="absolute left-4 top-0 text-xs md:text-sm font-bold text-charcoal/40 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:top-6 hover:cursor-text peer-focus:top-0 peer-focus:text-brand-red peer-focus:text-xs bg-white px-2">Describe the Issue</label>
                                     </div>
                                 </div>
-                                <button type="button" className="group bg-brand-red text-white px-6 md:px-8 py-4 w-full rounded-sm font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 hover:bg-brand-red-dark transition-all shadow-[0_0_20px_rgba(227,24,55,0.2)] hover:shadow-[0_0_40px_rgba(227,24,55,0.4)] mt-4 md:mt-8">
-                                    <span>Submit Service Request</span>
+                                {status === 'error' ? (
+                                    <p className="text-sm font-medium text-brand-red">{error}</p>
+                                ) : null}
+                                <button type="submit" disabled={status === 'submitting'} className="group bg-brand-red text-white px-6 md:px-8 py-4 w-full rounded-sm font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 hover:bg-brand-red-dark disabled:opacity-60 disabled:cursor-not-allowed transition-all shadow-[0_0_20px_rgba(227,24,55,0.2)] hover:shadow-[0_0_40px_rgba(227,24,55,0.4)] mt-4 md:mt-8">
+                                    <span>{status === 'submitting' ? 'Sending...' : 'Submit Service Request'}</span>
                                     <ChevronRight className="group-hover:translate-x-1 transition-transform w-5 h-5" />
                                 </button>
                             </form>
+                            )}
                         </div>
                     </div>
 

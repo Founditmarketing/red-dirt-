@@ -69,6 +69,8 @@ const TradeIn = () => {
         });
 
         if (result.ok) {
+            (window as any).dataLayer = (window as any).dataLayer || [];
+            (window as any).dataLayer.push({ event: 'lead_submitted', form_source: 'trade-in' });
             setStatus('success');
             setForm(initialForm);
         } else {

@@ -236,6 +236,8 @@ const FindMyTractor = () => {
         });
 
         if (result.ok) {
+            (window as any).dataLayer = (window as any).dataLayer || [];
+            (window as any).dataLayer.push({ event: 'lead_submitted', form_source: 'find-my-tractor' });
             setSubmitState('success');
         } else {
             setSubmitState('error');

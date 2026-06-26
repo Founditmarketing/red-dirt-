@@ -41,6 +41,8 @@ const QuoteForm = ({ modelName }: QuoteFormProps) => {
         });
 
         if (result.ok) {
+            (window as any).dataLayer = (window as any).dataLayer || [];
+            (window as any).dataLayer.push({ event: 'lead_submitted', form_source: 'equipment-quote' });
             setStatus('success');
             setName('');
             setPhone('');
